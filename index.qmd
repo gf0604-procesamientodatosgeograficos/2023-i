@@ -1,0 +1,25 @@
+---
+title: "Bienvenida"
+toc-title: "Contenidos"
+---
+
+# Bienvenida {.unnumbered}
+Este curso trata sobre el manejo, visualización y análisis de datos mediante el lenguaje de programación [R](https://www.r-project.org/), con énfasis en datos geográficos. Se imparte en la [Escuela de Geografía](https://www.geografia.fcs.ucr.ac.cr/) de la [Universidad de Costa Rica](https://www.ucr.ac.cr/).
+
+Se estudian los fundamentos de R, sus capacidades para generar gráficos estadísticos y sus bibliotecas geoespaciales. También se estudian herramientas para facilitar la reproducibilidad de los procedimientos y su comunicación a través de Internet y otros medios.
+
+El enfoque del curso es teórico-práctico, con lecciones teóricas combinadas con ejercicios de programación en los cuales los estudiantes aplican en diversos escenarios de procesamiento de datos los conocimientos y habilidades aprendidas.
+
+Este sitio web corresponde al curso impartido durante el primer lectivo de 2023. Para consultar las versiones de otros ciclos lectivos, puede visitar el [sitio web general del curso](https://gf0604-procesamientodatosgeograficos.github.io/).
+
+**Información de contacto**
+Si tiene alguna pregunta o comentario sobre este curso, por favor contacte a:
+
+> Manuel Vargas - manuel.vargas_d\@ucr.ac.cr\
+> Profesor\
+> Universidad de Costa Rica,\
+> Ciudad Universitaria Rodrigo Facio,\
+> San Pedro de Montes de Oca,\
+> Costa Rica.
+
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" alt="Licencia de Creative Commons" style="border-width:0"/></a><br />Los contenidos de este curso, a menos que se especifique de otra forma, se comparten mediante una <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">licencia de Creative Commons Reconocimiento-CompartirIgual 4.0 Internacional</a>.
