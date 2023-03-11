@@ -1,17 +1,21 @@
 ---
-toc-title: "Contenidos"
+lang: es
 ---
 
 # Bienvenida {.unnumbered}
-Este curso trata sobre el manejo, visualización y análisis de datos mediante el lenguaje de programación [R](https://www.r-project.org/), con énfasis en datos geográficos. Se imparte en la [Escuela de Geografía](https://www.geografia.fcs.ucr.ac.cr/) de la [Universidad de Costa Rica](https://www.ucr.ac.cr/).
+Este es un curso introductorio a la programación de computadoras y al procesamiento de datos geográficos mediante el lenguaje de programación R. También se estudian herramientas para facilitar la reproducibilidad de los procedimientos y la comunicación de las soluciones a través de Internet y otros medios. Se imparte en la [Escuela de Geografía](https://www.geografia.fcs.ucr.ac.cr/) de la [Universidad de Costa Rica](https://www.ucr.ac.cr/).
 
-Se estudian los fundamentos de R, sus capacidades para generar gráficos estadísticos y sus bibliotecas geoespaciales. También se estudian herramientas para facilitar la reproducibilidad de los procedimientos y su comunicación a través de Internet y otros medios.
+El enfoque del curso es teórico-práctico, con lecciones teóricas combinadas con ejercicios de programación en los cuales los estudiantes aplican en diversos escenarios de procesamiento de datos los conocimientos y habilidades aprendidas. No se requiere de experiencia previa en programación de computadoras. Es recomendable contar con conocimentos básicos de datos geoespaciales y sistemas de información geográfica.
 
-El enfoque del curso es teórico-práctico, con lecciones teóricas combinadas con ejercicios de programación en los cuales los estudiantes aplican en diversos escenarios de procesamiento de datos los conocimientos y habilidades aprendidas.
+Tanto las lecciones teóricas como las prácticas se imparten de manera presencial, con apoyo de medios virtuales. Los contenidos del curso y los recursos relacionados se comparten en el sitio web [https://gf0604-procesamientodatosgeograficos.github.io/2023-i/](https://gf0604-procesamientodatosgeograficos.github.io/2023-i/) y en la plataforma [Mediación Virtual](https://mediacionvirtual.ucr.ac.cr/) de la Universidad de Costa Rica. 
 
-Este sitio web corresponde al curso impartido durante el primer lectivo de 2023. Para consultar las versiones de otros ciclos lectivos, puede visitar el [sitio web general del curso](https://gf0604-procesamientodatosgeograficos.github.io/).
+Este sitio web corresponde al curso impartido durante el primer lectivo de 2023. Para consultar las versiones de otros años y ciclos lectivos, puede visitar:
 
-**Información de contacto**
+- [2022-I](https://gf0604-procesamientodatosgeograficos.github.io/2022-i/)
+- [2021-I](https://gf0604-procesamientodatosgeograficos.github.io/2021i/)
+- [2020-I](https://geoprocesamiento-2020i.github.io/)
+
+# Información de contacto
 Si tiene alguna pregunta o comentario sobre este curso, por favor contacte a:
 
 > Manuel Vargas - manuel.vargas_d\@ucr.ac.cr\
