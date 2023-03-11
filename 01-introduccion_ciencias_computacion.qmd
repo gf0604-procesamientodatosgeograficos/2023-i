@@ -1,0 +1,13 @@
+---
+title: "Introducción a las ciencias de la computación"
+toc-title: "Contenidos"
+---
+
+# Resumen
+
+# Computadoras
+Las siguientes son algunas definiciones de computadora:
+
+*"Máquina electrónica que, mediante determinados programas, permite almacenar y tratar información, y resolver problemas de diversa índole."*
+
+# Arquitectura de computadoras

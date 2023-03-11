@@ -1,5 +1,4 @@
 ---
-title: "Bienvenida"
 toc-title: "Contenidos"
 ---
 

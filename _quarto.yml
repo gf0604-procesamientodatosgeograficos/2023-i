@@ -8,7 +8,9 @@ book:
   date: "2023-01-17"
   chapters:
     - index.qmd
-    - referencias.qmd
+    - part: parte-i-introduccion.qmd
+      chapters:
+        - 01-introduccion_ciencias_computacion.qmd
 
 bibliography: referencias.bib
 
