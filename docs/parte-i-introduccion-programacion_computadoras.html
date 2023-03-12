@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.1.189">
@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>GF0604 Procesamiento de datos geográficos 2023-I - 1&nbsp; Introducción a las ciencias de la computación</title>
+<title>GF0604 Procesamiento de datos geográficos 2023-I - I - Introducción a la programación de computadoras</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,7 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./parte-i-introduccion.html" rel="prev">
+<link href="./01-pensamiento_computacional-arquitectura_computadoras-lenguajes_programacion.html" rel="next">
+<link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -48,15 +49,15 @@ ul.task-list li input[type="checkbox"] {
   "type": "textbox",
   "limit": 20,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-no-results-text": "Sín resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la busqueda",
+    "search-hide-matches-text": "Esconder resultados adicionales",
+    "search-more-match-text": "hay más resultados en este documento",
+    "search-more-matches-text": "más resultados en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Eviar"
   }
 }</script>
 
@@ -69,7 +70,7 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introducción a las ciencias de la computación</span></h1>
+      <h1 class="quarto-secondary-nav-title">I - Introducción a la programación de computadoras</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -99,7 +100,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./parte-i-introduccion.html" class="sidebar-item-text sidebar-link">I - Introducción</a>
+            <a href="./parte-i-introduccion-programacion_computadoras.html" class="sidebar-item-text sidebar-link active">I - Introducción a la programación de computadoras</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -107,7 +108,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-introduccion_ciencias_computacion.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introducción a las ciencias de la computación</span></a>
+  <a href="./01-pensamiento_computacional-arquitectura_computadoras-lenguajes_programacion.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Pensamiento computacional, arquitectura de computadoras y lenguajes de programación</span></a>
   </div>
 </li>
       </ul>
@@ -117,22 +118,14 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Contenidos</h2>
-   
-  <ul>
-  <li><a href="#resumen" id="toc-resumen" class="nav-link active" data-scroll-target="#resumen"><span class="toc-section-number">2</span>  Resumen</a></li>
-  <li><a href="#computadoras" id="toc-computadoras" class="nav-link" data-scroll-target="#computadoras"><span class="toc-section-number">3</span>  Computadoras</a></li>
-  <li><a href="#arquitectura-de-computadoras" id="toc-arquitectura-de-computadoras" class="nav-link" data-scroll-target="#arquitectura-de-computadoras"><span class="toc-section-number">4</span>  Arquitectura de computadoras</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introducción a las ciencias de la computación</span></h1>
+<h1 class="title d-none d-lg-block">I - Introducción a la programación de computadoras</h1>
 </div>
 
 
@@ -146,19 +139,9 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="resumen" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Resumen</h1>
-</section>
-<section id="computadoras" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Computadoras</h1>
-<p>Las siguientes son algunas definiciones de computadora:</p>
-<p><em>“Máquina electrónica que, mediante determinados programas, permite almacenar y tratar información, y resolver problemas de diversa índole.”</em></p>
-</section>
-<section id="arquitectura-de-computadoras" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Arquitectura de computadoras</h1>
+<p><a href="./01-pensamiento_computacional-arquitectura_computadoras-lenguajes_programacion.html">1 Pensamiento computacional, arquitectura de computadoras y lenguajes de programación</a></p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -201,7 +184,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // flash "checked"
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
+    button.setAttribute("title", "Copiada");
     setTimeout(function() {
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
@@ -261,11 +244,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./parte-i-introduccion.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">I - Introducción</span>
+      <a href="./index.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Bienvenida</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./01-pensamiento_computacional-arquitectura_computadoras-lenguajes_programacion.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Pensamiento computacional, arquitectura de computadoras y lenguajes de programación</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

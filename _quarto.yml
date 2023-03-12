@@ -8,9 +8,9 @@ book:
   date: "2023-01-17"
   chapters:
     - index.qmd
-    - part: parte-i-introduccion.qmd
+    - part: parte-i-introduccion-programacion_computadoras.qmd
       chapters:
-        - 01-introduccion_ciencias_computacion.qmd
+        - 01-pensamiento_computacional-arquitectura_computadoras-lenguajes_programacion.qmd
 
 bibliography: referencias.bib
 
