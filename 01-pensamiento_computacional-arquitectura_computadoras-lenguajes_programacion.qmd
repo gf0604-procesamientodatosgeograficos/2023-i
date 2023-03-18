@@ -4,11 +4,6 @@ lang: es
 
 # Pensamiento computacional, arquitectura de computadoras y lenguajes de programación {#sec-pencom}
 
-## Trabajo previo
-
-### Lecturas
-Wing, J. M. (2006). Computational thinking. *Communications of the ACM, 49*(3), 33-35. [https://doi.org/10.1145/1118178.1118215](https://doi.org/10.1145/1118178.1118215)
-
 ## Resumen
 Una computadora es una máquina que ejecuta secuencias de instrucciones, llamadas programas. Los programas reciben datos de entrada, los procesan y generan salidas. Pueden modificarse sin necesidad de alterar los componentes físicos de la computadora.
 
@@ -29,6 +24,10 @@ Debido a que programar una computadora en lenguaje máquina es excesivamente len
 
 Scratch es un lenguaje de programación orientado a educación. Fue desarrollado en 2003 por el MIT Media Lab y es administrado por la Fundación Scratch, una organización sin fines de lucro que lo facilita de manera gratuita.
 
+## Trabajo previo
+
+### Lecturas
+Wing, J. M. (2006). Computational thinking. *Communications of the ACM, 49*(3), 33-35. [https://doi.org/10.1145/1118178.1118215](https://doi.org/10.1145/1118178.1118215)
 
 ## Diapositivas
 [Pensamiento computacional, arquitectura de computadoras y lenguajes de programación](https://gf0604-procesamientodatosgeograficos.github.io/2023-i-pensamiento_computacional-arquitectura_computadoras-lenguajes_programacion/)
