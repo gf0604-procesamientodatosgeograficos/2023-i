@@ -11,6 +11,7 @@ book:
     - part: parte-i-introduccion-programacion_computadoras.qmd
       chapters:
         - 01-pensamiento_computacional-arquitectura_computadoras-lenguajes_programacion.qmd
+        - 02-interaccion_humano_computadora.qmd
 
 bibliography: referencias.bib
 

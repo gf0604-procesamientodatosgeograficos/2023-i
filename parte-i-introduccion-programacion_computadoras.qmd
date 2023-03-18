@@ -4,4 +4,6 @@ lang: es
 
 # I - Introducción a la programación de computadoras {.unnumbered}
 
-[1 Pensamiento computacional, arquitectura de computadoras y lenguajes de programación](01-pensamiento_computacional-arquitectura_computadoras-lenguajes_programacion.qmd)
+[1 Pensamiento computacional, arquitectura de computadoras y lenguajes de programación](01-pensamiento_computacional-arquitectura_computadoras-lenguajes_programacion.qmd)  
+
+[2 Interacción humano-computadora](02-interaccion_humano_computadora.qmd)

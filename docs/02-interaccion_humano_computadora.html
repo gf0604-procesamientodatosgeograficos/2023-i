@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.189">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>GF0604 Procesamiento de datos geográficos 2023-I - 2&nbsp; Interacción humano-computadora</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./01-pensamiento_computacional-arquitectura_computadoras-lenguajes_programacion.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Sín resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la busqueda",
+    "search-hide-matches-text": "Esconder resultados adicionales",
+    "search-more-match-text": "hay más resultados en este documento",
+    "search-more-matches-text": "más resultados en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Eviar"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Interacción humano-computadora</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">GF0604 Procesamiento de datos geográficos 2023-I</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Bienvenida</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./parte-i-introduccion-programacion_computadoras.html" class="sidebar-item-text sidebar-link">I - Introducción a la programación de computadoras</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-pensamiento_computacional-arquitectura_computadoras-lenguajes_programacion.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Pensamiento computacional, arquitectura de computadoras y lenguajes de programación</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-interaccion_humano_computadora.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Interacción humano-computadora</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Indice de contenidos</h2>
+   
+  <ul>
+  <li><a href="#resumen" id="toc-resumen" class="nav-link active" data-scroll-target="#resumen"><span class="toc-section-number">2.1</span>  Resumen</a></li>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="toc-section-number">2.2</span>  Introducción</a></li>
+  <li><a href="#interfaces-de-usuario" id="toc-interfaces-de-usuario" class="nav-link" data-scroll-target="#interfaces-de-usuario"><span class="toc-section-number">2.3</span>  Interfaces de usuario</a>
+  <ul class="collapse">
+  <li><a href="#interfaces-de-línea-de-comandos" id="toc-interfaces-de-línea-de-comandos" class="nav-link" data-scroll-target="#interfaces-de-línea-de-comandos"><span class="toc-section-number">2.3.1</span>  Interfaces de línea de comandos</a></li>
+  <li><a href="#interfaces-gráficas-de-usuario" id="toc-interfaces-gráficas-de-usuario" class="nav-link" data-scroll-target="#interfaces-gráficas-de-usuario"><span class="toc-section-number">2.3.2</span>  Interfaces gráficas de usuario</a></li>
+  <li><a href="#interfaces-naturales-de-usuario" id="toc-interfaces-naturales-de-usuario" class="nav-link" data-scroll-target="#interfaces-naturales-de-usuario"><span class="toc-section-number">2.3.3</span>  Interfaces naturales de usuario</a></li>
+  </ul></li>
+  <li><a href="#recursos-de-interés" id="toc-recursos-de-interés" class="nav-link" data-scroll-target="#recursos-de-interés"><span class="toc-section-number">2.4</span>  Recursos de interés</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Interacción humano-computadora</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="resumen" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="resumen"><span class="header-section-number">2.1</span> Resumen</h2>
+</section>
+<section id="introducción" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="introducción"><span class="header-section-number">2.2</span> Introducción</h2>
+<p>La <a href="https://es.wikipedia.org/wiki/Interacci%C3%B3n_persona-computadora">interacción humano-computadora (IHC)</a> es un área de investigación dedicada al diseño y uso de la tecnología computacional. Esta interacción se realiza a través de <a href="https://es.wikipedia.org/wiki/Interfaz">interfaces</a>. La IHC se sitúa en la intersección de varias disciplinas que incluyen ciencias de la computación, ciencias de la conducta, diseño y estudios de medios, entre otras. Los investigadores de IHC estudian la manera en la que los humanos interactúan con las computadoras y diseñan tecnologías para mejorar esa interacción.</p>
+<p>La IHC enfatiza que, a diferencia de otras máquinas y herramientas con usos más limitados, las computadoras tienen aplicaciones muy diversas que implican un “diálogo” más complejo con los usuarios.</p>
+</section>
+<section id="interfaces-de-usuario" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="interfaces-de-usuario"><span class="header-section-number">2.3</span> Interfaces de usuario</h2>
+<p>La <a href="https://es.wikipedia.org/wiki/Interfaz_de_usuario">interfaz de usuario</a> es el medio con el que el usuario puede comunicarse con una computadora (o, en general, con cualquier máquina o dispositivo). Las interfaces de usuario se diseñan para que sean fáciles de entender y de utilizar.</p>
+<p>Las interfaces de usuario pueden clasificarse en tres tipos:</p>
+<ul>
+<li>Interfaces de línea de comandos (CLI, del inglés, <em>command-line interface</em>).</li>
+<li>Interfaces gráficas de usuario (GUI, del inglés, <em>graphical user interface</em>).</li>
+<li>Interfaces naturales de usuario (NUI, del inglés, <em>natural user interface</em>).</li>
+</ul>
+<p>La evolución de estos tipos de interfaces se ilustra en la <a href="#fig-evolucion-interfaces-usuario">Figura&nbsp;<span>2.1</span></a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-evolucion-interfaces-usuario" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="img/evolucion-interfaces-usuario.png" class="img-fluid figure-img" width="504"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;2.1: Evolución de las interaces de usuario. Imagen de <a href="https://commons.wikimedia.org/wiki/User:Marcecoro">Marcecoro</a> compartida a través de <a href="https://commons.wikimedia.org/wiki/File:CLI-GUI-NUI,_evoluci%C3%B3n_de_interfaces_de_usuario.png">Wikimedia Commons</a>.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="interfaces-de-línea-de-comandos" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="interfaces-de-línea-de-comandos"><span class="header-section-number">2.3.1</span> Interfaces de línea de comandos</h3>
+<p>Las <a href="https://es.wikipedia.org/wiki/Interfaz_de_l%C3%ADnea_de_comandos">interfaces de línea de comandos (CLI)</a> permiten a los usuarios dar indicaciones a la computadora por medio de líneas de texto correspondientes a comandos o instrucciones. Los comandos pueden introducirse interactivamente en algún tipo de entrada de texto (ej. el <a href="https://es.wikipedia.org/wiki/Prompt"><em>prompt</em></a> de un sistema operativo) o, de manera más automatizada, a través de un archivo (ej. un <a href="https://es.wikipedia.org/wiki/Script"><em>script</em></a>). La <a href="#fig-cli-ubuntu">Figura&nbsp;<span>2.2</span></a> muestra la terminal del sistema operativo <a href="https://ubuntu.com/">Ubuntu</a>, como un ejemplo de CLI.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-cli-ubuntu" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="img/cli-ubuntu.png" class="img-fluid figure-img" width="924"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;2.2: Terminal del sistema operativo Ubuntu (Linux).</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Este tipo de interfaz existe casi desde los inicios de la computación y es superada en antigüedad solo por las <a href="https://es.wikipedia.org/wiki/Tarjeta_perforada">tarjetas perforadas</a> y otros mecanismos similares.</p>
+<p>Las CLI tienen la ventaja de que facilitan el desarrollo de procedimientos <a href="https://es.wikipedia.org/wiki/Reproducibilidad_y_repetibilidad">reproducibles y repetibles</a>. Por otro lado, puede ser más complejas, especialmente para usuarios no experimentados.</p>
+</section>
+<section id="interfaces-gráficas-de-usuario" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="interfaces-gráficas-de-usuario"><span class="header-section-number">2.3.2</span> Interfaces gráficas de usuario</h3>
+<p>Las <a href="https://es.wikipedia.org/wiki/Interfaz_gr%C3%A1fica_de_usuario">interfaces gráficas de usuario (GUI)</a> utilizan imágenes y otros objetos gráficos (ej. iconos) para representar la información y las acciones disponibles en la interfaz. Surgieron como una evolución de las CLI. Por ejemplo, muchos sistemas operativos desarrollaron primero sus CLI y luego GUI que permiten realizar acciones equivalentes a los comandos de las CLI. La <a href="#fig-gui-ubuntu">Figura&nbsp;<span>2.3</span></a> muestra la interfaz gráfica del sistema operativo Ubuntu (Linux).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-gui-ubuntu" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="img/gui-ubuntu.png" class="img-fluid figure-img" width="960"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;2.3: Interfaz gráfica GNOME del sistema operativo Ubuntu (Linux).</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Como un precursor de las actuales GUI, suele mencionarse una interfaz de hipervículos desarrollada en el Stanford Research Institute, en la década de 1960 (se recomienda ver <a href="https://www.youtube.com/watch?v=yJDv-zdhzMY"><em>The Mother of All Demos, presented by Douglas Engelbart (1968)</em></a>). Este concepto fue ampliado y trasladado a un entorno gráfico por los investigadores del Xerox PARC, en Palo Alto. Ahí se introdujeron conceptos como ventanas, casillas de verificación (<em>checkboxes</em>), botones de radio, menús y puntero del ratón. La interfaz fue implementada comercialmente en el computador Xerox Star 8010, en 1981.</p>
+<p>Las GUI son más amigables e intuitivas que las CLI, pero también pueden ser menos versátiles y menos aptas para reproducir procedimientos.</p>
+</section>
+<section id="interfaces-naturales-de-usuario" class="level3" data-number="2.3.3">
+<h3 data-number="2.3.3" class="anchored" data-anchor-id="interfaces-naturales-de-usuario"><span class="header-section-number">2.3.3</span> Interfaces naturales de usuario</h3>
+<p>En las <a href="https://es.wikipedia.org/wiki/Interfaz_natural_de_usuario">interfaces naturales de usuario (NUI)</a>, este interactúa con la computadora sin utilizar dispositivos como el ratón o el teclado, sino a través de movimientos, gestos o la voz, como en el caso de las pantallas <a href="https://es.wikipedia.org/wiki/Multit%C3%A1ctil">multitáctiles</a> o del control por <a href="https://es.wikipedia.org/wiki/Reconocimiento_del_habla">reconocimiento del habla</a>. Las NUI no requieren que el usuario aprenda el uso de nuevas tecnologías, ya que puede emplear habilidades ya conocidas. La <a href="#fig-nui-xbox360s">Figura&nbsp;<span>2.4</span></a> muestra la consola de videojuegos <a href="https://es.wikipedia.org/wiki/Xbox">Xbox</a> 360 S, como un ejemplo de dispositivo con NUI.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-nui-xbox360s" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="img/nui-xbox360s.png" class="img-fluid figure-img" width="200"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;2.4: Consola Xbox 360 S. Imagen de James Pfaff (<a href="https://www.flickr.com/people/84606909@N00/">litheon</a>) compartida a través de <a href="https://commons.wikimedia.org/wiki/File:Xbox_360_S.png">Wikimedia Commons</a>.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="recursos-de-interés" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="recursos-de-interés"><span class="header-section-number">2.4</span> Recursos de interés</h2>
+<p>Marcel. (2012). <em>The Mother of All Demos, presented by Douglas Engelbart (1968)</em>. <a href="https://www.youtube.com/watch?v=yJDv-zdhzMY">https://www.youtube.com/watch?v=yJDv-zdhzMY</a></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiada");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./01-pensamiento_computacional-arquitectura_computadoras-lenguajes_programacion.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Pensamiento computacional, arquitectura de computadoras y lenguajes de programación</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
