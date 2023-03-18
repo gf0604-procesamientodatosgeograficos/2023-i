@@ -35,6 +35,13 @@
     "text": "1.3 Diapositivas\nPensamiento computacional, arquitectura de computadoras y lenguajes de programación"
   },
   {
+    "objectID": "02-interaccion_humano_computadora.html",
+    "href": "02-interaccion_humano_computadora.html",
+    "title": "2  Interacción humano-computadora",
+    "section": "",
+    "text": "Los humanos interactúan con las computadoras a través de interfaces de tres tipos:\n\nInterfaces de línea de comandos: aceptan líneas de texto correspondientes a comandos o instrucciones.\nInterfaces gráficas de usuario: utilizan objetos gráficos para representar las acciones y la información disponibles en la interfaz.\nInterfaces naturales de usuario: la interacción se realiza a través de movimientos, gestos o voz.\n\nLas interfaces gráficas de usuario y las interfaces naturales de usuario son más intuitivas para los usuarios finales. Sin embargo, las interfaces de línea de comandos son más versátiles y facilitan el desarrollo de soluciones más reproducibles."
+  },
+  {
     "objectID": "02-interaccion_humano_computadora.html#introducción",
     "href": "02-interaccion_humano_computadora.html#introducción",
     "title": "2  Interacción humano-computadora",

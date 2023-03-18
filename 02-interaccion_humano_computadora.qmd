@@ -5,6 +5,13 @@ lang: es
 # Interacción humano-computadora
 
 ## Resumen
+Los humanos interactúan con las computadoras a través de interfaces de tres tipos:
+
+- Interfaces de línea de comandos: aceptan líneas de texto correspondientes a comandos o instrucciones.
+- Interfaces gráficas de usuario: utilizan objetos gráficos para representar las acciones y la información disponibles en la interfaz.
+- Interfaces naturales de usuario: la interacción se realiza a través de movimientos, gestos o voz.
+
+Las interfaces gráficas de usuario y las interfaces naturales de usuario son más intuitivas para los usuarios finales. Sin embargo, las interfaces de línea de comandos son más versátiles y facilitan el desarrollo de soluciones más reproducibles.
 
 ## Introducción
 La [interacción humano-computadora (IHC)](https://es.wikipedia.org/wiki/Interacci%C3%B3n_persona-computadora) es un área de investigación dedicada al diseño y uso de la tecnología computacional. Esta interacción se realiza a través de [interfaces](https://es.wikipedia.org/wiki/Interfaz). La IHC se sitúa en la intersección de varias disciplinas que incluyen ciencias de la computación, ciencias de la conducta, diseño y estudios de medios, entre otras. Los investigadores de IHC estudian la manera en la que los humanos interactúan con las computadoras y diseñan tecnologías para mejorar esa interacción.
