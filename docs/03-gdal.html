@@ -140,9 +140,10 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="toc-section-number">3.3</span>  Introducción</a></li>
   <li><a href="#programas-para-la-línea-de-comandos-del-sistema-operativo" id="toc-programas-para-la-línea-de-comandos-del-sistema-operativo" class="nav-link" data-scroll-target="#programas-para-la-línea-de-comandos-del-sistema-operativo"><span class="toc-section-number">3.4</span>  Programas para la línea de comandos del sistema operativo</a>
   <ul class="collapse">
-  <li><a href="#instalación" id="toc-instalación" class="nav-link" data-scroll-target="#instalación"><span class="toc-section-number">3.4.1</span>  Instalación</a></li>
-  <li><a href="#opciones-comunes" id="toc-opciones-comunes" class="nav-link" data-scroll-target="#opciones-comunes"><span class="toc-section-number">3.4.2</span>  Opciones comunes</a></li>
-  <li><a href="#ejemplos-de-uso" id="toc-ejemplos-de-uso" class="nav-link" data-scroll-target="#ejemplos-de-uso"><span class="toc-section-number">3.4.3</span>  Ejemplos de uso</a></li>
+  <li><a href="#comandos-básicos-del-sistema-operativo" id="toc-comandos-básicos-del-sistema-operativo" class="nav-link" data-scroll-target="#comandos-básicos-del-sistema-operativo"><span class="toc-section-number">3.4.1</span>  Comandos básicos del sistema operativo</a></li>
+  <li><a href="#instalación" id="toc-instalación" class="nav-link" data-scroll-target="#instalación"><span class="toc-section-number">3.4.2</span>  Instalación</a></li>
+  <li><a href="#opciones-comunes" id="toc-opciones-comunes" class="nav-link" data-scroll-target="#opciones-comunes"><span class="toc-section-number">3.4.3</span>  Opciones comunes</a></li>
+  <li><a href="#ejemplos-de-uso" id="toc-ejemplos-de-uso" class="nav-link" data-scroll-target="#ejemplos-de-uso"><span class="toc-section-number">3.4.4</span>  Ejemplos de uso</a></li>
   </ul></li>
   <li><a href="#ejercicios" id="toc-ejercicios" class="nav-link" data-scroll-target="#ejercicios"><span class="toc-section-number">3.5</span>  Ejercicios</a>
   <ul class="collapse">
@@ -174,8 +175,8 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="resumen" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="resumen"><span class="header-section-number">3.1</span> Resumen</h2>
-<p>Geospatial Data Abstraction Library (GDAL) es una biblioteca, desarrollada en C/C++, para la escritura y lectura de datos geoespaciales, tanto raster como vectoriales. Ha sido portada a otros lenguajes de programación como Java, Python y R. Además, incluye un conjunto de programas que pueden ejecutarse desde la línea de comandos de varios sistemas operativos.</p>
-<p>GDAL implementa un único <a href="https://gdal.org/user/raster_data_model.html">modelo abstracto de datos raster</a> y un único <a href="https://gdal.org/user/vector_data_model.html">modelo abstracto de datos vectoriales</a>, lo que permite programar aplicaciones geoespaciales sin tener que ocuparse de las particularidades de cada formato (GeoTIFF, NetCDF, ESRI Shapefile, GeoPackage, GeoJSON, GeoParquet, WMS, WFS, etc.).</p>
+<p>Geospatial Data Abstraction Library (GDAL) es una biblioteca, desarrollada en C/C++, para la escritura y lectura de datos geoespaciales, tanto raster como vectoriales. Ha sido traducida a otros lenguajes de programación como Java, Python y R. Es utilizada en una gran cantidad de aplicaciones de escritorio, aplicaciones web y bibliotecas para programación. Además, incluye un conjunto de programas que pueden ejecutarse desde la línea de comandos de varios sistemas operativos.</p>
+<p>GDAL implementa un único modelo abstracto de datos raster y un único modelo abstracto de datos vectoriales, lo que permite programar aplicaciones geoespaciales sin tener que ocuparse de las particularidades de cada formato (GeoTIFF, NetCDF, ESRI Shapefile, GeoPackage, GeoJSON, GeoParquet, WMS, WFS, etc.).</p>
 </section>
 <section id="trabajo-previo" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="trabajo-previo"><span class="header-section-number">3.2</span> Trabajo previo</h2>
@@ -224,13 +225,164 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <p>Los programas se ejecutan escribiendo el nombre del programa y un conjunto de opciones que especifican, entre otros aspectos, la ubicación de los datos de entrada, de salida y las transformaciones a realizar. Por ejemplo, el siguiente comando convierte un archivo en formato ESRI Shapefile a GeoJSON y lo reproyecta de CRTM05 a WGS84:</p>
 <pre class="shell"><code>ogrinfo -s_srs EPSG:5367 -t_srs EPSG:4326 provincias.geojson provincias.shp</code></pre>
-<section id="instalación" class="level3" data-number="3.4.1">
-<h3 data-number="3.4.1" class="anchored" data-anchor-id="instalación"><span class="header-section-number">3.4.1</span> Instalación</h3>
-<p>En el sitio web de GDAL se describen varias opciones para la <a href="https://gdal.org/download.html">descarga e instalación</a> de los programas, incluyendo <a href="https://gdal.org/download.html#binaries">archivos binarios ejecutables para varias plataformas</a>.</p>
+<section id="comandos-básicos-del-sistema-operativo" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="comandos-básicos-del-sistema-operativo"><span class="header-section-number">3.4.1</span> Comandos básicos del sistema operativo</h3>
+<p>La siguiente lista presenta algunos comandos básicos de sistemas operativos.</p>
+<section id="windows" class="level4" data-number="3.4.1.1">
+<h4 data-number="3.4.1.1" class="anchored" data-anchor-id="windows"><span class="header-section-number">3.4.1.1</span> Windows</h4>
+
+<style>
+  table {
+    width: 100%;
+    border: 2px solid black;
+    border-collapse: collapse;
+  }
+  th {
+    border: 2px solid black;
+    text-align: center;
+  }  
+  td {
+    border: 2px solid black;
+    padding: 5px;
+  }  
+</style>
+<table>
+<thead>
+<tr>
+<th>
+Comando
+</th>
+<th>
+Descripción
+</th>
+<th>
+Ejemplos
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>dir</code>
+</td>
+<td>
+Listado de contenidos de un directorio
+</td>
+<td>
+<code>dir</code><br><code>dir /w</code><br><code>dir /p</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>cd</code>
+</td>
+<td>
+Cambio de directorio
+</td>
+<td>
+<code>cd gf0604\ejemplos-gdal</code><br><code>cd c:\gf0604\ejemplos-gdal</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>cd ..</code>
+</td>
+<td>
+Cambio al directorio padre
+</td>
+<td>
+<code>cd ..</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>cd \</code>
+</td>
+<td>
+Cambio al directorio raíz
+</td>
+<td>
+<code>cd \</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>mkdir</code>
+</td>
+<td>
+Creación de un directorio
+</td>
+<td>
+<code>mkdir mi-directorio</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>rmdir</code>
+</td>
+<td>
+Borrado de un directorio
+</td>
+<td>
+<code>rmdir /s mi-directorio</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>type</code>
+</td>
+<td>
+Despliegue de los contenidos de un archivo de texto
+</td>
+<td>
+<code>type mi-archivo.txt</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>del</code>
+</td>
+<td>
+Borrado de un archivo
+</td>
+<td>
+<code>del mi-archivo.txt</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>&gt; salida.txt</code>
+</td>
+<td>
+Redireccionamiento de la salida
+</td>
+<td>
+<code>dir /b &gt; directorio.txt</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>cls</code>
+</td>
+<td>
+Borrado de la pantalla
+</td>
+<td>
+<code>cls</code>
+</td>
+</tr>
+</tbody>
+
+</table>
+</section>
+</section>
+<section id="instalación" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="instalación"><span class="header-section-number">3.4.2</span> Instalación</h3>
+<p>En el sitio web de GDAL se describen varias opciones para la <a href="https://gdal.org/download.html">descarga e instalación</a> de los programas para la línea de comandos del sistema operativo, incluyendo <a href="https://gdal.org/download.html#binaries">archivos binarios ejecutables para varias plataformas</a>.</p>
 <p>En el caso del sistema operativo Windows, estos programas se incluyen en la aplicación <a href="https://trac.osgeo.org/osgeo4w/">OSGeo4W</a>, la cual puede instalarse junto con el sistema de información geográfica de escritorio <a href="https://qgis.org/">QGIS</a>. Se recomienda usar el <a href="https://download.osgeo.org/osgeo4w/v2/osgeo4w-setup.exe">instalador de red OSGeo4W</a>. Una vez finalizada la instalación, verifique que cuenta con la aplicación <code>OSGeo4W Shell</code> para ejecutar los programas desde la línea de comandos del sistema operativo.</p>
 </section>
-<section id="opciones-comunes" class="level3" data-number="3.4.2">
-<h3 data-number="3.4.2" class="anchored" data-anchor-id="opciones-comunes"><span class="header-section-number">3.4.2</span> Opciones comunes</h3>
+<section id="opciones-comunes" class="level3" data-number="3.4.3">
+<h3 data-number="3.4.3" class="anchored" data-anchor-id="opciones-comunes"><span class="header-section-number">3.4.3</span> Opciones comunes</h3>
 <p>Los programas de GDAL comparten una serie de <a href="https://gdal.org/programs/raster_common_options.html#raster-common-options">opciones comunes para datos raster</a> y de <a href="https://gdal.org/programs/vector_common_options.html">opciones comunes para datos vectoriales</a> que pueden visualizarse con la opción <code>-- help-general</code>. Por ejemplo:</p>
 <pre class="shell"><code>ogrinfo --help-general</code></pre>
 <pre><code>Generic GDAL utility command options:
@@ -255,21 +407,21 @@ ul.task-list li input[type="checkbox"] {
                [-fielddomain name]
                datasource_name [layer [layer ...]]</code></pre>
 </section>
-<section id="ejemplos-de-uso" class="level3" data-number="3.4.3">
-<h3 data-number="3.4.3" class="anchored" data-anchor-id="ejemplos-de-uso"><span class="header-section-number">3.4.3</span> Ejemplos de uso</h3>
+<section id="ejemplos-de-uso" class="level3" data-number="3.4.4">
+<h3 data-number="3.4.4" class="anchored" data-anchor-id="ejemplos-de-uso"><span class="header-section-number">3.4.4</span> Ejemplos de uso</h3>
 <p>En esta sección, se presentan ejemplos de uso de los programas, tanto para datos vectoriales como para datos raster.</p>
-<section id="programas-para-datos-vectoriales" class="level4" data-number="3.4.3.1">
-<h4 data-number="3.4.3.1" class="anchored" data-anchor-id="programas-para-datos-vectoriales"><span class="header-section-number">3.4.3.1</span> Programas para datos vectoriales</h4>
-<section id="ogrinfo" class="level5" data-number="3.4.3.1.1">
-<h5 data-number="3.4.3.1.1" class="anchored" data-anchor-id="ogrinfo"><span class="header-section-number">3.4.3.1.1</span> ogrinfo</h5>
+<section id="programas-para-datos-vectoriales" class="level4" data-number="3.4.4.1">
+<h4 data-number="3.4.4.1" class="anchored" data-anchor-id="programas-para-datos-vectoriales"><span class="header-section-number">3.4.4.1</span> Programas para datos vectoriales</h4>
+<section id="ogrinfo" class="level5" data-number="3.4.4.1.1">
+<h5 data-number="3.4.4.1.1" class="anchored" data-anchor-id="ogrinfo"><span class="header-section-number">3.4.4.1.1</span> ogrinfo</h5>
 <p>El programa <a href="https://gdal.org/programs/ogrinfo.html">ogrinfo</a> despliega información acerca de una fuente de datos vectoriales.</p>
 <p>Los siguientes comandos despliegan información sobre la <a href="https://www.naturalearthdata.com/downloads/110m-cultural-vectors/110m-admin-0-countries/">capa de países</a> de <a href="https://www.naturalearthdata.com/">Natural Earth</a>, tanto para el formato comprimido (ZIP) como para el formato shapefile (SHP). En el caso comprimido, note el uso del prefijo <a href="https://gdal.org/user/virtual_file_systems.html">/vsizip/</a>, para sistemas de archivos virtuales.</p>
 <ol type="1">
-<li>Cree una nueva carpeta (ej. ejemplos-uso-gdal) para almacenar los archivos con los que trabajará.</li>
-<li>Descargue en la nueva carpeta la capa de paises desde la dirección <a href="https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/110m/cultural/ne_110m_admin_0_countries.zip">https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/110m/cultural/ne_110m_admin_0_countries.zip</a>.</li>
+<li>Cree un nuevo directorio (ej. ejemplos-gdal) para almacenar los archivos con los que trabajará.</li>
+<li>Descargue en el nuevo directorio la capa de paises desde la dirección <a href="https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/110m/cultural/ne_110m_admin_0_countries.zip">https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/110m/cultural/ne_110m_admin_0_countries.zip</a>.</li>
 <li>Descomprima el archivo ZIP (no lo borre).</li>
 <li>Con una herramienta de escritorio (ej. QGIS), visualice tanto el archivo ZIP como el SHP.</li>
-<li>Desde una interfaz de línea de comandos (ej. OSGeo4W Shell), ubíquese en la carpeta que creó y ejecute los siguientes comandos para obtener información sobre ambos archivos:</li>
+<li>Desde una interfaz de línea de comandos (ej. OSGeo4W Shell), ubíquese en el directorio que creó y ejecute los siguientes comandos para obtener información sobre ambos archivos:</li>
 </ol>
 <pre class="shell"><code># Información sobre la capa descomprimida en formato shapefile
 ogrinfo -al -so ne_110m_admin_0_countries.shp
@@ -290,8 +442,8 @@ ogrinfo -al -where "CONTINENT='Oceania' AND TYPE='Country'" -geom=NO ne_110m_adm
 <li>Aplique los filtros anteriores desde la interfaz de QGIS.</li>
 </ol>
 </section>
-<section id="ogr2ogr" class="level5" data-number="3.4.3.1.2">
-<h5 data-number="3.4.3.1.2" class="anchored" data-anchor-id="ogr2ogr"><span class="header-section-number">3.4.3.1.2</span> ogr2ogr</h5>
+<section id="ogr2ogr" class="level5" data-number="3.4.4.1.2">
+<h5 data-number="3.4.4.1.2" class="anchored" data-anchor-id="ogr2ogr"><span class="header-section-number">3.4.4.1.2</span> ogr2ogr</h5>
 <p>El programa <a href="https://gdal.org/programs/ogr2ogr.html">ogr2ogr</a> realiza conversiones entre formatos de fuentes de datos vectoriales. A la vez, puede ejecutar otras operaciones como selección de atributos y geometrías, filtrado por criterios espaciales y no espaciales, reproyección y validación de geometrías, entre otras.</p>
 <ol type="1">
 <li>Despliegue la lista de formatos (<em>drivers</em>) vectoriales soportados por OGR:</li>
@@ -354,17 +506,17 @@ ogr2ogr -makevalid cantones.gpkg WFS:"http://geos.snitcr.go.cr/be/IGN_5/wfs" "IG
 ogr2ogr -t_srs EPSG:4326 -makevalid cantones-wgs84.gpkg WFS:"http://geos.snitcr.go.cr/be/IGN_5/wfs" "IGN_5:limitecantonal_5k"</code></pre>
 </section>
 </section>
-<section id="programas-para-datos-raster" class="level4" data-number="3.4.3.2">
-<h4 data-number="3.4.3.2" class="anchored" data-anchor-id="programas-para-datos-raster"><span class="header-section-number">3.4.3.2</span> Programas para datos raster</h4>
-<section id="gdalinfo" class="level5" data-number="3.4.3.2.1">
-<h5 data-number="3.4.3.2.1" class="anchored" data-anchor-id="gdalinfo"><span class="header-section-number">3.4.3.2.1</span> gdalinfo</h5>
+<section id="programas-para-datos-raster" class="level4" data-number="3.4.4.2">
+<h4 data-number="3.4.4.2" class="anchored" data-anchor-id="programas-para-datos-raster"><span class="header-section-number">3.4.4.2</span> Programas para datos raster</h4>
+<section id="gdalinfo" class="level5" data-number="3.4.4.2.1">
+<h5 data-number="3.4.4.2.1" class="anchored" data-anchor-id="gdalinfo"><span class="header-section-number">3.4.4.2.1</span> gdalinfo</h5>
 <p>El programa <a href="https://gdal.org/programs/gdalinfo.html">gdalinfo</a> despliega información acerca de una fuente de datos raster.</p>
 <p>Los siguientes comandos trabajan con la capa global de altitud de la base de datos climática <a href="https://www.worldclim.org/">WorldClim</a>.</p>
 <ol type="1">
-<li>Descargue en su carpeta de trabajo la capa de altitud desde la dirección <a href="https://biogeo.ucdavis.edu/data/worldclim/v2.1/base/wc2.1_30s_elev.zip">https://biogeo.ucdavis.edu/data/worldclim/v2.1/base/wc2.1_30s_elev.zip</a>.</li>
+<li>Descargue en su directorio de trabajo la capa de altitud desde la dirección <a href="https://biogeo.ucdavis.edu/data/worldclim/v2.1/base/wc2.1_30s_elev.zip">https://biogeo.ucdavis.edu/data/worldclim/v2.1/base/wc2.1_30s_elev.zip</a>.</li>
 <li>Descomprima el archivo ZIP.</li>
 <li>Con una herramienta de escritorio (ej. QGIS), visualice la capa descomprimida.</li>
-<li>Desde una interfaz de línea de comandos (ej. OSGeo4W Shell), ubíquese en su carpeta de trabajo y ejecute los siguientes comandos para obtener información sobre la capa:</li>
+<li>Desde una interfaz de línea de comandos (ej. OSGeo4W Shell), ubíquese en su directorio de trabajo y ejecute los siguientes comandos para obtener información sobre la capa:</li>
 </ol>
 <pre class="shell"><code># Información sobre la capa
 gdalinfo -stats wc2.1_30s_elev.tif</code></pre>
@@ -410,8 +562,8 @@ Band 1 Block=43200x1 Type=Int16, ColorInterp=Gray
     STATISTICS_MINIMUM=-415
     STATISTICS_STDDEV=1.#SNAN</code></pre>
 </section>
-<section id="gdalwarp" class="level5" data-number="3.4.3.2.2">
-<h5 data-number="3.4.3.2.2" class="anchored" data-anchor-id="gdalwarp"><span class="header-section-number">3.4.3.2.2</span> gdalwarp</h5>
+<section id="gdalwarp" class="level5" data-number="3.4.4.2.2">
+<h5 data-number="3.4.4.2.2" class="anchored" data-anchor-id="gdalwarp"><span class="header-section-number">3.4.4.2.2</span> gdalwarp</h5>
 <p>El programa <a href="https://gdal.org/programs/gdalwarp.html">gdalwarp</a> se utiliza para reproyectar y transformar datos raster.</p>
 <ol type="1">
 <li>Recorte la capa raster de altitud global con el contorno de la capa de cantones de Costa Rica:</li>

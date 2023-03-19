@@ -5,9 +5,9 @@ lang: es
 # GDAL - biblioteca para lectura y escritura de datos geoespaciales con interfaz de línea de comandos
 
 ## Resumen
-Geospatial Data Abstraction Library (GDAL) es una biblioteca, desarrollada en C/C++, para la escritura y lectura de datos geoespaciales, tanto raster como vectoriales. Ha sido portada a otros lenguajes de programación como Java, Python y R. Además, incluye un conjunto de programas que pueden ejecutarse desde la línea de comandos de varios sistemas operativos.
+Geospatial Data Abstraction Library (GDAL) es una biblioteca, desarrollada en C/C++, para la escritura y lectura de datos geoespaciales, tanto raster como vectoriales. Ha sido traducida a otros lenguajes de programación como Java, Python y R. Es utilizada en una gran cantidad de aplicaciones de escritorio, aplicaciones web y bibliotecas para programación. Además, incluye un conjunto de programas que pueden ejecutarse desde la línea de comandos de varios sistemas operativos.
 
-GDAL implementa un único [modelo abstracto de datos raster](https://gdal.org/user/raster_data_model.html) y un único [modelo abstracto de datos vectoriales](https://gdal.org/user/vector_data_model.html), lo que permite programar aplicaciones geoespaciales sin tener que ocuparse de las particularidades de cada formato (GeoTIFF, NetCDF, ESRI Shapefile, GeoPackage, GeoJSON, GeoParquet, WMS, WFS, etc.).
+GDAL implementa un único modelo abstracto de datos raster y un único modelo abstracto de datos vectoriales, lo que permite programar aplicaciones geoespaciales sin tener que ocuparse de las particularidades de cada formato (GeoTIFF, NetCDF, ESRI Shapefile, GeoPackage, GeoJSON, GeoParquet, WMS, WFS, etc.).
 
 ## Trabajo previo
 
@@ -60,8 +60,89 @@ Los programas se ejecutan escribiendo el nombre del programa y un conjunto de op
 ogrinfo -s_srs EPSG:5367 -t_srs EPSG:4326 provincias.geojson provincias.shp
 ```
 
+### Comandos básicos del sistema operativo
+La siguiente lista presenta algunos comandos básicos de sistemas operativos.
+
+#### Windows
+<style>
+  table {
+    width: 100%;
+    border: 2px solid black;
+    border-collapse: collapse;
+  }
+  th {
+    border: 2px solid black;
+    text-align: center;
+  }  
+  td {
+    border: 2px solid black;
+    padding: 5px;
+  }  
+</style>
+<table>
+  <thead>
+    <tr>
+      <th>Comando</th>
+      <th>Descripción</th>
+      <th>Ejemplos</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`dir`</td>
+      <td>Listado de contenidos de un directorio</td>
+      <td>`dir`<br>`dir /w`<br>`dir /p`</td>
+    </tr>  
+    <tr>
+      <td>`cd`</td>
+      <td>Cambio de directorio</td>
+      <td>`cd gf0604\ejemplos-gdal`<br>`cd c:\gf0604\ejemplos-gdal`</td>
+    </tr>
+    <tr>
+      <td>`cd ..`</td>
+      <td>Cambio al directorio padre</td>
+      <td>`cd ..`</td>
+    </tr>    
+    <tr>
+      <td>`cd \`</td>
+      <td>Cambio al directorio raíz</td>
+      <td>`cd \`</td>
+    </tr>
+    <tr>
+      <td>`mkdir`</td>
+      <td>Creación de un directorio</td>
+      <td>`mkdir mi-directorio`</td>
+    </tr>    
+    <tr>
+      <td>`rmdir`</td>
+      <td>Borrado de un directorio</td>
+      <td>`rmdir /s mi-directorio`</td>
+    </tr>  
+    <tr>
+      <td>`type`</td>
+      <td>Despliegue de los contenidos de un archivo de texto</td>
+      <td>`type mi-archivo.txt`</td>
+    </tr>     
+    <tr>
+      <td>`del`</td>
+      <td>Borrado de un archivo</td>
+      <td>`del mi-archivo.txt`</td>
+    </tr>    
+    <tr>
+      <td>`> salida.txt`</td>
+      <td>Redireccionamiento de la salida</td>
+      <td>`dir /b > directorio.txt`</td>
+    </tr>        
+    <tr>
+      <td>`cls`</td>
+      <td>Borrado de la pantalla</td>
+      <td>`cls`</td>
+    </tr>       
+  </tbody>
+</table>
+
 ### Instalación
-En el sitio web de GDAL se describen varias opciones para la [descarga e instalación](https://gdal.org/download.html) de los programas, incluyendo [archivos binarios ejecutables para varias plataformas](https://gdal.org/download.html#binaries).
+En el sitio web de GDAL se describen varias opciones para la [descarga e instalación](https://gdal.org/download.html) de los programas para la línea de comandos del sistema operativo, incluyendo [archivos binarios ejecutables para varias plataformas](https://gdal.org/download.html#binaries).
 
 En el caso del sistema operativo Windows, estos programas se incluyen en la aplicación [OSGeo4W](https://trac.osgeo.org/osgeo4w/), la cual puede instalarse junto con el sistema de información geográfica de escritorio [QGIS](https://qgis.org/). Se recomienda usar el [instalador de red OSGeo4W](https://download.osgeo.org/osgeo4w/v2/osgeo4w-setup.exe). Una vez finalizada la instalación, verifique que cuenta con la aplicación `OSGeo4W Shell` para ejecutar los programas desde la línea de comandos del sistema operativo.
 
@@ -111,11 +192,11 @@ El programa [ogrinfo](https://gdal.org/programs/ogrinfo.html) despliega informac
 
 Los siguientes comandos despliegan información sobre la [capa de países](https://www.naturalearthdata.com/downloads/110m-cultural-vectors/110m-admin-0-countries/) de [Natural Earth](https://www.naturalearthdata.com/), tanto para el formato comprimido (ZIP) como para el formato shapefile (SHP). En el caso comprimido, note el uso del prefijo [/vsizip/](https://gdal.org/user/virtual_file_systems.html), para sistemas de archivos virtuales.
 
-1. Cree una nueva carpeta (ej. ejemplos-uso-gdal) para almacenar los archivos con los que trabajará.
-2. Descargue en la nueva carpeta la capa de paises desde la dirección [https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/110m/cultural/ne_110m_admin_0_countries.zip](https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/110m/cultural/ne_110m_admin_0_countries.zip).
+1. Cree un nuevo directorio (ej. ejemplos-gdal) para almacenar los archivos con los que trabajará.
+2. Descargue en el nuevo directorio la capa de paises desde la dirección [https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/110m/cultural/ne_110m_admin_0_countries.zip](https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/110m/cultural/ne_110m_admin_0_countries.zip).
 3. Descomprima el archivo ZIP (no lo borre).
 4. Con una herramienta de escritorio (ej. QGIS), visualice tanto el archivo ZIP como el SHP.
-5. Desde una interfaz de línea de comandos (ej. OSGeo4W Shell), ubíquese en la carpeta que creó y ejecute los siguientes comandos para obtener información sobre ambos archivos:
+5. Desde una interfaz de línea de comandos (ej. OSGeo4W Shell), ubíquese en el directorio que creó y ejecute los siguientes comandos para obtener información sobre ambos archivos:
 
 ```shell
 # Información sobre la capa descomprimida en formato shapefile
@@ -218,10 +299,10 @@ El programa [gdalinfo](https://gdal.org/programs/gdalinfo.html) despliega inform
 
 Los siguientes comandos trabajan con la capa global de altitud de la base de datos climática [WorldClim](https://www.worldclim.org/).
 
-1. Descargue en su carpeta de trabajo la capa de altitud desde la dirección [https://biogeo.ucdavis.edu/data/worldclim/v2.1/base/wc2.1_30s_elev.zip](https://biogeo.ucdavis.edu/data/worldclim/v2.1/base/wc2.1_30s_elev.zip).
+1. Descargue en su directorio de trabajo la capa de altitud desde la dirección [https://biogeo.ucdavis.edu/data/worldclim/v2.1/base/wc2.1_30s_elev.zip](https://biogeo.ucdavis.edu/data/worldclim/v2.1/base/wc2.1_30s_elev.zip).
 2. Descomprima el archivo ZIP.
 3. Con una herramienta de escritorio (ej. QGIS), visualice la capa descomprimida.
-4. Desde una interfaz de línea de comandos (ej. OSGeo4W Shell), ubíquese en su carpeta de trabajo y ejecute los siguientes comandos para obtener información sobre la capa:
+4. Desde una interfaz de línea de comandos (ej. OSGeo4W Shell), ubíquese en su directorio de trabajo y ejecute los siguientes comandos para obtener información sobre la capa:
 
 ```shell
 # Información sobre la capa
