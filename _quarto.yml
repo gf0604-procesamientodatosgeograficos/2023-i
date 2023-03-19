@@ -12,6 +12,7 @@ book:
       chapters:
         - 01-pensamiento_computacional-arquitectura_computadoras-lenguajes_programacion.qmd
         - 02-interaccion_humano_computadora.qmd
+        - 03-gdal.qmd
 
 bibliography: referencias.bib
 
