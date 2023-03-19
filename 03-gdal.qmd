@@ -1,5 +1,9 @@
 ---
 lang: es
+format:
+  html:
+    toc: true
+    toc-depth: 5
 ---
 
 # GDAL - biblioteca para lectura y escritura de datos geoespaciales con interfaz de línea de comandos
@@ -38,16 +42,17 @@ Además, GDAL incluye un conjunto de [programas para la línea de comandos del s
 GDAL es distribuida por la [Open Source Geospatial Foundation (OSGeo)](https://www.osgeo.org/) con una [licencia X/MIT](https://gdal.org/license.html#license).
 
 ## Programas para la línea de comandos del sistema operativo
-Los [programas de GDAL para la línea de comandos del sistema operativo](https://gdal.org/programs/) permiten ejecutar tareas de geoprocesamiento y de conversión entre formatos geoespaciales sin utilizar una interfaz gráfica o un lenguaje de programación.
+Los [programas de GDAL para la línea de comandos del sistema operativo](https://gdal.org/programs/) permiten ejecutar tareas de geoprocesamiento y de conversión entre formatos geoespaciales sin utilizar una interfaz gráfica o un lenguaje de programación. Seguidamente, se listan algunos de estos programas.
 
-Programas para datos raster:  
+**Programas para datos raster**  
 
 - [gdalinfo](https://gdal.org/programs/gdalinfo.html#gdalinfo): despliega información sobre un conjunto de datos raster.
+- [gdaldem](https://gdal.org/programs/gdaldem.html#gdaldem): herramientas para visualizar y analizar modelos digitales de elevación.
 - [gdal_translate](https://gdal.org/programs/gdal_translate.html#gdal-translate): realiza conversiones entre formatos raster.
 - [gdawarp](https://gdal.org/programs/gdalwarp.html#gdalwarp): reproyecta datos raster.
 - [gdal_calc.py](https://gdal.org/programs/gdal_calc.html#gdal-calc): calculadora de álgebra raster.
 
-Programas para datos vectoriales:  
+**Programas para datos vectoriales**  
 
 - [ogrinfo](https://gdal.org/programs/ogrinfo.html#ogrinfo): despliega información sobre un conjunto de datos vectorial.
 - [ogr2ogr](https://gdal.org/programs/ogr2ogr.html#ogr2ogr): realiza conversiones en conjuntos de datos vectoriales (ej. filtros, reproyecciones).
@@ -220,7 +225,7 @@ ogrinfo -al -where "CONTINENT='Oceania' AND TYPE='Country'" -geom=NO ne_110m_adm
 
 Note el uso del operador `AND` (y), el cuál es un operador lógico, como también lo son el `OR` (o) y el `NOT` (no).
 
-7. Aplique los filtros anteriores desde la interfaz de QGIS.
+7. Aplique los filtros anteriores desde la interfaz de QGIS y compare las ventajas y desventajas de cada enfoque.
 
 ##### ogr2ogr
 El programa [ogr2ogr](https://gdal.org/programs/ogr2ogr.html) realiza conversiones entre formatos de fuentes de datos vectoriales. A la vez, puede ejecutar otras operaciones como selección de atributos y geometrías, filtrado por criterios espaciales y no espaciales, reproyección y validación de geometrías, entre otras.
@@ -299,7 +304,7 @@ El programa [gdalinfo](https://gdal.org/programs/gdalinfo.html) despliega inform
 
 Los siguientes comandos trabajan con la capa global de altitud de la base de datos climática [WorldClim](https://www.worldclim.org/).
 
-1. Descargue en su directorio de trabajo la capa de altitud desde la dirección [https://biogeo.ucdavis.edu/data/worldclim/v2.1/base/wc2.1_30s_elev.zip](https://biogeo.ucdavis.edu/data/worldclim/v2.1/base/wc2.1_30s_elev.zip).
+1. Descargue en su directorio de trabajo la capa de altitud, con resolución de [30 segundos](https://biogeo.ucdavis.edu/data/worldclim/v2.1/base/wc2.1_30s_elev.zip). Si la descarga toma demasiado tiempo, puede utilizar otras resoluciones: [2.5 min](https://geodata.ucdavis.edu/climate/worldclim/2_1/base/wc2.1_2.5m_elev.zip), [5 min](https://geodata.ucdavis.edu/climate/worldclim/2_1/base/wc2.1_5m_elev.zip) o [10 min](https://geodata.ucdavis.edu/climate/worldclim/2_1/base/wc2.1_10m_elev.zip).
 2. Descomprima el archivo ZIP.
 3. Con una herramienta de escritorio (ej. QGIS), visualice la capa descomprimida.
 4. Desde una interfaz de línea de comandos (ej. OSGeo4W Shell), ubíquese en su directorio de trabajo y ejecute los siguientes comandos para obtener información sobre la capa:
@@ -355,14 +360,88 @@ Band 1 Block=43200x1 Type=Int16, ColorInterp=Gray
 ##### gdalwarp
 El programa [gdalwarp](https://gdal.org/programs/gdalwarp.html) se utiliza para reproyectar y transformar datos raster.
 
-1. Recorte la capa raster de altitud global con el contorno de la capa de cantones de Costa Rica:
+1. Recorte la capa raster de altitud global con el contorno de la capa de cantones de Costa Rica y reproyección a CRTM05:
 
 ```shell
 # Recorte de la capa raster de altitud global con el contorno de la capa de cantones de Costa Rica
-gdalwarp -dstnodata -9999 -tr 0.00833333 0.00833333 -q -cutline 'cantones-wgs84.gpkg' -crop_to_cutline wc2.1_30s_elev.tif altitud-cr.tif
+gdalwarp -dstnodata -9999 -tr 0.00833333 0.00833333 -q -cutline cantones-wgs84.gpkg -crop_to_cutline wc2.1_30s_elev.tif altitud-cr-wgs84.tif
 
 # Información sobre la capa de altitud de Costa Rica
-gdalinfo -stats altitud-cr.tif
+gdalinfo -stats altitud-cr-wgs84.tif
+
+# Reproyección a CRTM05
+gdalwarp -s_srs EPSG:4326 -t_srs EPSG:5367 altitud-cr-wgs84.tif altitud-cr-crtm05.tif
+```
+
+##### gdaldem
+El programa [gdaldem](https://gdal.org/programs/gdaldem.html) contiene un conjunto de herramientas para visualizar y analizar modelos digitales de elevación (DEM, en inglés, *Digital Elevation Model*).
+
+1. Cree un mapa con efecto de relieve (*hillshade*) a partir de la capa de altitud de Costa Rica en el sistema de coordenadas WGS84.
+
+```shell
+# Mapa hillshade
+gdaldem hillshade altitud-cr-wgs84.tif altitud-cr-wgs84-hillshade.tif -s 111120
+```
+
+El resultado se muestra en la @fig-altitud-cr-wgs84-hillshade.
+
+```{r}
+#| label: fig-altitud-cr-wgs84-hillshade
+#| fig.cap: Mapa de Costa Rica con efecto de relieve (*hillshade*).
+#| echo: false
+
+knitr::include_graphics(rep("img/altitud-cr-wgs84-hillshade.png"))
+```
+
+2. Cree un mapa con efecto de relieve (*hillshade*) multidireccional a partir de la capa de altitud de Costa Rica en el sistema de coordenadas WGS84.
+
+```shell
+# Mapa hillshade multidireccional
+gdaldem hillshade altitud-cr-wgs84.tif altitud-cr-wgs84-hillshade-multidireccional.tif -s 111120 -multidirectional
+```
+
+El resultado se muestra en la @fig-altitud-cr-wgs84-hillshade-multidirectional.
+
+```{r}
+#| label: fig-altitud-cr-wgs84-hillshade-multidirectional
+#| fig.cap: Mapa de Costa Rica con efecto de relieve (*hillshade*) multidireccional.
+#| echo: false
+
+knitr::include_graphics(rep("img/altitud-cr-wgs84-hillshade-multidireccional.png"))
+```
+
+3. Cree un mapa coloreado de relieve a partir de la capa de altitud de Costa Rica en el sistema de coordenadas WGS84.
+
+a. Cree un archivo llamado `colores.txt` con el siguiente contenido:
+
+```shell
+nv,255,255,255
+500,101,146,82
+1000,190,202,130
+1500,241,225,145
+2000,244,200,126
+2500,197,147,117
+3000,204,169,170
+4000,251,238,253
+```
+
+Las columnas del archivo corresponden a `altitud, rojo, verde, azul`.
+
+b. Ejecute el siguiente comando:
+
+```shell
+# Mapa coloreado de relieve
+gdaldem color-relief altitud-cr-wgs84.tif colores.txt altitud-cr-wgs84-colores.tif
+```
+
+El resultado se muestra en la @fig-altitud-cr-wgs84-colores.
+
+```{r}
+#| label: fig-altitud-cr-wgs84-colores
+#| fig.cap: Mapa coloreado de relieve de Costa Rica. 
+#| echo: false
+
+knitr::include_graphics(rep("img/altitud-cr-wgs84-colores.png"))
 ```
 
 ## Ejercicios
@@ -377,6 +456,8 @@ gdalinfo -stats altitud-cr.tif
 
 ### Datos raster
 1. Recorte la capa de altitud de Costa Rica de acuerdo con el contorno de la provincia de Limón y extraiga el resultado en nuevo archivo GeoTIFF.
+2. Genere un mapa con efecto de relieve (*hillshade*) para la provincia de Limón.
+3- Genere un mapa coloreado de relieve para la provincia de Limón.
 
 ## Recursos de interés
 Codecademy. (s. f.). *Command Line Tutorial: Learn The Command Line*. Codecademy. Recuperado 19 de marzo de 2022, de [https://www.codecademy.com/learn/learn-the-command-line](https://www.codecademy.com/learn/learn-the-command-line)

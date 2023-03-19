@@ -133,20 +133,36 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#resumen" id="toc-resumen" class="nav-link active" data-scroll-target="#resumen"><span class="toc-section-number">3.1</span>  Resumen</a></li>
   <li><a href="#trabajo-previo" id="toc-trabajo-previo" class="nav-link" data-scroll-target="#trabajo-previo"><span class="toc-section-number">3.2</span>  Trabajo previo</a>
-  <ul class="collapse">
+  <ul>
   <li><a href="#lecturas" id="toc-lecturas" class="nav-link" data-scroll-target="#lecturas"><span class="toc-section-number">3.2.1</span>  Lecturas</a></li>
   <li><a href="#tutoriales" id="toc-tutoriales" class="nav-link" data-scroll-target="#tutoriales"><span class="toc-section-number">3.2.2</span>  Tutoriales</a></li>
   </ul></li>
   <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="toc-section-number">3.3</span>  Introducción</a></li>
   <li><a href="#programas-para-la-línea-de-comandos-del-sistema-operativo" id="toc-programas-para-la-línea-de-comandos-del-sistema-operativo" class="nav-link" data-scroll-target="#programas-para-la-línea-de-comandos-del-sistema-operativo"><span class="toc-section-number">3.4</span>  Programas para la línea de comandos del sistema operativo</a>
-  <ul class="collapse">
-  <li><a href="#comandos-básicos-del-sistema-operativo" id="toc-comandos-básicos-del-sistema-operativo" class="nav-link" data-scroll-target="#comandos-básicos-del-sistema-operativo"><span class="toc-section-number">3.4.1</span>  Comandos básicos del sistema operativo</a></li>
+  <ul>
+  <li><a href="#comandos-básicos-del-sistema-operativo" id="toc-comandos-básicos-del-sistema-operativo" class="nav-link" data-scroll-target="#comandos-básicos-del-sistema-operativo"><span class="toc-section-number">3.4.1</span>  Comandos básicos del sistema operativo</a>
+  <ul>
+  <li><a href="#windows" id="toc-windows" class="nav-link" data-scroll-target="#windows"><span class="toc-section-number">3.4.1.1</span>  Windows</a></li>
+  </ul></li>
   <li><a href="#instalación" id="toc-instalación" class="nav-link" data-scroll-target="#instalación"><span class="toc-section-number">3.4.2</span>  Instalación</a></li>
   <li><a href="#opciones-comunes" id="toc-opciones-comunes" class="nav-link" data-scroll-target="#opciones-comunes"><span class="toc-section-number">3.4.3</span>  Opciones comunes</a></li>
-  <li><a href="#ejemplos-de-uso" id="toc-ejemplos-de-uso" class="nav-link" data-scroll-target="#ejemplos-de-uso"><span class="toc-section-number">3.4.4</span>  Ejemplos de uso</a></li>
+  <li><a href="#ejemplos-de-uso" id="toc-ejemplos-de-uso" class="nav-link" data-scroll-target="#ejemplos-de-uso"><span class="toc-section-number">3.4.4</span>  Ejemplos de uso</a>
+  <ul>
+  <li><a href="#programas-para-datos-vectoriales" id="toc-programas-para-datos-vectoriales" class="nav-link" data-scroll-target="#programas-para-datos-vectoriales"><span class="toc-section-number">3.4.4.1</span>  Programas para datos vectoriales</a>
+  <ul class="collapse">
+  <li><a href="#ogrinfo" id="toc-ogrinfo" class="nav-link" data-scroll-target="#ogrinfo"><span class="toc-section-number">3.4.4.1.1</span>  ogrinfo</a></li>
+  <li><a href="#ogr2ogr" id="toc-ogr2ogr" class="nav-link" data-scroll-target="#ogr2ogr"><span class="toc-section-number">3.4.4.1.2</span>  ogr2ogr</a></li>
+  </ul></li>
+  <li><a href="#programas-para-datos-raster" id="toc-programas-para-datos-raster" class="nav-link" data-scroll-target="#programas-para-datos-raster"><span class="toc-section-number">3.4.4.2</span>  Programas para datos raster</a>
+  <ul class="collapse">
+  <li><a href="#gdalinfo" id="toc-gdalinfo" class="nav-link" data-scroll-target="#gdalinfo"><span class="toc-section-number">3.4.4.2.1</span>  gdalinfo</a></li>
+  <li><a href="#gdalwarp" id="toc-gdalwarp" class="nav-link" data-scroll-target="#gdalwarp"><span class="toc-section-number">3.4.4.2.2</span>  gdalwarp</a></li>
+  <li><a href="#gdaldem" id="toc-gdaldem" class="nav-link" data-scroll-target="#gdaldem"><span class="toc-section-number">3.4.4.2.3</span>  gdaldem</a></li>
+  </ul></li>
+  </ul></li>
   </ul></li>
   <li><a href="#ejercicios" id="toc-ejercicios" class="nav-link" data-scroll-target="#ejercicios"><span class="toc-section-number">3.5</span>  Ejercicios</a>
-  <ul class="collapse">
+  <ul>
   <li><a href="#datos-vectoriales" id="toc-datos-vectoriales" class="nav-link" data-scroll-target="#datos-vectoriales"><span class="toc-section-number">3.5.1</span>  Datos vectoriales</a></li>
   <li><a href="#datos-raster" id="toc-datos-raster" class="nav-link" data-scroll-target="#datos-raster"><span class="toc-section-number">3.5.2</span>  Datos raster</a></li>
   </ul></li>
@@ -208,15 +224,16 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="programas-para-la-línea-de-comandos-del-sistema-operativo" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="programas-para-la-línea-de-comandos-del-sistema-operativo"><span class="header-section-number">3.4</span> Programas para la línea de comandos del sistema operativo</h2>
-<p>Los <a href="https://gdal.org/programs/">programas de GDAL para la línea de comandos del sistema operativo</a> permiten ejecutar tareas de geoprocesamiento y de conversión entre formatos geoespaciales sin utilizar una interfaz gráfica o un lenguaje de programación.</p>
-<p>Programas para datos raster:</p>
+<p>Los <a href="https://gdal.org/programs/">programas de GDAL para la línea de comandos del sistema operativo</a> permiten ejecutar tareas de geoprocesamiento y de conversión entre formatos geoespaciales sin utilizar una interfaz gráfica o un lenguaje de programación. Seguidamente, se listan algunos de estos programas.</p>
+<p><strong>Programas para datos raster</strong></p>
 <ul>
 <li><a href="https://gdal.org/programs/gdalinfo.html#gdalinfo">gdalinfo</a>: despliega información sobre un conjunto de datos raster.</li>
+<li><a href="https://gdal.org/programs/gdaldem.html#gdaldem">gdaldem</a>: herramientas para visualizar y analizar modelos digitales de elevación.</li>
 <li><a href="https://gdal.org/programs/gdal_translate.html#gdal-translate">gdal_translate</a>: realiza conversiones entre formatos raster.</li>
 <li><a href="https://gdal.org/programs/gdalwarp.html#gdalwarp">gdawarp</a>: reproyecta datos raster.</li>
 <li><a href="https://gdal.org/programs/gdal_calc.html#gdal-calc">gdal_calc.py</a>: calculadora de álgebra raster.</li>
 </ul>
-<p>Programas para datos vectoriales:</p>
+<p><strong>Programas para datos vectoriales</strong></p>
 <ul>
 <li><a href="https://gdal.org/programs/ogrinfo.html#ogrinfo">ogrinfo</a>: despliega información sobre un conjunto de datos vectorial.</li>
 <li><a href="https://gdal.org/programs/ogr2ogr.html#ogr2ogr">ogr2ogr</a>: realiza conversiones en conjuntos de datos vectoriales (ej. filtros, reproyecciones).</li>
@@ -439,7 +456,7 @@ ogrinfo -al -where "CONTINENT='Oceania'" -geom=NO ne_110m_admin_0_countries.shp
 ogrinfo -al -where "CONTINENT='Oceania' AND TYPE='Country'" -geom=NO ne_110m_admin_0_countries.shp</code></pre>
 <p>Note el uso del operador <code>AND</code> (y), el cuál es un operador lógico, como también lo son el <code>OR</code> (o) y el <code>NOT</code> (no).</p>
 <ol start="7" type="1">
-<li>Aplique los filtros anteriores desde la interfaz de QGIS.</li>
+<li>Aplique los filtros anteriores desde la interfaz de QGIS y compare las ventajas y desventajas de cada enfoque.</li>
 </ol>
 </section>
 <section id="ogr2ogr" class="level5" data-number="3.4.4.1.2">
@@ -513,7 +530,7 @@ ogr2ogr -t_srs EPSG:4326 -makevalid cantones-wgs84.gpkg WFS:"http://geos.snitcr.
 <p>El programa <a href="https://gdal.org/programs/gdalinfo.html">gdalinfo</a> despliega información acerca de una fuente de datos raster.</p>
 <p>Los siguientes comandos trabajan con la capa global de altitud de la base de datos climática <a href="https://www.worldclim.org/">WorldClim</a>.</p>
 <ol type="1">
-<li>Descargue en su directorio de trabajo la capa de altitud desde la dirección <a href="https://biogeo.ucdavis.edu/data/worldclim/v2.1/base/wc2.1_30s_elev.zip">https://biogeo.ucdavis.edu/data/worldclim/v2.1/base/wc2.1_30s_elev.zip</a>.</li>
+<li>Descargue en su directorio de trabajo la capa de altitud, con resolución de <a href="https://biogeo.ucdavis.edu/data/worldclim/v2.1/base/wc2.1_30s_elev.zip">30 segundos</a>. Si la descarga toma demasiado tiempo, puede utilizar otras resoluciones: <a href="https://geodata.ucdavis.edu/climate/worldclim/2_1/base/wc2.1_2.5m_elev.zip">2.5 min</a>, <a href="https://geodata.ucdavis.edu/climate/worldclim/2_1/base/wc2.1_5m_elev.zip">5 min</a> o <a href="https://geodata.ucdavis.edu/climate/worldclim/2_1/base/wc2.1_10m_elev.zip">10 min</a>.</li>
 <li>Descomprima el archivo ZIP.</li>
 <li>Con una herramienta de escritorio (ej. QGIS), visualice la capa descomprimida.</li>
 <li>Desde una interfaz de línea de comandos (ej. OSGeo4W Shell), ubíquese en su directorio de trabajo y ejecute los siguientes comandos para obtener información sobre la capa:</li>
@@ -566,13 +583,83 @@ Band 1 Block=43200x1 Type=Int16, ColorInterp=Gray
 <h5 data-number="3.4.4.2.2" class="anchored" data-anchor-id="gdalwarp"><span class="header-section-number">3.4.4.2.2</span> gdalwarp</h5>
 <p>El programa <a href="https://gdal.org/programs/gdalwarp.html">gdalwarp</a> se utiliza para reproyectar y transformar datos raster.</p>
 <ol type="1">
-<li>Recorte la capa raster de altitud global con el contorno de la capa de cantones de Costa Rica:</li>
+<li>Recorte la capa raster de altitud global con el contorno de la capa de cantones de Costa Rica y reproyección a CRTM05:</li>
 </ol>
 <pre class="shell"><code># Recorte de la capa raster de altitud global con el contorno de la capa de cantones de Costa Rica
-gdalwarp -dstnodata -9999 -tr 0.00833333 0.00833333 -q -cutline 'cantones-wgs84.gpkg' -crop_to_cutline wc2.1_30s_elev.tif altitud-cr.tif
+gdalwarp -dstnodata -9999 -tr 0.00833333 0.00833333 -q -cutline cantones-wgs84.gpkg -crop_to_cutline wc2.1_30s_elev.tif altitud-cr-wgs84.tif
 
 # Información sobre la capa de altitud de Costa Rica
-gdalinfo -stats altitud-cr.tif</code></pre>
+gdalinfo -stats altitud-cr-wgs84.tif
+
+# Reproyección a CRTM05
+gdalwarp -s_srs EPSG:4326 -t_srs EPSG:5367 altitud-cr-wgs84.tif altitud-cr-crtm05.tif</code></pre>
+</section>
+<section id="gdaldem" class="level5" data-number="3.4.4.2.3">
+<h5 data-number="3.4.4.2.3" class="anchored" data-anchor-id="gdaldem"><span class="header-section-number">3.4.4.2.3</span> gdaldem</h5>
+<p>El programa <a href="https://gdal.org/programs/gdaldem.html">gdaldem</a> contiene un conjunto de herramientas para visualizar y analizar modelos digitales de elevación (DEM, en inglés, <em>Digital Elevation Model</em>).</p>
+<ol type="1">
+<li>Cree un mapa con efecto de relieve (<em>hillshade</em>) a partir de la capa de altitud de Costa Rica en el sistema de coordenadas WGS84.</li>
+</ol>
+<pre class="shell"><code># Mapa hillshade
+gdaldem hillshade altitud-cr-wgs84.tif altitud-cr-wgs84-hillshade.tif -s 111120</code></pre>
+<p>El resultado se muestra en la <a href="#fig-altitud-cr-wgs84-hillshade">Figura&nbsp;<span>3.1</span></a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-altitud-cr-wgs84-hillshade" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="img/altitud-cr-wgs84-hillshade.png" class="img-fluid figure-img" width="510"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;3.1: Mapa de Costa Rica con efecto de relieve (<em>hillshade</em>).</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Cree un mapa con efecto de relieve (<em>hillshade</em>) multidireccional a partir de la capa de altitud de Costa Rica en el sistema de coordenadas WGS84.</li>
+</ol>
+<pre class="shell"><code># Mapa hillshade multidireccional
+gdaldem hillshade altitud-cr-wgs84.tif altitud-cr-wgs84-hillshade-multidireccional.tif -s 111120 -multidirectional</code></pre>
+<p>El resultado se muestra en la <a href="#fig-altitud-cr-wgs84-hillshade-multidirectional">Figura&nbsp;<span>3.2</span></a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-altitud-cr-wgs84-hillshade-multidirectional" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="img/altitud-cr-wgs84-hillshade-multidireccional.png" class="img-fluid figure-img" width="510"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;3.2: Mapa de Costa Rica con efecto de relieve (<em>hillshade</em>) multidireccional.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="3" type="1">
+<li>Cree un mapa coloreado de relieve a partir de la capa de altitud de Costa Rica en el sistema de coordenadas WGS84.</li>
+</ol>
+<ol type="a">
+<li>Cree un archivo llamado <code>colores.txt</code> con el siguiente contenido:</li>
+</ol>
+<pre class="shell"><code>nv,255,255,255
+500,101,146,82
+1000,190,202,130
+1500,241,225,145
+2000,244,200,126
+2500,197,147,117
+3000,204,169,170
+4000,251,238,253</code></pre>
+<p>Las columnas del archivo corresponden a <code>altitud, rojo, verde, azul</code>.</p>
+<ol start="2" type="a">
+<li>Ejecute el siguiente comando:</li>
+</ol>
+<pre class="shell"><code># Mapa coloreado de relieve
+gdaldem color-relief altitud-cr-wgs84.tif colores.txt altitud-cr-wgs84-colores.tif</code></pre>
+<p>El resultado se muestra en la <a href="#fig-altitud-cr-wgs84-colores">Figura&nbsp;<span>3.3</span></a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-altitud-cr-wgs84-colores" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="img/altitud-cr-wgs84-colores.png" class="img-fluid figure-img" width="510"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;3.3: Mapa coloreado de relieve de Costa Rica.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
 </section>
 </section>
@@ -594,6 +681,7 @@ gdalinfo -stats altitud-cr.tif</code></pre>
 <h3 data-number="3.5.2" class="anchored" data-anchor-id="datos-raster"><span class="header-section-number">3.5.2</span> Datos raster</h3>
 <ol type="1">
 <li>Recorte la capa de altitud de Costa Rica de acuerdo con el contorno de la provincia de Limón y extraiga el resultado en nuevo archivo GeoTIFF.</li>
+<li>Genere un mapa con efecto de relieve (<em>hillshade</em>) para la provincia de Limón. 3- Genere un mapa coloreado de relieve para la provincia de Limón.</li>
 </ol>
 </section>
 </section>
