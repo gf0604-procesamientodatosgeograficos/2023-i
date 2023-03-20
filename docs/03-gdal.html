@@ -243,18 +243,18 @@ ul.task-list li input[type="checkbox"] {
 <p>Los <a href="https://gdal.org/programs/">programas de GDAL para la línea de comandos del sistema operativo</a> permiten ejecutar tareas de geoprocesamiento y de conversión entre formatos geoespaciales sin utilizar una interfaz gráfica o un lenguaje de programación. Seguidamente, se listan algunos de estos programas.</p>
 <p><strong>Programas para datos raster</strong></p>
 <ul>
-<li><a href="https://gdal.org/programs/gdalinfo.html#gdalinfo">gdalinfo</a>: despliega información sobre un conjunto de datos raster.</li>
-<li><a href="https://gdal.org/programs/gdaldem.html#gdaldem">gdaldem</a>: herramientas para visualizar y analizar modelos digitales de elevación.</li>
-<li><a href="https://gdal.org/programs/gdal_translate.html#gdal-translate">gdal_translate</a>: realiza conversiones entre formatos raster.</li>
-<li><a href="https://gdal.org/programs/gdalwarp.html#gdalwarp">gdawarp</a>: reproyecta datos raster.</li>
-<li><a href="https://gdal.org/programs/gdal_calc.html#gdal-calc">gdal_calc.py</a>: calculadora de álgebra raster.</li>
+<li><a href="https://gdal.org/programs/gdalinfo.html">gdalinfo</a>: despliega información sobre un conjunto de datos raster.</li>
+<li><a href="https://gdal.org/programs/gdaldem.html">gdaldem</a>: herramientas para visualizar y analizar modelos digitales de elevación.</li>
+<li><a href="https://gdal.org/programs/gdal_translate.html">gdal_translate</a>: realiza conversiones entre formatos raster.</li>
+<li><a href="https://gdal.org/programs/gdalwarp.html">gdalwarp</a>: reproyecta datos raster y realiza otras conversiones.</li>
+<li><a href="https://gdal.org/programs/gdal_calc.html">gdal_calc.py</a>: calculadora de álgebra raster.</li>
 </ul>
 <p><strong>Programas para datos vectoriales</strong></p>
 <ul>
-<li><a href="https://gdal.org/programs/ogrinfo.html#ogrinfo">ogrinfo</a>: despliega información sobre un conjunto de datos vectorial.</li>
-<li><a href="https://gdal.org/programs/ogr2ogr.html#ogr2ogr">ogr2ogr</a>: realiza conversiones en conjuntos de datos vectoriales (ej. filtros, reproyecciones).</li>
-<li><a href="https://gdal.org/programs/ogrmerge.html#ogrmerge">ogrmerge.py</a>: une varios conjuntos de datos raster en uno solo.</li>
-<li><a href="https://gdal.org/programs/ogr_layer_algebra.html#ogr-layer-algebra">ogr_layer_algebra.py</a>: realiza operaciones de álgebra vectorial.</li>
+<li><a href="https://gdal.org/programs/ogrinfo.html">ogrinfo</a>: despliega información sobre un conjunto de datos vectorial.</li>
+<li><a href="https://gdal.org/programs/ogr2ogr.html">ogr2ogr</a>: realiza conversiones en conjuntos de datos vectoriales (ej. filtros, reproyecciones).</li>
+<li><a href="https://gdal.org/programs/ogrmerge.html">ogrmerge.py</a>: une varios conjuntos de datos raster en uno solo.</li>
+<li><a href="https://gdal.org/programs/ogr_layer_algebra.html">ogr_layer_algebra.py</a>: realiza operaciones de álgebra vectorial.</li>
 </ul>
 <p>Los programas se ejecutan escribiendo el nombre del programa y un conjunto de opciones que especifican, entre otros aspectos, la ubicación de los datos de entrada, de salida y las transformaciones a realizar. Por ejemplo, el siguiente comando convierte un archivo en formato ESRI Shapefile a GeoJSON y lo reproyecta de CRTM05 a WGS84:</p>
 <pre class="shell"><code>ogrinfo -s_srs EPSG:5367 -t_srs EPSG:4326 provincias.geojson provincias.shp</code></pre>
@@ -506,37 +506,33 @@ ogr2ogr paises.geojson ne_110m_admin_0_countries.shp
 # Conversión de SHP a GeoPackage
 ogr2ogr paises.gpkg ne_110m_admin_0_countries.shp</code></pre>
 <ol start="3" type="1">
-<li>Despliegue la lista de capas en el servicio WFS “IGN Cartografía 1:5mil” del Instituto Geográfico Nacional (IGN):</li>
+<li>Despliegue la lista de capas en el servicio WFS del Sistema Nacional de Áreas de Conservación (Sinac):</li>
 </ol>
-<pre class="shell"><code># Lista de capas en el WFS "IGN Cartografía 1:5mil"
-ogrinfo WFS:"http://geos.snitcr.go.cr/be/IGN_5/wfs"</code></pre>
-<pre><code>INFO: Open of `WFS:http://geos.snitcr.go.cr/be/IGN_5/wfs'
+<pre class="shell"><code># Lista de capas en el servicio WFS del Sinac
+ogrinfo WFS:"http://geos1pne.sirefor.go.cr/wfs"</code></pre>
+<pre><code>INFO: Open of `WFS:http://geos1pne.sirefor.go.cr/wfs'
       using driver `WFS' successful.
 Metadata:
-  ABSTRACT=This is the reference implementation of WFS 1.0.0 and WFS 1.1.0, supports all WFS operations including Transaction.
-  PROVIDER_NAME=The Ancient Geographers
-  TITLE=SNIT Web Feature Service
-1: IGN_5:forestal2017_5k (title: ARBOLES 2017 1:5MIL)
-2: IGN_5:cultivos2017_5k (title: Cultivos 2017 1:5mil)
-3: IGN_5:curvas_5000 (title: Curvas de Nivel 10m (5000))
-4: IGN_5:delimitacion2017_5k (title: Delimitación territorial 2017 1:5mil)
-5: IGN_5:edificaciones2017_5k (title: Edificaciones 2017 1:5mil)
-6: IGN_5:hidrografia_5000 (title: Hidrografía 1:5mil)
-7: IGN_5:limitecantonal_5k (title: Límite Cantonal 1:5mil)
-8: IGN_5:limitedistrital_5k (title: Límite Distrital 1:5mil)
-9: IGN_5:limiteprovincial_5k (title: Límite Provincial 1:5mil)
-10: IGN_5:linea_costa_5000 (title: Línea de Costa 1:5mil)
-11: IGN_5:pastos2017_5k (title: Pastos 2017 1:5mil)
-12: IGN_5:urbano_5000 (title: Urbano 1:5mil)
-13: IGN_5:vias_5000 (title: Vías 1:5mil)</code></pre>
+  ABSTRACT=Servicio de mapas de Patrimonio Natural del Estado.
+  PROVIDER_NAME=The ancient geographes INC
+  TITLE=PNE Web Map Service
+1: PNE:bosque_decidio (title: Bosque Deciduo)
+2: PNE:bosque_maduro (title: Bosque Maduro)
+3: PNE:bosque_secundario (title: Bosque Secundario)
+4: PNE:bosque_palmas (title: Bosque de Palmas)
+5: PNE:corredoresbiologicos (title: Corredores Biológicos)
+6: PNE:patrimonio_natural_del_estado (title: Patrimonio Natural del Estado)
+7: PNE:registro_nacional_humedales (title: Registro Nacional de Humedales)
+8: PNE:areas_silvestres_protegidas (title: Áreas Silvestres Protegidas)
+9: PNE:areas_conservacion (title: Áreas de Conservación)</code></pre>
 <ol start="4" type="1">
-<li>Descargue la capa de cantones del WFS “IGN Cartografía 1:5mil” del IGN en formato GeoPackage:</li>
+<li>Descargue la capa de áreas silvestres protegidas (ASP) del servicio WFS del Sinac en formato GeoPackage:</li>
 </ol>
 <pre class="shell"><code># Descarga y validación de geometrías
-ogr2ogr -makevalid cantones.gpkg WFS:"http://geos.snitcr.go.cr/be/IGN_5/wfs" "IGN_5:limitecantonal_5k"
+ogr2ogr -makevalid asp.gpkg WFS:"http://geos1pne.sirefor.go.cr/wfs" "PNE:areas_silvestres_protegidas"
 
 # Descarga, validación de geometrías y reproyección a WGS84
-ogr2ogr -t_srs EPSG:4326 -makevalid cantones-wgs84.gpkg WFS:"http://geos.snitcr.go.cr/be/IGN_5/wfs" "IGN_5:limitecantonal_5k"</code></pre>
+ogr2ogr -t_srs EPSG:4326 -makevalid asp-wgs84.gpkg WFS:"http://geos1pne.sirefor.go.cr/wfs" "PNE:areas_silvestres_protegidas"</code></pre>
 </section>
 </section>
 <section id="programas-para-datos-raster" class="level4" data-number="3.4.4.2">
@@ -686,11 +682,11 @@ gdaldem color-relief altitud-cr-wgs84.tif colores.txt altitud-cr-wgs84-colores.t
 <h3 data-number="3.5.1" class="anchored" data-anchor-id="datos-vectoriales"><span class="header-section-number">3.5.1</span> Datos vectoriales</h3>
 <ol type="1">
 <li>De la capa de países de Natural Earth, extraiga los registros con población estimada superior a mil millones. En la capa resultante, incluya solamente los campos de nombre del país en español y población estimada. ¿Cuál opción debe utilizar para especificar los campos que desea incluir en el archivo de salida?</li>
-<li>De la capa de cantones de Costa Rica, extraiga en un archivo GeoJSON los cantones de las provincia de Guanacaste, Puntarenas y Limón.</li>
-<li>De la capa de cantones de Costa Rica, extraiga en un archivo GeoJSON los cantones con área mayor o igual a 2000 km2.</li>
-<li>De la capa de cantones de Costa Rica, extraiga en un archivo GeoJSON los cantones con área mayor o igual a 2000 km2 de la provincia de Limón.</li>
-<li>De la capa de cantones de Costa Rica, extraiga en un archivo GeoJSON los cantones con área mayor o igual a 2000 km2 de las provincias de Guanacaste, Puntarenas y Limón.</li>
-<li>De la capa de cantones de Costa Rica, extraiga en un archivo GeoPackage, los cantones de Guanacaste, con la excepción de Liberia.</li>
+<li>De la capa de ASP de Costa Rica, extraiga en un archivo GeoJSON las ASP del Área de Conservación Central.</li>
+<li>De la capa de ASP de Costa Rica, extraiga en un archivo GeoJSON las ASP terrestres con área mayor o igual a 1000 km2.</li>
+<li>De la capa de ASP de Costa Rica, extraiga en un archivo GeoJSON las ASP terrestres con área mayor o igual a 500 km2 del Área de Conservación Central.</li>
+<li>De la capa de ASP de Costa Rica, extraiga en un archivo GeoJSON las ASP terrestres con área mayor o igual a 500 km2 de las áreas de conservación Central, Tortuguero y Osa.</li>
+<li>De la capa de ASP de Costa Rica, extraiga en un archivo GeoPackage, las ASP del Área de Conservación Guanacaste, excepto el Parque Nacional Santa Rosa.</li>
 </ol>
 </section>
 <section id="datos-raster" class="level3" data-number="3.5.2">
