@@ -103,5 +103,26 @@
     "title": "3  GDAL - biblioteca para lectura y escritura de datos geoespaciales con interfaz de línea de comandos",
     "section": "3.6 Recursos de interés",
     "text": "3.6 Recursos de interés\nCodecademy. (s. f.). Command Line Tutorial: Learn The Command Line. Codecademy. Recuperado 19 de marzo de 2022, de https://www.codecademy.com/learn/learn-the-command-line\nSS64 Command line reference. (s. f.). Recuperado 3 de abril de 2022, de https://ss64.com/"
+  },
+  {
+    "objectID": "parte-vi-evaluaciones.html",
+    "href": "parte-vi-evaluaciones.html",
+    "title": "Evaluaciones",
+    "section": "",
+    "text": "Examen corto 1"
+  },
+  {
+    "objectID": "examen_corto-01.html",
+    "href": "examen_corto-01.html",
+    "title": "Examen corto 1",
+    "section": "",
+    "text": "Grupo 001: martes 28 de marzo de 2023\nGrupo 002: jueves 30 de marzo de 2023"
+  },
+  {
+    "objectID": "examen_corto-01.html#temas-a-evaluar",
+    "href": "examen_corto-01.html#temas-a-evaluar",
+    "title": "Examen corto 1",
+    "section": "Temas a evaluar",
+    "text": "Temas a evaluar\n1 Pensamiento computacional, arquitectura de computadoras y lenguajes de programación\n2 Interacción humano-computadora\n3 GDAL - biblioteca para lectura y escritura de datos geoespaciales con interfaz de línea de comandos"
   }
 ]
