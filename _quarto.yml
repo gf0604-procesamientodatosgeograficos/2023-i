@@ -14,6 +14,7 @@ book:
         - 02-interaccion_humano_computadora.qmd
         - 03-gdal.qmd
         - 04-reproducibilidad.qmd
+        - 05-markdown.qmd
     - part: parte-vi-evaluaciones.qmd
       chapters:
         - examen_corto-01.qmd        
