@@ -12,4 +12,6 @@ lang: es
 
 [4 Reproducibilidad](04-reproducibilidad.qmd)
 
-[5 Markdown](05-markdown.qmd)
+[5 Markdown - lenguaje de marcado](05-markdown.qmd)
+
+[6 Git - sistema de control de versiones](06-git.qmd)
