@@ -6,3 +6,6 @@ lang: es
 
 ## Exámenes cortos {.unnumbered}
 [Examen corto 1](examen_corto-01.qmd)  
+
+## Tareas {.unnumbered}
+[Tarea 1](tarea-01.qmd) 

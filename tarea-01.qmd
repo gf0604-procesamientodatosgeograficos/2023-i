@@ -1,0 +1,56 @@
+# Tarea 1 {.unnumbered}
+
+## Fecha y hora límite de entrega {.unnumbered}
+
+### Grupo 001
+Martes 18 de abril de 2023, 07:59 a.m.  
+
+### Grupo 002
+Miércoles 19 de abril de 2023, 10:59 a.m.
+
+## Objetivos
+Cada estudiante debe mostrar que es capaz de:
+
+1.  Escribir documentos en el lenguaje de marcado Markdown.
+2.  Manejar repositorios en GitHub.
+3.  Publicar repositorios en GitHub como sitios web en GitHub Pages.
+
+## Entregables
+1.  Dirección de un repositorio en GitHub (ej. `https://github.com/mfvargas/tarea-01`) que contenga un documento escrito en Markdown llamado `README.md`, con el contenido especificado en la sección Desarrollo.
+2.  Dirección de un sitio web publicado en GitHub Pages generado a partir del repositorio especificado en el punto anterior (ej. `https://mfvargas.github.io/tarea-01/`). **Se recomienda usar un nombre más significativo que `tarea-01` para el repositorio, acorde con su contenido.**
+
+La entrega debe realizarse a través de la plataforma Mediación Virtual.
+
+## Consideraciones adicionales
+**Esta tarea es estrictamente individual**.
+
+## Desarrollo
+Debe desarrollar con Markdown un sitio web sobre un tema de su elección (un adelanto del trabajo final de graduación, alguna temática tratada en otro curso, un proyecto personal, etc.). El sitio debe contener, como mínimo, los siguientes elementos:
+
+- **Encabezados**: por lo menos de niveles uno y dos.
+- **Texto**: por lo menos 500 palabras.
+- **Negritas**: por lo menos dos palabras.
+- **Itálicas**: por lo menos dos palabras.
+- **Listas**: al menos una, ya sea numerada o no numerada.
+- **Imágenes**: al menos dos, una local (en el repositorio GitHub de la tarea) y otra remota (de un sitio web externo).
+- **Hipervínculos**: (al menos dos).
+
+Puede utilizar imágenes de fuentes externas, pero debe dar los créditos apropiados y proporcionar, al menos, un enlace al origen. En el texto, puede apoyarse en fuentes externas, pero debe incluir las citas bibliográficas. **No debe "copiar y pegar" texto u otros contenidos**.
+
+El contenido del sitio debe ser **coherente** y estar **bien presentado**.
+
+## Calificación
+Direcciones entregadas:  
+- Dirección del repositorio en GitHub: 10%  
+- Dirección del sitio web publicado en GitHub Pages: 10%  
+
+Componentes del documento escrito en Markdown:  
+- Encabezados: 5%  
+- Texto: 15%  
+- Negritas: 5%  
+- Itálicas: 5%  
+- Listas: 10%  
+- Imágenes: 20%  
+- Hipervínculos: 10%  
+
+Coherencia y presentación general del sitio web: 10%   

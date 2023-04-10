@@ -21,7 +21,8 @@ book:
         - 07-r.qmd
     - part: parte-vi-evaluaciones.qmd
       chapters:
-        - examen_corto-01.qmd        
+        - examen_corto-01.qmd
+        - tarea-01.qmd
 
 bibliography: referencias.bib
 
