@@ -33,7 +33,7 @@ Debe desarrollar con Markdown un sitio web sobre un tema de su elección (un ade
 - **Itálicas**: por lo menos dos palabras.
 - **Listas**: al menos una, ya sea numerada o no numerada.
 - **Imágenes**: al menos dos, una local (en el repositorio GitHub de la tarea) y otra remota (de un sitio web externo).
-- **Hipervínculos**: (al menos dos).
+- **Hipervínculos**: al menos dos.
 
 Puede utilizar imágenes de fuentes externas, pero debe dar los créditos apropiados y proporcionar, al menos, un enlace al origen. En el texto, puede apoyarse en fuentes externas, pero debe incluir las citas bibliográficas. **No debe "copiar y pegar" texto u otros contenidos**.
 
