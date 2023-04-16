@@ -15,6 +15,7 @@ conda install -y mamba
 mamba install -y r-base r-essentials \
                  r-vroom=1.5.7 \
                  r-xaringan \
+                 r-xlsx \
                  r-dplyr \
                  r-dt \
                  r-ggplot2 r-ggthemes r-hrbrthemes r-plotly \
