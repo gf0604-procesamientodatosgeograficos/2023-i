@@ -7,3 +7,5 @@ lang: es
 [7 R - lenguaje de programación para análisis estadístico](07-r.qmd)
 
 [8 Quarto - sistema de publicación técnica y científica](08-quarto.qmd)
+
+[9 Tidyverse - colección de paquetes para ciencia de datos](09-tidyverse.qmd)

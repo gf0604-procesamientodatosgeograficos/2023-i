@@ -20,6 +20,7 @@ book:
       chapters:
         - 07-r.qmd
         - 08-quarto.qmd
+        - 09-tidyverse.qmd
     - part: parte-vi-evaluaciones.qmd
       chapters:
         - examen_corto-01.qmd
