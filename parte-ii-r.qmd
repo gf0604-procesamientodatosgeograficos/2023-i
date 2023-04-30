@@ -9,3 +9,5 @@ lang: es
 [8 Quarto - sistema de publicación técnica y científica](08-quarto.qmd)
 
 [9 Tidyverse - colección de paquetes para ciencia de datos](09-tidyverse.qmd)
+
+[10 dplyr - gramática para manipulación de datos](10-dplyr.qmd)

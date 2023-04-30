@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.189">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>GF0604 Procesamiento de datos geográficos 2023-I - 10&nbsp; dplyr - gramática para manipulación de datos</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./parte-vi-evaluaciones.html" rel="next">
+<link href="./09-tidyverse.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Sín resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la busqueda",
+    "search-hide-matches-text": "Esconder resultados adicionales",
+    "search-more-match-text": "hay más resultados en este documento",
+    "search-more-matches-text": "más resultados en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Eviar"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">dplyr - gramática para manipulación de datos</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">GF0604 Procesamiento de datos geográficos 2023-I</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Bienvenida</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./parte-i-introduccion-programacion_computadoras.html" class="sidebar-item-text sidebar-link">I - Introducción a la programación de computadoras</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-pensamiento_computacional-arquitectura_computadoras-lenguajes_programacion.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Pensamiento computacional, arquitectura de computadoras y lenguajes de programación</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-interaccion_humano_computadora.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Interacción humano-computadora</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-gdal.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">GDAL - biblioteca para lectura y escritura de datos geoespaciales con interfaz de línea de comandos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-reproducibilidad.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Reproducibilidad</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-markdown.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Markdown - lenguaje de marcado</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-git.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Git - sistema de control de versiones</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./parte-ii-r.html" class="sidebar-item-text sidebar-link">II - El lenguaje de programación R</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-r.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">R - lenguaje de programación para análisis estadístico</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-quarto.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Quarto - sistema de publicación técnica y científica</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-tidyverse.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Tidyverse - colección de paquetes para ciencia de datos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-dplyr.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">dplyr - gramática para manipulación de datos</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./parte-vi-evaluaciones.html" class="sidebar-item-text sidebar-link">Evaluaciones</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./examen_corto-01.html" class="sidebar-item-text sidebar-link">Examen corto 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tarea-01.html" class="sidebar-item-text sidebar-link">Tarea 1</a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Indice de contenidos</h2>
+   
+  <ul>
+  <li><a href="#resumen" id="toc-resumen" class="nav-link active" data-scroll-target="#resumen"><span class="toc-section-number">10.1</span>  Resumen</a></li>
+  <li><a href="#trabajo-previo" id="toc-trabajo-previo" class="nav-link" data-scroll-target="#trabajo-previo"><span class="toc-section-number">10.2</span>  Trabajo previo</a>
+  <ul class="collapse">
+  <li><a href="#lecturas" id="toc-lecturas" class="nav-link" data-scroll-target="#lecturas"><span class="toc-section-number">10.2.1</span>  Lecturas</a></li>
+  </ul></li>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="toc-section-number">10.3</span>  Introducción</a></li>
+  <li><a href="#instalación-y-carga" id="toc-instalación-y-carga" class="nav-link" data-scroll-target="#instalación-y-carga"><span class="toc-section-number">10.4</span>  Instalación y carga</a></li>
+  <li><a href="#conjuntos-de-datos-para-ejemplos" id="toc-conjuntos-de-datos-para-ejemplos" class="nav-link" data-scroll-target="#conjuntos-de-datos-para-ejemplos"><span class="toc-section-number">10.5</span>  Conjuntos de datos para ejemplos</a>
+  <ul class="collapse">
+  <li><a href="#penguins" id="toc-penguins" class="nav-link" data-scroll-target="#penguins"><span class="toc-section-number">10.5.1</span>  penguins</a></li>
+  <li><a href="#estadísticas-de-delitos-cometidos-en-2022" id="toc-estadísticas-de-delitos-cometidos-en-2022" class="nav-link" data-scroll-target="#estadísticas-de-delitos-cometidos-en-2022"><span class="toc-section-number">10.5.2</span>  Estadísticas de delitos cometidos en 2022</a></li>
+  </ul></li>
+  <li><a href="#funciones" id="toc-funciones" class="nav-link" data-scroll-target="#funciones"><span class="toc-section-number">10.6</span>  Funciones</a>
+  <ul class="collapse">
+  <li><a href="#select" id="toc-select" class="nav-link" data-scroll-target="#select"><span class="toc-section-number">10.6.1</span>  select()</a></li>
+  <li><a href="#filter" id="toc-filter" class="nav-link" data-scroll-target="#filter"><span class="toc-section-number">10.6.2</span>  filter()</a></li>
+  <li><a href="#arrange" id="toc-arrange" class="nav-link" data-scroll-target="#arrange"><span class="toc-section-number">10.6.3</span>  arrange()</a></li>
+  <li><a href="#mutate" id="toc-mutate" class="nav-link" data-scroll-target="#mutate"><span class="toc-section-number">10.6.4</span>  mutate()</a></li>
+  <li><a href="#summarize" id="toc-summarize" class="nav-link" data-scroll-target="#summarize"><span class="toc-section-number">10.6.5</span>  summarize()</a></li>
+  <li><a href="#otras" id="toc-otras" class="nav-link" data-scroll-target="#otras"><span class="toc-section-number">10.6.6</span>  Otras</a></li>
+  </ul></li>
+  <li><a href="#ejercicios" id="toc-ejercicios" class="nav-link" data-scroll-target="#ejercicios"><span class="toc-section-number">10.7</span>  Ejercicios</a></li>
+  <li><a href="#recursos-de-interés" id="toc-recursos-de-interés" class="nav-link" data-scroll-target="#recursos-de-interés"><span class="toc-section-number">10.8</span>  Recursos de interés</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">dplyr - gramática para manipulación de datos</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="resumen" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="resumen"><span class="header-section-number">10.1</span> Resumen</h2>
+<p>El paquete dplyr proporciona un conjunto de funciones que ayudan a solucionar las tareas de transformación de datos más comunes, entre las que están la selección de columnas, el ordenamiento de filas, el filtrado de filas, la creación o modificación de columnas y los cálculos en grupos de filas. Estas transformaciones son usualmente requeridas antes de la visualización y el modelado de los datos.</p>
+</section>
+<section id="trabajo-previo" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="trabajo-previo"><span class="header-section-number">10.2</span> Trabajo previo</h2>
+<section id="lecturas" class="level3" data-number="10.2.1">
+<h3 data-number="10.2.1" class="anchored" data-anchor-id="lecturas"><span class="header-section-number">10.2.1</span> Lecturas</h3>
+<p>Wickham, H., Çetinkaya-Rundel, M., &amp; Grolemund, G. (s. f.). <em>R for Data Science (2nd ed.) Chapter 4 - Data transformation</em>. Recuperado 28 de abril de 2023, de <a href="https://r4ds.hadley.nz/data-transform.html" class="uri">https://r4ds.hadley.nz/data-transform.html</a></p>
+</section>
+</section>
+<section id="introducción" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="introducción"><span class="header-section-number">10.3</span> Introducción</h2>
+<p>El paquete <a href="https://dplyr.tidyverse.org/">dplyr</a> de <a href="https://www.tidyverse.org/">Tidyverse</a> es descrito como una gramática para la manipulación de datos, la cual proporciona un conjunto consistente de verbos que ayuda a solucionar los retos de procesamiento de datos más comunes. Los principales “verbos” (i.e.&nbsp;funciones) de esta gramática son:</p>
+<ul>
+<li><p><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a>: selecciona columnas con base en sus nombres.</p></li>
+<li><p><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a>: selecciona filas con base en sus valores.</p></li>
+<li><p><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a>: cambia el orden de las filas.</p></li>
+<li><p><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a>: crea nuevas columnas, las cuales se expresan como funciones de columnas existentes.</p></li>
+<li><p><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a>: agrupa y resume valores.</p></li>
+</ul>
+<p>Todas estas operaciones pueden combinarse con la función <a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a>, la cual ejecuta cualquiera de las operaciones anteriores “en grupo”. Además, dplyr proporciona <a href="https://dplyr.tidyverse.org/reference/index.html">funciones adicionales</a> para tareas más específicas.</p>
+<p>Las funciones de dplyr pueden encadenarse a través del operador <em>pipe</em> (tubo), ya sea el del paquete magrittr <a href="https://magrittr.tidyverse.org/reference/pipe.html">(%&gt;%)</a> o el del paquete base de R <a href="https://michaelbarrowman.co.uk/post/the-new-base-pipe/">(|&gt;)</a>. Los procesos se enlazan con <em>pipes</em> para formar <em>pipelines</em> (tuberías).</p>
+<p>Todas las funciones de dplyr trabajan de manera similar:</p>
+<ol type="1">
+<li>El primer argumento siempre es un data frame. Puede omitirse si la función recibe el data frame a través del operador <em>pipe</em>.</li>
+<li>Los argumentos siguientes describen que hacer con el data frame, utilizando los nombres de las columnas (sin comillas).<br>
+</li>
+<li>El resultado siempre es un nuevo data frame.</li>
+</ol>
+<p>Ya que cada función de dplyr se especializa en una sola tarea, usualmente es necesario encadenar funciones mediante <em>pipes</em> para lograr un objetivo de procesamiento de datos. Por ejemplo, el siguiente bloque de código usa tres verbos, o funciones, de dplyr para obtener la masa promedio de cada especie de pingüinos que habita en la isla Biscoe.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cálculo de la masa promedio para cada especie de pingüinos</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># que habita en la isla Biscoe</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(island <span class="sc">==</span> <span class="st">"Biscoe"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span> </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">body_mass_g_mean =</span> <span class="fu">mean</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>A tibble: 2 × 2
+species body_mass_g_mean
+&lt;fct&gt;              &lt;dbl&gt;
+Adelie          3710.659
+Gentoo          5076.016</code></pre>
+</section>
+<section id="instalación-y-carga" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="instalación-y-carga"><span class="header-section-number">10.4</span> Instalación y carga</h2>
+<p>El paquete dplyr puede instalarse junto con todos los demás paquete de Tidyverse o de manera individual:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instalación conjunta de Tidyverse</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Instalación individual</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"dplyr"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Una vez instalado, dplyr puede cargarse con la función <code>library()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carga conjunta de Tidyverse</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Carga individual</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Seguidamente, se cargan algunos paquetes adicionales que se utilizan en este capítulo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carga de readr, paquete para lectura de datos</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Carga de tidyr, paquete para creación de datos "tidy"</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="conjuntos-de-datos-para-ejemplos" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="conjuntos-de-datos-para-ejemplos"><span class="header-section-number">10.5</span> Conjuntos de datos para ejemplos</h2>
+<p>En los ejemplos de este capítulo, se utilizan dos conjunto de datos:</p>
+<ul>
+<li><code>penguins</code>, contenido en el paquete <a href="https://allisonhorst.github.io/palmerpenguins/">palmerpenguins</a>.</li>
+<li><a href="https://sitiooij.poder-judicial.go.cr/phocadownload/Estadisticas/estadsticaspoliciales2022.xlsx">Estadísticas de delitos cometidos en 2022</a>, disponibles en el <a href="https://sitiooij.poder-judicial.go.cr/index.php/ayuda/servicios-policiales/servicios-a-organizaciones/indice-de-transparencia-del-sector-publico-costarricense/datos-abiertos">sitio de datos abiertos del Organismo de Investigación Judicial (OIJ)</a>.</li>
+</ul>
+<section id="penguins" class="level3" data-number="10.5.1">
+<h3 data-number="10.5.1" class="anchored" data-anchor-id="penguins"><span class="header-section-number">10.5.1</span> penguins</h3>
+<p>Para cargar el conjunto de datos <code>penguins</code>, basta con cargar el paquete <code>palmerpenguins</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carga del paquete de datos palmerpenguins</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>La función <a href="https://dplyr.tidyverse.org/reference/glimpse.html">glimpse()</a> despliega la estructura de un conjunto de datos, incluyendo los nombres de las columnas, sus tipos de datos y una muestra de estos:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Estructura del conjunto de datos penguins</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(penguins)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 344
+Columns: 8
+$ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…
+$ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…
+$ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …
+$ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …
+$ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…
+$ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …
+$ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…
+$ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…</code></pre>
+</div>
+</div>
+<p>Un conjunto de datos puede visualizarse al escribir su nombre en la consola de R o en un programa:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Despliegue de los datos de penguins</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>penguins</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 344 × 8
+   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+ 1 Adelie  Torgersen           39.1          18.7               181        3750
+ 2 Adelie  Torgersen           39.5          17.4               186        3800
+ 3 Adelie  Torgersen           40.3          18                 195        3250
+ 4 Adelie  Torgersen           NA            NA                  NA          NA
+ 5 Adelie  Torgersen           36.7          19.3               193        3450
+ 6 Adelie  Torgersen           39.3          20.6               190        3650
+ 7 Adelie  Torgersen           38.9          17.8               181        3625
+ 8 Adelie  Torgersen           39.2          19.6               195        4675
+ 9 Adelie  Torgersen           34.1          18.1               193        3475
+10 Adelie  Torgersen           42            20.2               190        4250
+# ℹ 334 more rows
+# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+</div>
+</div>
+<p><code>penguins</code> es un <a href="https://tibble.tidyverse.org/">tibble</a>, un tipo especial de data frame que se utiliza en Tidyverse. La diferencia más importante entre un tibble y un data frame es la manera en la que se imprimen: los tibbles están diseñados para conjuntos de datos grandes, por lo que solo muestran los primeros registros y las columnas que caben en la pantalla. Un data frame regular muestra todas sus columnas y muchos más registros, lo que dificulta su visualización. En general, un data frame regular y un tibble pueden tratarse indistintamente.</p>
+</section>
+<section id="estadísticas-de-delitos-cometidos-en-2022" class="level3" data-number="10.5.2">
+<h3 data-number="10.5.2" class="anchored" data-anchor-id="estadísticas-de-delitos-cometidos-en-2022"><span class="header-section-number">10.5.2</span> Estadísticas de delitos cometidos en 2022</h3>
+<p>Se utiliza la función <a href="https://readr.tidyverse.org/reference/read_delim.html">readr::read_csv()</a> para leer un archivo CSV almacenado en el repositorio GitHub de este curso, con los datos de las estadísticas policiales proporcionados por el OIJ en formato Excel. <code>readr::read_csv()</code> es más eficiente que <code>read.csv()</code> (del paquete base de R) y tiene otras ventajas como detección automática de tipos de datos y mejor integración con otros paquetes de Tidyverse (ej. dplyr, tidyr, ggplot2).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carga de los datos de delitos cometidos en 2022</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>delitos_2022 <span class="ot">&lt;-</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read.csv</span>(</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://raw.githubusercontent.com/gf0604-procesamientodatosgeograficos/2023-i/main/datos/oij/estadisticas-policiales/estadisticaspoliciales2022.csv"</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Estructura del conjunto de datos:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Estructura de los datos de delitos cometidos en 2022</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(delitos_2022)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 96,651
+Columns: 12
+$ Delito       &lt;chr&gt; "DELITOS CONTRA LA ADMINISTRACION DE JUSTICIA", "DELITOS …
+$ SubDelito    &lt;chr&gt; "FALSAS ACUSACIONES", "AMENAZA A UN FUNCIONARIO PUBLICO",…
+$ Fecha        &lt;chr&gt; "12/31/2022", "12/31/2022", "12/31/2022", "12/31/2022", "…
+$ Hora         &lt;chr&gt; "09:00:00 - 11:59:59", "12:00:00 - 14:59:59", "15:00:00 -…
+$ Victima      &lt;chr&gt; "VEHICULO", "PERSONA", "PERSONA", "PERSONA", "PERSONA", "…
+$ SubVictima   &lt;chr&gt; "SERVICIO PUBLICO/TAXI LEGAL O PIRATA/AUTOBUS", "OTRO O I…
+$ Edad         &lt;chr&gt; "Adulto Mayor", "Mayor de edad", "Mayor de edad", "Mayor …
+$ Genero       &lt;chr&gt; "Adulto Mayor", "Mayor de edad", "Mayor de edad", "Mayor …
+$ Nacionalidad &lt;chr&gt; "COSTA RICA", "COSTA RICA", "COSTA RICA", "COSTA RICA", "…
+$ Provincia    &lt;chr&gt; "SAN JOSE", "SAN JOSE", "LIMON", "CARTAGO", "PUNTARENAS",…
+$ Canton       &lt;chr&gt; "SAN JOSE", "PEREZ ZELEDON", "SIQUIRRES", "CARTAGO", "QUE…
+$ Distrito     &lt;chr&gt; "HOSPITAL", "DANIEL FLORES", "SIQUIRRES", "GUADALUPE", "Q…</code></pre>
+</div>
+</div>
+<p>Despliegue de los datos (debido a que <code>delitos_2022</code> es un data frame, pero no un tibble, se limitan las filas y columnas que se muestran):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Despliegue de una muestra de los datos de delitos cometidos en 2022</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>delitos_2022[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="fu">c</span>(<span class="st">"Delito"</span>, <span class="st">"Victima"</span>, <span class="st">"Provincia"</span>)]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                         Delito  Victima  Provincia
+1  DELITOS CONTRA LA ADMINISTRACION DE JUSTICIA VEHICULO   SAN JOSE
+2           DELITOS CONTRA LA AUTORIDAD PUBLICA  PERSONA   SAN JOSE
+3                    DELITOS CONTRA LA LIBERTAD  PERSONA      LIMON
+4                    DELITOS CONTRA LA LIBERTAD  PERSONA    CARTAGO
+5                    DELITOS CONTRA LA LIBERTAD  PERSONA PUNTARENAS
+6                    DELITOS CONTRA LA LIBERTAD  PERSONA   SAN JOSE
+7                    DELITOS CONTRA LA LIBERTAD  PERSONA   SAN JOSE
+8                    DELITOS CONTRA LA LIBERTAD  PERSONA   SAN JOSE
+9                    DELITOS CONTRA LA LIBERTAD  PERSONA   SAN JOSE
+10                   DELITOS CONTRA LA LIBERTAD  PERSONA   SAN JOSE</code></pre>
+</div>
+</div>
+<p>En RStudio, un conjunto de datos completo puede verse más cómodamente con la función <code>View()</code>.</p>
+</section>
+</section>
+<section id="funciones" class="level2" data-number="10.6">
+<h2 data-number="10.6" class="anchored" data-anchor-id="funciones"><span class="header-section-number">10.6</span> Funciones</h2>
+<p>En esta sección, se describen y ejemplifican las principales funciones de dplyr.</p>
+<section id="select" class="level3" data-number="10.6.1">
+<h3 data-number="10.6.1" class="anchored" data-anchor-id="select"><span class="header-section-number">10.6.1</span> select()</h3>
+<p>La función <a href="https://dplyr.tidyverse.org/reference/select.html">select()</a> selecciona (y opcionalmente renombra) columnas de un data frame con base en sus nombres.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Selección de las columnas species, bill_length_mm y sex</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(species, bill_length_mm, sex)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 344 × 3
+   species bill_length_mm sex   
+   &lt;fct&gt;            &lt;dbl&gt; &lt;fct&gt; 
+ 1 Adelie            39.1 male  
+ 2 Adelie            39.5 female
+ 3 Adelie            40.3 female
+ 4 Adelie            NA   &lt;NA&gt;  
+ 5 Adelie            36.7 female
+ 6 Adelie            39.3 male  
+ 7 Adelie            38.9 female
+ 8 Adelie            39.2 male  
+ 9 Adelie            34.1 &lt;NA&gt;  
+10 Adelie            42   &lt;NA&gt;  
+# ℹ 334 more rows</code></pre>
+</div>
+</div>
+<p>Cambio de nombres de columnas:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Selección y cambio de nombre de las columnas </span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># species, bill_length_mm y sex</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">especie =</span> species,</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">longitud_pico_mm =</span> bill_length_mm,</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">sexo =</span> sex)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 344 × 3
+   especie longitud_pico_mm sexo  
+   &lt;fct&gt;              &lt;dbl&gt; &lt;fct&gt; 
+ 1 Adelie              39.1 male  
+ 2 Adelie              39.5 female
+ 3 Adelie              40.3 female
+ 4 Adelie              NA   &lt;NA&gt;  
+ 5 Adelie              36.7 female
+ 6 Adelie              39.3 male  
+ 7 Adelie              38.9 female
+ 8 Adelie              39.2 male  
+ 9 Adelie              34.1 &lt;NA&gt;  
+10 Adelie              42   &lt;NA&gt;  
+# ℹ 334 more rows</code></pre>
+</div>
+</div>
+<p>El operador <code>:</code> permite seleccionar un rango de columnas continuas:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Selección de las columnas desde species a flipper_length_mm</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(species<span class="sc">:</span>flipper_length_mm)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 344 × 5
+   species island    bill_length_mm bill_depth_mm flipper_length_mm
+   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;
+ 1 Adelie  Torgersen           39.1          18.7               181
+ 2 Adelie  Torgersen           39.5          17.4               186
+ 3 Adelie  Torgersen           40.3          18                 195
+ 4 Adelie  Torgersen           NA            NA                  NA
+ 5 Adelie  Torgersen           36.7          19.3               193
+ 6 Adelie  Torgersen           39.3          20.6               190
+ 7 Adelie  Torgersen           38.9          17.8               181
+ 8 Adelie  Torgersen           39.2          19.6               195
+ 9 Adelie  Torgersen           34.1          18.1               193
+10 Adelie  Torgersen           42            20.2               190
+# ℹ 334 more rows</code></pre>
+</div>
+</div>
+<p>Selección de todas las columnas que cumplen una condición:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Selección de las columnas numéricas</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">where</span>(is.numeric))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 344 × 5
+   bill_length_mm bill_depth_mm flipper_length_mm body_mass_g  year
+            &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt; &lt;int&gt;
+ 1           39.1          18.7               181        3750  2007
+ 2           39.5          17.4               186        3800  2007
+ 3           40.3          18                 195        3250  2007
+ 4           NA            NA                  NA          NA  2007
+ 5           36.7          19.3               193        3450  2007
+ 6           39.3          20.6               190        3650  2007
+ 7           38.9          17.8               181        3625  2007
+ 8           39.2          19.6               195        4675  2007
+ 9           34.1          18.1               193        3475  2007
+10           42            20.2               190        4250  2007
+# ℹ 334 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="filter" class="level3" data-number="10.6.2">
+<h3 data-number="10.6.2" class="anchored" data-anchor-id="filter"><span class="header-section-number">10.6.2</span> filter()</h3>
+<p>La función <a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a> retorna un subconjunto de un data frame con todas las filas que satisfacen una condición (i.e.&nbsp;expresión lógica).</p>
+<p>Puede utilizar los operadores relacionales:</p>
+<ul>
+<li><code>==</code> (igual que) <strong>Note la diferencia con el operador de asignación: <code>=</code></strong></li>
+<li><code>!=</code> (diferente de)</li>
+<li><code>&gt;</code> (estrictamente mayor que), <code>&gt;=</code> (mayor o igual que)</li>
+<li><code>&lt;</code> (estrictamente menor que), <code>&lt;=</code> (menor o igual que)</li>
+</ul>
+<p>Y los operadores lógicos:</p>
+<ul>
+<li><code>&amp;</code> (<em>AND</em> o Y lógico)</li>
+<li><code>|</code> (<em>OR</em> u O lógico)</li>
+<li><code>!</code> (<em>NOT</em> o NO lógico)</li>
+</ul>
+<p>Ejemplos de uso de expresiones y operadores lógicos:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pingüinos de la especie 'Adelie' </span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># con longitud del pico mayor o igual a 45 mm</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">'Adelie'</span> <span class="sc">&amp;</span> bill_length_mm <span class="sc">&gt;=</span> <span class="dv">45</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 8
+  species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+1 Adelie  Torgersen           46            21.5               194        4200
+2 Adelie  Torgersen           45.8          18.9               197        4150
+3 Adelie  Biscoe              45.6          20.3               191        4600
+# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pingüinos de las especies 'Adelie' o 'Gentoo'</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">'Adelie'</span> <span class="sc">|</span> species <span class="sc">==</span> <span class="st">'Gentoo'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 276 × 8
+   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+ 1 Adelie  Torgersen           39.1          18.7               181        3750
+ 2 Adelie  Torgersen           39.5          17.4               186        3800
+ 3 Adelie  Torgersen           40.3          18                 195        3250
+ 4 Adelie  Torgersen           NA            NA                  NA          NA
+ 5 Adelie  Torgersen           36.7          19.3               193        3450
+ 6 Adelie  Torgersen           39.3          20.6               190        3650
+ 7 Adelie  Torgersen           38.9          17.8               181        3625
+ 8 Adelie  Torgersen           39.2          19.6               195        4675
+ 9 Adelie  Torgersen           34.1          18.1               193        3475
+10 Adelie  Torgersen           42            20.2               190        4250
+# ℹ 266 more rows
+# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pingüinos de especies diferentes a 'Chinstrap'</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>(species <span class="sc">==</span> <span class="st">'Chinstrap'</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 276 × 8
+   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+ 1 Adelie  Torgersen           39.1          18.7               181        3750
+ 2 Adelie  Torgersen           39.5          17.4               186        3800
+ 3 Adelie  Torgersen           40.3          18                 195        3250
+ 4 Adelie  Torgersen           NA            NA                  NA          NA
+ 5 Adelie  Torgersen           36.7          19.3               193        3450
+ 6 Adelie  Torgersen           39.3          20.6               190        3650
+ 7 Adelie  Torgersen           38.9          17.8               181        3625
+ 8 Adelie  Torgersen           39.2          19.6               195        4675
+ 9 Adelie  Torgersen           34.1          18.1               193        3475
+10 Adelie  Torgersen           42            20.2               190        4250
+# ℹ 266 more rows
+# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Homicidios cometidos en el cantón de Esparza</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>delitos_2022 <span class="sc">|&gt;</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(SubDelito <span class="sc">==</span> <span class="st">"HOMICIDIO"</span> <span class="sc">&amp;</span> Canton <span class="sc">==</span> <span class="st">"ESPARZA"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(SubDelito, Canton, Fecha, Victima, Edad, Nacionalidad)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  SubDelito  Canton      Fecha Victima          Edad Nacionalidad
+1 HOMICIDIO ESPARZA 12/24/2022 PERSONA Mayor de edad   COSTA RICA
+2 HOMICIDIO ESPARZA 06/13/2022 PERSONA Mayor de edad   COSTA RICA
+3 HOMICIDIO ESPARZA 05/13/2022 PERSONA   Desconocido  Desconocido
+4 HOMICIDIO ESPARZA 04/08/2022 PERSONA Mayor de edad     COLOMBIA
+5 HOMICIDIO ESPARZA 03/20/2022 PERSONA Mayor de edad   COSTA RICA
+6 HOMICIDIO ESPARZA 01/06/2022 PERSONA Menor de edad   COSTA RICA</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Homicidios cometidos en el cantón de Esparza </span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="co"># a personas no costarricenses</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>delitos_2022 <span class="sc">|&gt;</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(SubDelito <span class="sc">==</span> <span class="st">"HOMICIDIO"</span> <span class="sc">&amp;</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>      Canton <span class="sc">==</span> <span class="st">"ESPARZA"</span> <span class="sc">&amp;</span> Nacionalidad <span class="sc">!=</span> <span class="st">"COSTA RICA"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(SubDelito, Canton, Fecha, Victima, Edad, Nacionalidad)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  SubDelito  Canton      Fecha Victima          Edad Nacionalidad
+1 HOMICIDIO ESPARZA 05/13/2022 PERSONA   Desconocido  Desconocido
+2 HOMICIDIO ESPARZA 04/08/2022 PERSONA Mayor de edad     COLOMBIA</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pingüinos con longitud del pico mayor o igual al promedio</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co">#   El argumento lógico na.rm de mean() </span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   indica si los valores NA ("not available") </span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   deben ser removidos antes del cálculo</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(bill_length_mm <span class="sc">&gt;=</span> <span class="fu">mean</span>(bill_length_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 175 × 8
+   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+ 1 Adelie  Torgersen           46            21.5               194        4200
+ 2 Adelie  Dream               44.1          19.7               196        4400
+ 3 Adelie  Torgersen           45.8          18.9               197        4150
+ 4 Adelie  Biscoe              45.6          20.3               191        4600
+ 5 Adelie  Torgersen           44.1          18                 210        4000
+ 6 Gentoo  Biscoe              46.1          13.2               211        4500
+ 7 Gentoo  Biscoe              50            16.3               230        5700
+ 8 Gentoo  Biscoe              48.7          14.1               210        4450
+ 9 Gentoo  Biscoe              50            15.2               218        5700
+10 Gentoo  Biscoe              47.6          14.5               215        5400
+# ℹ 165 more rows
+# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+</div>
+</div>
+<p>Condiciones relacionadas con valores <code>NA</code> (nulos):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filas con valor NA en la columna sex</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(species, island, sex) <span class="sc">|&gt;</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(sex))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 11 × 3
+   species island    sex  
+   &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt;
+ 1 Adelie  Torgersen &lt;NA&gt; 
+ 2 Adelie  Torgersen &lt;NA&gt; 
+ 3 Adelie  Torgersen &lt;NA&gt; 
+ 4 Adelie  Torgersen &lt;NA&gt; 
+ 5 Adelie  Torgersen &lt;NA&gt; 
+ 6 Adelie  Dream     &lt;NA&gt; 
+ 7 Gentoo  Biscoe    &lt;NA&gt; 
+ 8 Gentoo  Biscoe    &lt;NA&gt; 
+ 9 Gentoo  Biscoe    &lt;NA&gt; 
+10 Gentoo  Biscoe    &lt;NA&gt; 
+11 Gentoo  Biscoe    &lt;NA&gt; </code></pre>
+</div>
+</div>
+<p>La función <a href="https://tidyr.tidyverse.org/reference/drop_na.html">tidyr::drop_na()</a> remueve las filas con valores <code>NA</code> en una o varias columnas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filas con valor diferente a NA en la columna sex</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(species,</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>         bill_length_mm,</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>         bill_depth_mm,</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>         flipper_length_mm,</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>         body_mass_g,</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>         sex) <span class="sc">|&gt;</span></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(sex)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 333 × 6
+   species bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex   
+   &lt;fct&gt;            &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt; &lt;fct&gt; 
+ 1 Adelie            39.1          18.7               181        3750 male  
+ 2 Adelie            39.5          17.4               186        3800 female
+ 3 Adelie            40.3          18                 195        3250 female
+ 4 Adelie            36.7          19.3               193        3450 female
+ 5 Adelie            39.3          20.6               190        3650 male  
+ 6 Adelie            38.9          17.8               181        3625 female
+ 7 Adelie            39.2          19.6               195        4675 male  
+ 8 Adelie            41.1          17.6               182        3200 female
+ 9 Adelie            38.6          21.2               191        3800 male  
+10 Adelie            34.6          21.1               198        4400 male  
+# ℹ 323 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filas con valor diferente a NA en cualquier columna</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(species,</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>         bill_length_mm,</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>         bill_depth_mm,</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>         flipper_length_mm,</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>         body_mass_g,</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>         sex) <span class="sc">|&gt;</span></span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 333 × 6
+   species bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex   
+   &lt;fct&gt;            &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt; &lt;fct&gt; 
+ 1 Adelie            39.1          18.7               181        3750 male  
+ 2 Adelie            39.5          17.4               186        3800 female
+ 3 Adelie            40.3          18                 195        3250 female
+ 4 Adelie            36.7          19.3               193        3450 female
+ 5 Adelie            39.3          20.6               190        3650 male  
+ 6 Adelie            38.9          17.8               181        3625 female
+ 7 Adelie            39.2          19.6               195        4675 male  
+ 8 Adelie            41.1          17.6               182        3200 female
+ 9 Adelie            38.6          21.2               191        3800 male  
+10 Adelie            34.6          21.1               198        4400 male  
+# ℹ 323 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="arrange" class="level3" data-number="10.6.3">
+<h3 data-number="10.6.3" class="anchored" data-anchor-id="arrange"><span class="header-section-number">10.6.3</span> arrange()</h3>
+<p>La función <a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a> cambia el orden de las filas de un data frame de acuerdo con los valores de las columnas seleccionadas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ordenamiento ascendente por las columnas </span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="co"># bill_length_mm y bill_depth_mm</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(bill_length_mm, bill_depth_mm)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 344 × 8
+   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+ 1 Adelie  Dream               32.1          15.5               188        3050
+ 2 Adelie  Dream               33.1          16.1               178        2900
+ 3 Adelie  Torgersen           33.5          19                 190        3600
+ 4 Adelie  Dream               34            17.1               185        3400
+ 5 Adelie  Torgersen           34.1          18.1               193        3475
+ 6 Adelie  Torgersen           34.4          18.4               184        3325
+ 7 Adelie  Biscoe              34.5          18.1               187        2900
+ 8 Adelie  Torgersen           34.6          17.2               189        3200
+ 9 Adelie  Torgersen           34.6          21.1               198        4400
+10 Adelie  Biscoe              35            17.9               190        3450
+# ℹ 334 more rows
+# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+</div>
+</div>
+<p>Por defecto, las columnas se ordenan de manera acendente. Si se desea un orden descendente, puede utilizarse la función <a href="https://dplyr.tidyverse.org/reference/desc.html">desc()</a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ordenamiento descendente por las columnas </span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="co"># bill_length_mm y bill_depth_mm</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(bill_length_mm), <span class="fu">desc</span>(bill_depth_mm))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 344 × 8
+   species   island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+   &lt;fct&gt;     &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+ 1 Gentoo    Biscoe           59.6          17                 230        6050
+ 2 Chinstrap Dream            58            17.8               181        3700
+ 3 Gentoo    Biscoe           55.9          17                 228        5600
+ 4 Chinstrap Dream            55.8          19.8               207        4000
+ 5 Gentoo    Biscoe           55.1          16                 230        5850
+ 6 Gentoo    Biscoe           54.3          15.7               231        5650
+ 7 Chinstrap Dream            54.2          20.8               201        4300
+ 8 Chinstrap Dream            53.5          19.9               205        4500
+ 9 Gentoo    Biscoe           53.4          15.8               219        5500
+10 Chinstrap Dream            52.8          20                 205        4550
+# ℹ 334 more rows
+# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+</div>
+</div>
+<p>Nótese que los valores <code>NA</code> se ubican al final de cualquier ordenamiento.</p>
+</section>
+<section id="mutate" class="level3" data-number="10.6.4">
+<h3 data-number="10.6.4" class="anchored" data-anchor-id="mutate"><span class="header-section-number">10.6.4</span> mutate()</h3>
+<p>La función <a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a> crea o modifica columnas en un data frame.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creación de la columna body_mass_kg,</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="co"># correspondiente al valor de body_mass_g, pero expresado en kg</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(species, body_mass_g) <span class="sc">|&gt;</span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">body_mass_kg =</span> body_mass_g<span class="sc">/</span><span class="dv">1000</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 344 × 3
+   species body_mass_g body_mass_kg
+   &lt;fct&gt;         &lt;int&gt;        &lt;dbl&gt;
+ 1 Adelie         3750         3.75
+ 2 Adelie         3800         3.8 
+ 3 Adelie         3250         3.25
+ 4 Adelie           NA        NA   
+ 5 Adelie         3450         3.45
+ 6 Adelie         3650         3.65
+ 7 Adelie         3625         3.62
+ 8 Adelie         4675         4.68
+ 9 Adelie         3475         3.48
+10 Adelie         4250         4.25
+# ℹ 334 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creación de las columnas body_mass_g_mean (promedio de masa) y</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="co"># body_mass_g_normalized (masa normalizada con respecto al promedio)</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(species, body_mass_g) <span class="sc">|&gt;</span></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">body_mass_g_mean =</span> <span class="fu">mean</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">body_mass_g_normalized =</span> body_mass_g <span class="sc">/</span> body_mass_g_mean)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 344 × 4
+   species body_mass_g body_mass_g_mean body_mass_g_normalized
+   &lt;fct&gt;         &lt;int&gt;            &lt;dbl&gt;                  &lt;dbl&gt;
+ 1 Adelie         3750            4202.                  0.892
+ 2 Adelie         3800            4202.                  0.904
+ 3 Adelie         3250            4202.                  0.773
+ 4 Adelie           NA            4202.                 NA    
+ 5 Adelie         3450            4202.                  0.821
+ 6 Adelie         3650            4202.                  0.869
+ 7 Adelie         3625            4202.                  0.863
+ 8 Adelie         4675            4202.                  1.11 
+ 9 Adelie         3475            4202.                  0.827
+10 Adelie         4250            4202.                  1.01 
+# ℹ 334 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creación de las columnas </span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Fecha_Date (tipo Date), Anio, Mes y Dia (enteros)</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>delitos_2022 <span class="sc">|&gt;</span></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Fecha) <span class="sc">|&gt;</span></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Fecha_Date =</span> <span class="fu">as.Date</span>(delitos_2022<span class="sc">$</span>Fecha, <span class="at">format=</span><span class="st">"%m/%d/%Y"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Anio =</span> <span class="fu">as.integer</span>(<span class="fu">format</span>(<span class="fu">as.Date</span>(delitos_2022<span class="sc">$</span>Fecha, <span class="at">format=</span><span class="st">"%m/%d/%Y"</span>), <span class="st">"%Y"</span>))) <span class="sc">|&gt;</span>  </span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Dia =</span> <span class="fu">as.integer</span>(<span class="fu">format</span>(<span class="fu">as.Date</span>(delitos_2022<span class="sc">$</span>Fecha, <span class="at">format=</span><span class="st">"%m/%d/%Y"</span>), <span class="st">"%m"</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Mes =</span> <span class="fu">as.integer</span>(<span class="fu">format</span>(<span class="fu">as.Date</span>(delitos_2022<span class="sc">$</span>Fecha, <span class="at">format=</span><span class="st">"%m/%d/%Y"</span>), <span class="st">"%d"</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        Fecha Fecha_Date Anio Dia Mes
+1  12/31/2022 2022-12-31 2022  12  31
+2  12/31/2022 2022-12-31 2022  12  31
+3  12/31/2022 2022-12-31 2022  12  31
+4  12/31/2022 2022-12-31 2022  12  31
+5  12/31/2022 2022-12-31 2022  12  31
+6  12/31/2022 2022-12-31 2022  12  31
+7  12/31/2022 2022-12-31 2022  12  31
+8  12/31/2022 2022-12-31 2022  12  31
+9  12/31/2022 2022-12-31 2022  12  31
+10 12/31/2022 2022-12-31 2022  12  31</code></pre>
+</div>
+</div>
+<p>La función <a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a> agrupa una o más columnas. Generalmente, esto se hace con el objetivo de rea</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creación de la columnas </span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="co"># body_mass_g_mean_species (promedio de masa de la especie) y</span></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="co"># body_mass_g_species_normalized (masa normalizada con respecto al promedio de la especie)</span></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(species, body_mass_g) <span class="sc">|&gt;</span></span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">body_mass_g_mean_species =</span> <span class="fu">mean</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">body_mass_g_species_normalized =</span> body_mass_g <span class="sc">/</span> body_mass_g_mean_species)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 344 × 4
+# Groups:   species [3]
+   species body_mass_g body_mass_g_mean_species body_mass_g_species_normalized
+   &lt;fct&gt;         &lt;int&gt;                    &lt;dbl&gt;                          &lt;dbl&gt;
+ 1 Adelie         3750                    3701.                          1.01 
+ 2 Adelie         3800                    3701.                          1.03 
+ 3 Adelie         3250                    3701.                          0.878
+ 4 Adelie           NA                    3701.                         NA    
+ 5 Adelie         3450                    3701.                          0.932
+ 6 Adelie         3650                    3701.                          0.986
+ 7 Adelie         3625                    3701.                          0.980
+ 8 Adelie         4675                    3701.                          1.26 
+ 9 Adelie         3475                    3701.                          0.939
+10 Adelie         4250                    3701.                          1.15 
+# ℹ 334 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="summarize" class="level3" data-number="10.6.5">
+<h3 data-number="10.6.5" class="anchored" data-anchor-id="summarize"><span class="header-section-number">10.6.5</span> summarize()</h3>
+<p>La función <a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a> se utiliza generalmente junto con la función <a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a> para realizar cálculos en grupos de filas de un data frame. <code>group_by()</code> agrupa las filas y <code>summarize()</code> realiza los cálculos (ej. sumas, promedios) en las columnas, para cada grupo. El resultado es un nuevo data frame con una fila por grupo. Si no hay agrupación, se retorna una sola fila correspondiente a los cálculos para todo el data frame.</p>
+<p>Ejemplos de cálculos en grupos:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creación de un data frame con las columnas calculadas de </span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="co"># mínimo, máximo y promedio de masa,</span></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="co"># y cantidad de individuos para cada especie</span></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">body_mass_g_min =</span> <span class="fu">min</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">body_mass_g_max =</span> <span class="fu">max</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">body_mass_g_mean =</span> <span class="fu">mean</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>()</span>
+<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 5
+  species   body_mass_g_min body_mass_g_max body_mass_g_mean     n
+  &lt;fct&gt;               &lt;int&gt;           &lt;int&gt;            &lt;dbl&gt; &lt;int&gt;
+1 Adelie               2850            4775            3701.   152
+2 Chinstrap            2700            4800            3733.    68
+3 Gentoo               3950            6300            5076.   124</code></pre>
+</div>
+</div>
+<p>La función <a href="https://dplyr.tidyverse.org/reference/context.html">n()</a> cuenta la cantidad de filas en un grupo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creación de un data frame con la cantidad de homicidios </span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="co"># por provincia, cantón</span></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>delitos_2022 <span class="sc">|&gt;</span></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(SubDelito <span class="sc">==</span> <span class="st">"HOMICIDIO"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Provincia, Canton) <span class="sc">|&gt;</span></span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">homicidios_2022 =</span> <span class="fu">n</span>()</span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(homicidios_2022)) <span class="sc">|&gt;</span></span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="cn">Inf</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 68 × 3
+# Groups:   Provincia [7]
+   Provincia  Canton        homicidios_2022
+   &lt;chr&gt;      &lt;chr&gt;                   &lt;int&gt;
+ 1 SAN JOSE   SAN JOSE                   48
+ 2 LIMON      LIMON                      47
+ 3 PUNTARENAS PUNTARENAS                 43
+ 4 ALAJUELA   ALAJUELA                   42
+ 5 LIMON      POCOCI                     38
+ 6 LIMON      MATINA                     25
+ 7 LIMON      GUACIMO                    17
+ 8 ALAJUELA   SAN CARLOS                 16
+ 9 ALAJUELA   SAN RAMON                  15
+10 CARTAGO    CARTAGO                    15
+11 SAN JOSE   GOICOECHEA                 15
+12 HEREDIA    SARAPIQUI                  14
+13 PUNTARENAS CORREDORES                 14
+14 CARTAGO    LA UNION                   12
+15 HEREDIA    HEREDIA                    12
+16 PUNTARENAS GARABITO                   11
+17 GUANACASTE LIBERIA                    10
+18 GUANACASTE SANTA CRUZ                 10
+19 LIMON      SIQUIRRES                   9
+20 GUANACASTE NICOYA                      8
+21 LIMON      TALAMANCA                   8
+22 SAN JOSE   ASERRI                      8
+23 HEREDIA    SANTO DOMINGO               7
+24 PUNTARENAS BUENOS AIRES                7
+25 SAN JOSE   DESAMPARADOS                7
+26 SAN JOSE   TIBAS                       7
+27 GUANACASTE CARRILLO                    6
+28 GUANACASTE LA CRUZ                     6
+29 PUNTARENAS ESPARZA                     6
+30 SAN JOSE   ALAJUELITA                  6
+31 ALAJUELA   GRECIA                      5
+32 GUANACASTE BAGACES                     5
+33 GUANACASTE CANAS                       5
+34 PUNTARENAS GOLFITO                     5
+35 PUNTARENAS OSA                         5
+36 PUNTARENAS PARRITA                     5
+37 PUNTARENAS QUEPOS                      5
+38 SAN JOSE   PEREZ ZELEDON               5
+39 ALAJUELA   LOS CHILES                  4
+40 ALAJUELA   POAS                        4
+41 CARTAGO    TURRIALBA                   4
+42 HEREDIA    BARVA                       4
+43 HEREDIA    SAN RAFAEL                  4
+44 PUNTARENAS COTO BRUS                   4
+45 PUNTARENAS MONTES DE ORO               4
+46 ALAJUELA   ATENAS                      3
+47 ALAJUELA   NARANJO                     3
+48 ALAJUELA   RIO CUARTO                  3
+49 CARTAGO    EL GUARCO                   3
+50 CARTAGO    OREAMUNO                    3
+51 CARTAGO    PARAISO                     3
+52 GUANACASTE TILARAN                     3
+53 SAN JOSE   ESCAZU                      3
+54 SAN JOSE   MORAVIA                     3
+55 ALAJUELA   OROTINA                     2
+56 ALAJUELA   SARCHÍ                      2
+57 ALAJUELA   UPALA                       2
+58 SAN JOSE   CURRIDABAT                  2
+59 SAN JOSE   SANTA ANA                   2
+60 SAN JOSE   TURRUBARES                  2
+61 ALAJUELA   PALMARES                    1
+62 ALAJUELA   ZARCERO                     1
+63 CARTAGO    JIMENEZ                     1
+64 HEREDIA    FLORES                      1
+65 HEREDIA    SAN ISIDRO                  1
+66 HEREDIA    SANTA BARBARA               1
+67 SAN JOSE   MONTES DE OCA               1
+68 SAN JOSE   PURISCAL                    1</code></pre>
+</div>
+</div>
+<p>La función <a href="https://rdrr.io/r/base/print.html">print()</a> se utiliza para especificar la cantidad de filas que se imprimirán (<code>Inf</code> quiere decir que se imprimirán todas).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creación de un data frame con la cantidad de registros </span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="co"># por delito y subdelito</span></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>delitos_2022 <span class="sc">|&gt;</span></span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Delito, SubDelito) <span class="sc">|&gt;</span></span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>()</span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n)) <span class="sc">|&gt;</span></span>
+<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="cn">Inf</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 112 × 3
+# Groups:   Delito [27]
+    Delito                                                       SubDelito     n
+    &lt;chr&gt;                                                        &lt;chr&gt;     &lt;int&gt;
+  1 DELITOS CONTRA LA PROPIEDAD                                  HURTO     15744
+  2 DELITOS CONTRA LA PROPIEDAD                                  ROBO      14228
+  3 DELITOS CONTRA LA PROPIEDAD                                  ASALTO    10794
+  4 ESTAFAS Y OTRAS DEFRAUDACIONES                               TIMOS     10430
+  5 ESTAFAS Y OTRAS DEFRAUDACIONES                               ESTAFA     6746
+  6 DELITOS CONTRA LA PROPIEDAD                                  ROBO DE …  4225
+  7 DELITOS CONTRA LA LIBERTAD                                   DELITOS …  4081
+  8 DELITOS CONTRA LA VIDA                                       AGRESION   3424
+  9 DELITOS INFORMATICOS                                         ESTAFA I…  3002
+ 10 OTROS DELITOS                                                OTRO O I…  2745
+ 11 OTROS DELITOS CONTRA LA PROPIEDAD                            DAÑOS      2559
+ 12 DELITOS CONTRA LA VIDA                                       LESIONES   2218
+ 13 OTROS DELITOS CONTRA LA PROPIEDAD                            ADMINIST…  1336
+ 14 DELITOS SEXUALES                                             VIOLACIO…  1285
+ 15 OTROS DELITOS CONTRA LA PROPIEDAD                            EXTORSIO…  1249
+ 16 DELITOS CONTRA LOS DEBERES DE LA FUNCION PUBLICA             ABUSO DE…  1234
+ 17 ESTAFAS Y OTRAS DEFRAUDACIONES                               FRAUDE     1084
+ 18 DELITOS CONTRA LA PROPIEDAD                                  ROBO DE …   863
+ 19 DELITOS INFORMATICOS                                         SUPLANTA…   771
+ 20 DELITOS CONTRA LA VIDA                                       HOMICIDI…   654
+ 21 DELITOS CONTRA LA VIDA                                       HOMICIDIO   604
+ 22 DELITOS CONTRA LA ADMINISTRACION DE JUSTICIA                 ENCUBRIM…   526
+ 23 DELITOS CONTRA LA VIDA                                       MUERTE I…   522
+ 24 NO DELITO                                                    DESAPARI…   476
+ 25 INFRACCION A LA LEY DE PSICOTROPICOS                         TRAFICO …   434
+ 26 DELITOS CONTRA LA SEGURIDAD COMUN                            INCENDIO…   410
+ 27 DELITOS SEXUALES                                             CORRUPCI…   378
+ 28 NO DELITO                                                    DESAPARI…   376
+ 29 DELITOS CONTRA LA FAMILIA                                    VIOLENCI…   279
+ 30 DELITOS INFORMATICOS                                         SUPLANTA…   276
+ 31 OTROS DELITOS CONTRA LA PROPIEDAD                            USURPACI…   272
+ 32 LEY CONTRA EL ACOSO SEXUAL CALLEJERO                         LEY CONT…   240
+ 33 DELITOS CONTRA LA SEGURIDAD COMUN                            DELITOS …   238
+ 34 INFRACCION A LA LEY DE BIENESTAR ANIMAL                      MUERTE D…   209
+ 35 DELITOS INFORMATICOS                                         OTRO O I…   206
+ 36 DELITOS INFORMATICOS                                         DIFUSION…   205
+ 37 DELITOS CONTRA LA VIDA                                       SUICIDIO    174
+ 38 DELITOS CONTRA LA VIDA                                       MUERTE A…   163
+ 39 DELITOS INFORMATICOS                                         FACILITA…   155
+ 40 DELITOS CONTRA LA FAMILIA                                    SUSTRACC…   152
+ 41 DELITOS CONTRA LA LIBERTAD                                   DELITOS …   140
+ 42 DELITOS CONTRA EL AMBITO DE LA INTIMIDAD                     VIOLACIO…   136
+ 43 DELITOS INFORMATICOS                                         ESPIONAJ…   127
+ 44 DELITOS CONTRA LA VIDA                                       ABANDONO…   116
+ 45 INFRACCION A LA LEY DE BIENESTAR ANIMAL                      MALTRATO…    98
+ 46 DELITOS CONTRA EL HONOR                                      INJURIA,…    87
+ 47 DELITOS CONTRA LA VIDA                                       MUERTE N…    84
+ 48 DELITOS INFORMATICOS                                         SEDUCCIO…    80
+ 49 DELITOS AMBIENTALES                                          LEY FORE…    74
+ 50 DELITOS CONTRA LA FAMILIA                                    INCUMPLI…    73
+ 51 INFRACCION A LA LEY DE PSICOTROPICOS                         LEGITIMA…    56
+ 52 DELITOS CONTRA LA AUTORIDAD PUBLICA                          DESOBEDI…    54
+ 53 INFRACCION A LA LEY DE BIENESTAR ANIMAL                      CRUELDAD…    50
+ 54 DELITOS CONTRA LOS DEBERES DE LA FUNCION PUBLICA             CORRUPCI…    46
+ 55 DELITOS CONTRA EL AMBITO DE LA INTIMIDAD                     VIOLACIO…    45
+ 56 DELITOS INFORMATICOS                                         INSTALAC…    43
+ 57 DELITOS AMBIENTALES                                          LEY DE C…    33
+ 58 DELITOS CONTRA LA ADMINISTRACION DE JUSTICIA                 FALSAS A…    30
+ 59 ESTAFAS Y OTRAS DEFRAUDACIONES                               ADMINIST…    28
+ 60 DELITOS INFORMATICOS                                         SABOTAJE…    22
+ 61 DELITOS SEXUALES                                             OTRO O I…    19
+ 62 DELITOS CONTRA LOS DEBERES DE LA FUNCION PUBLICA             PECULADO…    17
+ 63 DELITOS INFORMATICOS                                         DAÑO INF…    15
+ 64 ESTAFAS Y OTRAS DEFRAUDACIONES                               OTRO O I…    14
+ 65 DELITOS CONTRA LA AUTORIDAD PUBLICA                          RESISTEN…    13
+ 66 DELITOS CONTRA LA AUTORIDAD PUBLICA                          AMENAZA …    12
+ 67 DELITOS CONTRA LOS DEBERES DE LA FUNCION PUBLICA             CONCUSIO…    12
+ 68 DELITOS AMBIENTALES                                          USURPACI…    10
+ 69 DELITOS CONTRA LA FE PUBLICA                                 OTRO O I…    10
+ 70 DELITOS CONTRA LA SEGURIDAD COMUN                            DELITOS …    10
+ 71 INFRACCION A LA LEY DE PSICOTROPICOS                         TRAFICO …     9
+ 72 DELITOS CONTRA LA FAMILIA                                    PROTECCI…     8
+ 73 DELITOS CONTRA LA SEGURIDAD COMUN                            DELITOS …     8
+ 74 DELITOS CONTRA LA VIDA                                       ABORTO        8
+ 75 NO DELITO                                                    OTRO IND…     8
+ 76 DELITOS CONTRA EL AMBITO DE LA INTIMIDAD                     INFRACCI…     7
+ 77 OTROS DELITOS                                                INFRACCI…     7
+ 78 DELITOS AMBIENTALES                                          LEY DE G…     6
+ 79 INFRACCION A LA LEY DE BIENESTAR ANIMAL                      PELEA EN…     5
+ 80 TRATA DE PERSONAS                                            TRATA SE…     5
+ 81 DELITOS CONTRA LA AUTORIDAD PUBLICA                          EJERCICI…     4
+ 82 DELITOS CONTRA LA VIDA                                       OTRO O I…     4
+ 83 DELITOS AMBIENTALES                                          LEY DE L…     3
+ 84 DELITOS CONTRA EL AMBITO DE LA INTIMIDAD                     OTRO O I…     3
+ 85 DELITOS CONTRA EL AMBITO DE LA INTIMIDAD                     TURBACIO…     3
+ 86 DELITOS CONTRA LA AUTORIDAD PUBLICA                          USO ILEG…     3
+ 87 DELITOS CONTRA LA TRANQUILIDAD PUBLICA                       INTIMIDA…     3
+ 88 OTROS DELITOS CONTRA LA PROPIEDAD                            INFRACCI…     3
+ 89 DELITOS AMBIENTALES                                          LEY DE P…     2
+ 90 DELITOS CONTRA LA ADMINISTRACION DE JUSTICIA                 EVASION …     2
+ 91 DELITOS CONTRA LA BUENA FE DELOS NEGOCIOS                    USURA Y …     2
+ 92 DELITOS CONTRA LOS DEBERES DE LA FUNCION PUBLICA             PREVARIC…     2
+ 93 DESCONOCIDO                                                  DESCONOC…     2
+ 94 INFRACCION A LA LEY DE PSICOTROPICOS                         OTRO O I…     2
+ 95 OTROS DELITOS CONTRA LA PROPIEDAD                            OTRO O I…     2
+ 96 TRAFICO DE PERSONAS                                          PERSONAS…     2
+ 97 TRATA DE PERSONAS                                            OTRO O I…     2
+ 98 DELITOS CONTRA LA ADMINISTRACION DE JUSTICIA                 FALSO TE…     1
+ 99 DELITOS CONTRA LA AUTORIDAD PUBLICA                          FACILITA…     1
+100 DELITOS CONTRA LA AUTORIDAD PUBLICA                          VIOLACIO…     1
+101 DELITOS CONTRA LA AUTORIDAD PUBLICA                          VIOLACIO…     1
+102 DELITOS CONTRA LA BUENA FE DELOS NEGOCIOS                    DELITOS …     1
+103 DELITOS CONTRA LA FAMILIA                                    MATRIMON…     1
+104 DELITOS CONTRA LA FAMILIA                                    OTRO O I…     1
+105 DELITOS CONTRA LA FE PUBLICA                                 FALSEDAD…     1
+106 DELITOS CONTRA LA LIBERTAD                                   OTRO O I…     1
+107 DELITOS CONTRA LOS PODERES PUBLICOS Y EL ORDEN CONSTITUCION… ATENTADO…     1
+108 DELITOS CONTRA LOS PODERES PUBLICOS Y EL ORDEN CONSTITUCION… OTRO          1
+109 DELITOS INFORMATICOS                                         NARCOTRF…     1
+110 DELITOS SEXUALES                                             RAPTO         1
+111 TRATA DE PERSONAS                                            MENDICID…     1
+112 TRATA DE PERSONAS                                            TRATA LA…     1</code></pre>
+</div>
+</div>
+<p>Ejemplo de cálculos sin agrupamiento:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creación de un data frame con las columnas </span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="co"># body_mass_g_mean (promedio de masa) y n (cantidad de registros)</span></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">body_mass_g_mean =</span> <span class="fu">mean</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">n =</span> <span class="fu">n</span>())</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+  body_mass_g_mean     n
+             &lt;dbl&gt; &lt;int&gt;
+1            4202.   344</code></pre>
+</div>
+</div>
+</section>
+<section id="otras" class="level3" data-number="10.6.6">
+<h3 data-number="10.6.6" class="anchored" data-anchor-id="otras"><span class="header-section-number">10.6.6</span> Otras</h3>
+<section id="distinct" class="level4" data-number="10.6.6.1">
+<h4 data-number="10.6.6.1" class="anchored" data-anchor-id="distinct"><span class="header-section-number">10.6.6.1</span> distinct()</h4>
+<p>La función <a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct()</a> retorna las combinaciones únicas de filas en un data frame.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Valores distintos de la columna Victima</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>delitos_2022 <span class="sc">|&gt;</span></span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(Victima)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Victima
+1    VEHICULO
+2     PERSONA
+3       OTROS
+4    VIVIENDA
+5 EDIFICACION</code></pre>
+</div>
+</div>
+</section>
+<section id="count" class="level4" data-number="10.6.6.2">
+<h4 data-number="10.6.6.2" class="anchored" data-anchor-id="count"><span class="header-section-number">10.6.6.2</span> count()</h4>
+<p>Una forma alternativa a <code>summarize()</code> para realizar un conteo es con la función <a href="https://dplyr.tidyverse.org/reference/count.html">count()</a>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Conteo de delitos por tipo de Victima</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>delitos_2022 <span class="sc">|&gt;</span></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(Victima)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Victima     n
+1 EDIFICACION  6705
+2       OTROS  4756
+3     PERSONA 62046
+4    VEHICULO 11752
+5    VIVIENDA 11392</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Expresión equivalente con summarize</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>delitos_2022 <span class="sc">|&gt;</span></span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Victima) <span class="sc">|&gt;</span></span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">n</span>())</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 2
+  Victima         n
+  &lt;chr&gt;       &lt;int&gt;
+1 EDIFICACION  6705
+2 OTROS        4756
+3 PERSONA     62046
+4 VEHICULO    11752
+5 VIVIENDA    11392</code></pre>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="ejercicios" class="level2" data-number="10.7">
+<h2 data-number="10.7" class="anchored" data-anchor-id="ejercicios"><span class="header-section-number">10.7</span> Ejercicios</h2>
+<p>Utilice las funciones de dplyr para responder a las siguientes preguntas sobre el conjunto de datos <code>penguins</code>:</p>
+<ol type="1">
+<li>¿Cuántos individuos de cada sexo hay en cada especie?</li>
+<li>¿Cuál es el mínimo, máximo y promedio de masa corporal (peso) por especie y sexo?</li>
+<li>¿Cuántos individuos se observaron durante cada año?</li>
+<li>¿Cuántos individuos de cada especie se observaron durante cada año?</li>
+<li>¿Cuántos individuos de cada especie y cada sexo se observaron durante cada año?</li>
+<li>¿Cuál es el promedio de masa corporal (peso) por año?</li>
+<li>¿Cuál es el promedio de masa corporal (peso) por año para cada especie?</li>
+</ol>
+</section>
+<section id="recursos-de-interés" class="level2" data-number="10.8">
+<h2 data-number="10.8" class="anchored" data-anchor-id="recursos-de-interés"><span class="header-section-number">10.8</span> Recursos de interés</h2>
+<p>RStudio. (2017). <em>Data transformation with dplyr::Cheat Sheet</em>. <a href="https://github.com/rstudio/cheatsheets/blob/45c1e642468695830fd8b724587ccfe8901e2185/data-transformation.pdf" class="uri">https://github.com/rstudio/cheatsheets/blob/45c1e642468695830fd8b724587ccfe8901e2185/data-transformation.pdf</a></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiada");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./09-tidyverse.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Tidyverse - colección de paquetes para ciencia de datos</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./parte-vi-evaluaciones.html" class="pagination-link">
+        <span class="nav-page-text">Evaluaciones</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
