@@ -288,14 +288,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </ul></li>
   <li><a href="#definición-de-funciones" id="toc-definición-de-funciones" class="nav-link" data-scroll-target="#definición-de-funciones"><span class="toc-section-number">7.9</span>  Definición de funciones</a>
   <ul class="collapse">
-  <li><a href="#ejercicios-4" id="toc-ejercicios-4" class="nav-link" data-scroll-target="#ejercicios-4"><span class="toc-section-number">7.9.1</span>  Ejercicios</a></li>
+  <li><a href="#ejercicios-3" id="toc-ejercicios-3" class="nav-link" data-scroll-target="#ejercicios-3"><span class="toc-section-number">7.9.1</span>  Ejercicios</a></li>
   </ul></li>
   <li><a href="#condicionales" id="toc-condicionales" class="nav-link" data-scroll-target="#condicionales"><span class="toc-section-number">7.10</span>  Condicionales</a>
   <ul class="collapse">
   <li><a href="#la-sentencia-if" id="toc-la-sentencia-if" class="nav-link" data-scroll-target="#la-sentencia-if"><span class="toc-section-number">7.10.1</span>  La sentencia <code>if</code></a></li>
   <li><a href="#la-cláusula-else" id="toc-la-cláusula-else" class="nav-link" data-scroll-target="#la-cláusula-else"><span class="toc-section-number">7.10.2</span>  La cláusula <code>else</code></a></li>
   <li><a href="#la-cláusula-else-if" id="toc-la-cláusula-else-if" class="nav-link" data-scroll-target="#la-cláusula-else-if"><span class="toc-section-number">7.10.3</span>  La cláusula <code>else if</code></a></li>
-  <li><a href="#ejercicios-5" id="toc-ejercicios-5" class="nav-link" data-scroll-target="#ejercicios-5"><span class="toc-section-number">7.10.4</span>  Ejercicios</a></li>
+  <li><a href="#ejercicios-4" id="toc-ejercicios-4" class="nav-link" data-scroll-target="#ejercicios-4"><span class="toc-section-number">7.10.4</span>  Ejercicios</a></li>
   </ul></li>
   <li><a href="#ciclos" id="toc-ciclos" class="nav-link" data-scroll-target="#ciclos"><span class="toc-section-number">7.11</span>  Ciclos</a>
   <ul class="collapse">
@@ -963,152 +963,119 @@ mean&gt; c(xm, mean(x, trim = 0.10))
 </section>
 <section id="tipos-compuestos" class="level3" data-number="7.8.2">
 <h3 data-number="7.8.2" class="anchored" data-anchor-id="tipos-compuestos"><span class="header-section-number">7.8.2</span> Tipos compuestos</h3>
-<section id="factores" class="level4" data-number="7.8.2.1">
-<h4 data-number="7.8.2.1" class="anchored" data-anchor-id="factores"><span class="header-section-number">7.8.2.1</span> Factores</h4>
-<p>Los <a href="https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Factors">factores</a> se utilizan para representar <a href="https://es.wikipedia.org/wiki/Variable_categ%C3%B3rica">datos categóricos</a>. Un factor corresponde a un conjunto de categorías correspondientes a un concepto (ej. [“Sí”, “No”], [“Casado”, “Soltero”], [“Alto”, “Medio”, “Bajo”]).</p>
-<p>Internamente, los factores se representan en R como números enteros con etiquetas asociadas. A pesar de que los factores parecen (y pueden funcionar como) hileras de caracteres, en realidad son números y debe tenerse cuidado de no manejarlos como caracteres.</p>
-<p>Los elementos de un factor se denominan niveles (<em>levels</em>) y, por defecto, se almacenan en orden alfabético.</p>
+<section id="data-frames" class="level4" data-number="7.8.2.1">
+<h4 data-number="7.8.2.1" class="anchored" data-anchor-id="data-frames"><span class="header-section-number">7.8.2.1</span> Data Frames</h4>
+<p>Un <a href="https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Data-frame-objects">data frame</a> es una estructura bidimensional similar a lo que comúnmente se conoce como una tabla. Sus filas corresponden a las <a href="https://es.wikipedia.org/wiki/Observaci%C3%B3n">observaciones</a> de un conjunto de datos y sus columnas a las <a href="https://es.wikipedia.org/wiki/Variable_estad%C3%ADstica">variables</a>. Internamente, se componen de varios vectores, factores y/o matrices de la misma longitud. La definición de un data frame puede incluir nombres para cada observación y para cada variable. Los data frames implementan un conjunto de funciones similares a las de una hoja electrónica o una tabla de una base de datos relacional. Son fundamentales para el manejo de datos en R.</p>
 <section id="definición-2" class="level5" data-number="7.8.2.1.1">
 <h5 data-number="7.8.2.1.1" class="anchored" data-anchor-id="definición-2"><span class="header-section-number">7.8.2.1.1</span> Definición</h5>
-<p>Un factor se crea con la función <a href="https://rdrr.io/r/base/factor.html">factor()</a>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Factor de valores de sexo</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>sexo <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"Masculino"</span>, <span class="st">"Femenino"</span>, <span class="st">"Femenino"</span>, <span class="st">"Masculino"</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="operaciones-2" class="level5" data-number="7.8.2.1.2">
-<h5 data-number="7.8.2.1.2" class="anchored" data-anchor-id="operaciones-2"><span class="header-section-number">7.8.2.1.2</span> Operaciones</h5>
-<p>R proporciona una gran variedad de funciones para manejar factores. Seguidamente, se ejemplifican algunas de estas.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Etiquetas de los niveles</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(sexo)</span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] "Femenino"  "Masculino"</span></span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Cantidad de niveles</span></span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="fu">nlevels</span>(sexo)</span>
-<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 2</span></span>
-<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Conteo de elementos de cada uno de los niveles del factor</span></span>
-<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(sexo)</span>
-<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a><span class="do">## sexo</span></span>
-<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  Femenino Masculino </span></span>
-<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a><span class="do">##         2         2</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-</section>
-<section id="data-frames" class="level4" data-number="7.8.2.2">
-<h4 data-number="7.8.2.2" class="anchored" data-anchor-id="data-frames"><span class="header-section-number">7.8.2.2</span> Data Frames</h4>
-<p>Un <a href="https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Data-frame-objects">data frame</a> es una estructura bidimensional similar a lo que comúnmente se conoce como una tabla. Sus filas corresponden a las <a href="https://es.wikipedia.org/wiki/Observaci%C3%B3n">observaciones</a> de un conjunto de datos y sus columnas a las <a href="https://es.wikipedia.org/wiki/Variable_estad%C3%ADstica">variables</a>. Internamente, se componen de varios vectores, factores y/o matrices de la misma longitud. La definición de un data frame puede incluir nombres para cada observación y para cada variable. Los data frames implementan un conjunto de funciones similares a las de una hoja electrónica o una tabla de una base de datos relacional. Son fundamentales para el manejo de datos en R.</p>
-<section id="definición-3" class="level5" data-number="7.8.2.2.1">
-<h5 data-number="7.8.2.2.1" class="anchored" data-anchor-id="definición-3"><span class="header-section-number">7.8.2.2.1</span> Definición</h5>
 <p>La función <a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a> crea un data frame a partir de vectores que serán las columnas del data frame.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vector de nombres de países</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>paises <span class="ot">&lt;-</span></span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="st">"Panamá"</span>,</span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Costa Rica"</span>,</span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Nicaragua"</span>,</span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"El Salvador"</span>,</span>
-<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Honduras"</span>,</span>
-<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Guatemala"</span>,</span>
-<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Belice"</span>)</span>
-<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Vector de cantidades de habitantes de cada país (en millones)</span></span>
-<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a>poblaciones <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">4.1</span>, <span class="fl">5.0</span>, <span class="fl">6.2</span>, <span class="fl">6.4</span>, <span class="fl">9.2</span>, <span class="fl">16.9</span>, <span class="fl">0.3</span>)</span>
-<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Creación de un data frame a partir de los dos vectores</span></span>
-<span id="cb45-15"><a href="#cb45-15" aria-hidden="true" tabindex="-1"></a>poblaciones_paises <span class="ot">&lt;-</span> </span>
-<span id="cb45-16"><a href="#cb45-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(</span>
-<span id="cb45-17"><a href="#cb45-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">pais =</span> paises, </span>
-<span id="cb45-18"><a href="#cb45-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">poblacion =</span> poblaciones</span>
-<span id="cb45-19"><a href="#cb45-19" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb45-20"><a href="#cb45-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-21"><a href="#cb45-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Impresión del data frame</span></span>
-<span id="cb45-22"><a href="#cb45-22" aria-hidden="true" tabindex="-1"></a>poblaciones_paises</span>
-<span id="cb45-23"><a href="#cb45-23" aria-hidden="true" tabindex="-1"></a><span class="do">##          pais poblacion</span></span>
-<span id="cb45-24"><a href="#cb45-24" aria-hidden="true" tabindex="-1"></a><span class="do">## 1      Panamá       4.1</span></span>
-<span id="cb45-25"><a href="#cb45-25" aria-hidden="true" tabindex="-1"></a><span class="do">## 2  Costa Rica       5.0</span></span>
-<span id="cb45-26"><a href="#cb45-26" aria-hidden="true" tabindex="-1"></a><span class="do">## 3   Nicaragua       6.2</span></span>
-<span id="cb45-27"><a href="#cb45-27" aria-hidden="true" tabindex="-1"></a><span class="do">## 4 El Salvador       6.4</span></span>
-<span id="cb45-28"><a href="#cb45-28" aria-hidden="true" tabindex="-1"></a><span class="do">## 5    Honduras       9.2</span></span>
-<span id="cb45-29"><a href="#cb45-29" aria-hidden="true" tabindex="-1"></a><span class="do">## 6   Guatemala      16.9</span></span>
-<span id="cb45-30"><a href="#cb45-30" aria-hidden="true" tabindex="-1"></a><span class="do">## 7      Belice       0.3</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vector de nombres de países</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>paises <span class="ot">&lt;-</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="st">"Panamá"</span>,</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Costa Rica"</span>,</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Nicaragua"</span>,</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"El Salvador"</span>,</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Honduras"</span>,</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Guatemala"</span>,</span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Belice"</span>)</span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Vector de cantidades de habitantes de cada país (en millones)</span></span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a>poblaciones <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">4.1</span>, <span class="fl">5.0</span>, <span class="fl">6.2</span>, <span class="fl">6.4</span>, <span class="fl">9.2</span>, <span class="fl">16.9</span>, <span class="fl">0.3</span>)</span>
+<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Creación de un data frame a partir de los dos vectores</span></span>
+<span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a>poblaciones_paises <span class="ot">&lt;-</span> </span>
+<span id="cb43-16"><a href="#cb43-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(</span>
+<span id="cb43-17"><a href="#cb43-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">pais =</span> paises, </span>
+<span id="cb43-18"><a href="#cb43-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">poblacion =</span> poblaciones</span>
+<span id="cb43-19"><a href="#cb43-19" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb43-20"><a href="#cb43-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-21"><a href="#cb43-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Impresión del data frame</span></span>
+<span id="cb43-22"><a href="#cb43-22" aria-hidden="true" tabindex="-1"></a>poblaciones_paises</span>
+<span id="cb43-23"><a href="#cb43-23" aria-hidden="true" tabindex="-1"></a><span class="do">##          pais poblacion</span></span>
+<span id="cb43-24"><a href="#cb43-24" aria-hidden="true" tabindex="-1"></a><span class="do">## 1      Panamá       4.1</span></span>
+<span id="cb43-25"><a href="#cb43-25" aria-hidden="true" tabindex="-1"></a><span class="do">## 2  Costa Rica       5.0</span></span>
+<span id="cb43-26"><a href="#cb43-26" aria-hidden="true" tabindex="-1"></a><span class="do">## 3   Nicaragua       6.2</span></span>
+<span id="cb43-27"><a href="#cb43-27" aria-hidden="true" tabindex="-1"></a><span class="do">## 4 El Salvador       6.4</span></span>
+<span id="cb43-28"><a href="#cb43-28" aria-hidden="true" tabindex="-1"></a><span class="do">## 5    Honduras       9.2</span></span>
+<span id="cb43-29"><a href="#cb43-29" aria-hidden="true" tabindex="-1"></a><span class="do">## 6   Guatemala      16.9</span></span>
+<span id="cb43-30"><a href="#cb43-30" aria-hidden="true" tabindex="-1"></a><span class="do">## 7      Belice       0.3</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="indexación-2" class="level5" data-number="7.8.2.2.2">
-<h5 data-number="7.8.2.2.2" class="anchored" data-anchor-id="indexación-2"><span class="header-section-number">7.8.2.2.2</span> Indexación</h5>
+<section id="indexación-2" class="level5" data-number="7.8.2.1.2">
+<h5 data-number="7.8.2.1.2" class="anchored" data-anchor-id="indexación-2"><span class="header-section-number">7.8.2.1.2</span> Indexación</h5>
 <p>Los datos de un data frame pueden accederse principalmente de dos formas. La primera es mediante la misma sintaxis <code>[fila, columna]</code> que se utiliza en las matrices.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fila 1</span></span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>poblaciones_paises[<span class="dv">1</span>, ]</span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="do">##     pais poblacion</span></span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 Panamá       4.1</span></span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Filas 1, 5 y 7</span></span>
-<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>poblaciones_paises[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">7</span>), ]</span>
-<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a><span class="do">##       pais poblacion</span></span>
-<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a><span class="do">## 1   Panamá       4.1</span></span>
-<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a><span class="do">## 5 Honduras       9.2</span></span>
-<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a><span class="do">## 7   Belice       0.3</span></span>
-<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Columna 2</span></span>
-<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a>poblaciones_paises[, <span class="dv">2</span>]</span>
-<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a><span class="do">## [1]  4.1  5.0  6.2  6.4  9.2 16.9  0.3</span></span>
-<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-17"><a href="#cb46-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Fila 1, columna 2</span></span>
-<span id="cb46-18"><a href="#cb46-18" aria-hidden="true" tabindex="-1"></a>poblaciones_paises[<span class="dv">1</span>, <span class="dv">2</span>]</span>
-<span id="cb46-19"><a href="#cb46-19" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 4.1</span></span>
-<span id="cb46-20"><a href="#cb46-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-21"><a href="#cb46-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Filas 1:4, columna 2</span></span>
-<span id="cb46-22"><a href="#cb46-22" aria-hidden="true" tabindex="-1"></a>poblaciones_paises[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="dv">2</span>]</span>
-<span id="cb46-23"><a href="#cb46-23" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 4.1 5.0 6.2 6.4</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fila 1</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>poblaciones_paises[<span class="dv">1</span>, ]</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="do">##     pais poblacion</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 Panamá       4.1</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Filas 1, 5 y 7</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>poblaciones_paises[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">7</span>), ]</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a><span class="do">##       pais poblacion</span></span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a><span class="do">## 1   Panamá       4.1</span></span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a><span class="do">## 5 Honduras       9.2</span></span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a><span class="do">## 7   Belice       0.3</span></span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Columna 2</span></span>
+<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a>poblaciones_paises[, <span class="dv">2</span>]</span>
+<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a><span class="do">## [1]  4.1  5.0  6.2  6.4  9.2 16.9  0.3</span></span>
+<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Fila 1, columna 2</span></span>
+<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a>poblaciones_paises[<span class="dv">1</span>, <span class="dv">2</span>]</span>
+<span id="cb44-19"><a href="#cb44-19" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 4.1</span></span>
+<span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-21"><a href="#cb44-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Filas 1:4, columna 2</span></span>
+<span id="cb44-22"><a href="#cb44-22" aria-hidden="true" tabindex="-1"></a>poblaciones_paises[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="dv">2</span>]</span>
+<span id="cb44-23"><a href="#cb44-23" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 4.1 5.0 6.2 6.4</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Además, mediante el operador <code>$</code>, es posible acceder a las columnas (i.e.&nbsp;variables) del data frame.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Columna de nombres de países</span></span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>poblaciones_paises<span class="sc">$</span>pais</span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] "Panamá"      "Costa Rica"  "Nicaragua"   "El Salvador" "Honduras"   </span></span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [6] "Guatemala"   "Belice"</span></span>
-<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Modificación de los valores de toda una columna</span></span>
-<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>poblaciones_paises<span class="sc">$</span>poblacion <span class="ot">=</span> poblaciones_paises<span class="sc">$</span>poblacion<span class="sc">*</span><span class="dv">2</span></span>
-<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>poblaciones_paises</span>
-<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a><span class="do">##          pais poblacion</span></span>
-<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a><span class="do">## 1      Panamá       8.2</span></span>
-<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a><span class="do">## 2  Costa Rica      10.0</span></span>
-<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a><span class="do">## 3   Nicaragua      12.4</span></span>
-<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 4 El Salvador      12.8</span></span>
-<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a><span class="do">## 5    Honduras      18.4</span></span>
-<span id="cb47-15"><a href="#cb47-15" aria-hidden="true" tabindex="-1"></a><span class="do">## 6   Guatemala      33.8</span></span>
-<span id="cb47-16"><a href="#cb47-16" aria-hidden="true" tabindex="-1"></a><span class="do">## 7      Belice       0.6</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Columna de nombres de países</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>poblaciones_paises<span class="sc">$</span>pais</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] "Panamá"      "Costa Rica"  "Nicaragua"   "El Salvador" "Honduras"   </span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [6] "Guatemala"   "Belice"</span></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Modificación de los valores de toda una columna</span></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>poblaciones_paises<span class="sc">$</span>poblacion <span class="ot">=</span> poblaciones_paises<span class="sc">$</span>poblacion<span class="sc">*</span><span class="dv">2</span></span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>poblaciones_paises</span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a><span class="do">##          pais poblacion</span></span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a><span class="do">## 1      Panamá       8.2</span></span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a><span class="do">## 2  Costa Rica      10.0</span></span>
+<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a><span class="do">## 3   Nicaragua      12.4</span></span>
+<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 4 El Salvador      12.8</span></span>
+<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a><span class="do">## 5    Honduras      18.4</span></span>
+<span id="cb45-15"><a href="#cb45-15" aria-hidden="true" tabindex="-1"></a><span class="do">## 6   Guatemala      33.8</span></span>
+<span id="cb45-16"><a href="#cb45-16" aria-hidden="true" tabindex="-1"></a><span class="do">## 7      Belice       0.6</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="operaciones-3" class="level5" data-number="7.8.2.2.3">
-<h5 data-number="7.8.2.2.3" class="anchored" data-anchor-id="operaciones-3"><span class="header-section-number">7.8.2.2.3</span> Operaciones</h5>
+<section id="operaciones-2" class="level5" data-number="7.8.2.1.3">
+<h5 data-number="7.8.2.1.3" class="anchored" data-anchor-id="operaciones-2"><span class="header-section-number">7.8.2.1.3</span> Operaciones</h5>
 <p>R proporciona una gran variedad de funciones para manejar data frames. Las siguientes son algunas de las más utilizadas.</p>
 <p>La función <a href="https://rdrr.io/r/utils/read.table.html">read.table()</a> lee los datos contenidos en un archivo de texto y los retorna en un data frame. <a href="https://rdrr.io/r/utils/read.table.html">read.csv()</a> es una función derivada, con valores por defecto orientados a los archivos de valores separados por comas (CSV, <em>Comma Separated Values</em>). Como argumento principal, <code>read.csv()</code> recibe la ruta del archivo CSV, el cual puede encontrarse en un disco local, en la Web o en otra ubicación.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Lectura de archivo CSV ubicado en la Web</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>covid <span class="ot">&lt;-</span></span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read.csv</span>(</span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://raw.githubusercontent.com/pf0953-programacionr/2022-ii/main/datos/cepredenac/covid/covid-20210422.csv"</span></span>
-<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Despliegue de los datos del data frame</span></span>
-<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>covid</span>
-<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a><span class="do">##          pais fallecidos recuperados activos positivos</span></span>
-<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a><span class="do">## 1      Panamá       6198      351949    3845    361992</span></span>
-<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a><span class="do">## 2  Costa Rica       3125      199779   32370    235274</span></span>
-<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a><span class="do">## 3   Guatemala       7345      194075   16725    218145</span></span>
-<span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 4    Honduras       4981       77020  121358    203359</span></span>
-<span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a><span class="do">## 5 El Salvador       2089       64208    1864     68161</span></span>
-<span id="cb48-15"><a href="#cb48-15" aria-hidden="true" tabindex="-1"></a><span class="do">## 6      Belice        318       12164     114     12596</span></span>
-<span id="cb48-16"><a href="#cb48-16" aria-hidden="true" tabindex="-1"></a><span class="do">## 7   Nicaragua        181        5212      57      5450</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Lectura de archivo CSV ubicado en la Web</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>covid <span class="ot">&lt;-</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read.csv</span>(</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://raw.githubusercontent.com/pf0953-programacionr/2022-ii/main/datos/cepredenac/covid/covid-20210422.csv"</span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Despliegue de los datos del data frame</span></span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>covid</span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a><span class="do">##          pais fallecidos recuperados activos positivos</span></span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a><span class="do">## 1      Panamá       6198      351949    3845    361992</span></span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a><span class="do">## 2  Costa Rica       3125      199779   32370    235274</span></span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a><span class="do">## 3   Guatemala       7345      194075   16725    218145</span></span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 4    Honduras       4981       77020  121358    203359</span></span>
+<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a><span class="do">## 5 El Salvador       2089       64208    1864     68161</span></span>
+<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a><span class="do">## 6      Belice        318       12164     114     12596</span></span>
+<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a><span class="do">## 7   Nicaragua        181        5212      57      5450</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>La función <a href="https://rdrr.io/r/utils/str.html">str()</a> despliega la estructura de un data frame u otro objeto R.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Estructura del data frame</span></span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(poblaciones_paises)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Estructura del data frame</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(poblaciones_paises)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   7 obs. of  2 variables:
  $ pais     : chr  "Panamá" "Costa Rica" "Nicaragua" "El Salvador" ...
@@ -1117,8 +1084,8 @@ mean&gt; c(xm, mean(x, trim = 0.10))
 </div>
 <p>La función <a href="https://rdrr.io/r/base/summary.html">summary()</a> proporciona un resumen de los contenidos de un data frame:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumen de los contenidos del data frame</span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(poblaciones_paises)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumen de los contenidos del data frame</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(poblaciones_paises)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     pais             poblacion    
  Length:7           Min.   : 0.60  
@@ -1131,15 +1098,42 @@ mean&gt; c(xm, mean(x, trim = 0.10))
 </div>
 <p>La función <a href="https://rdrr.io/r/utils/View.html">View()</a> invoca un visor de datos que permite visualizar un objeto R en un formato de tabla en una hoja de cálculo. Ejecute en su computadora la siguiente línea de código para apreciar el funcionamiento de <code>View()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vista de los casos de COVID-19</span></span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(covid, <span class="st">"Casos de COVID-19 en Centramérica"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vista de los casos de COVID-19</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(covid, <span class="st">"Casos de COVID-19 en Centramérica"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="ejercicios-3" class="level6" data-number="7.8.2.2.3.1">
-<h6 data-number="7.8.2.2.3.1" class="anchored" data-anchor-id="ejercicios-3"><span class="header-section-number">7.8.2.2.3.1</span> Ejercicios</h6>
-<ol type="1">
-<li>Descargue el archivo de datos de covid de Centroamérica (https://raw.githubusercontent.com/pf0953-programacionr/2022-ii/main/datos/cepredenac/covid/covid-20210422.csv) en su computadora y cárguelo en otro data frame mediante <code>read.csv()</code>, accediendo a la dirección en su disco (ej. C:/Usuarios/…).</li>
-</ol>
 </section>
+</section>
+<section id="factores" class="level4" data-number="7.8.2.2">
+<h4 data-number="7.8.2.2" class="anchored" data-anchor-id="factores"><span class="header-section-number">7.8.2.2</span> Factores</h4>
+<p>Los <a href="https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Factors">factores</a> se utilizan para representar <a href="https://es.wikipedia.org/wiki/Variable_categ%C3%B3rica">datos categóricos</a>. Un factor corresponde a un conjunto de categorías correspondientes a un concepto (ej. [“Sí”, “No”], [“Casado”, “Soltero”], [“Alto”, “Medio”, “Bajo”]).</p>
+<p>Internamente, los factores se representan en R como números enteros con etiquetas asociadas. A pesar de que los factores parecen (y pueden funcionar como) hileras de caracteres, en realidad son números y debe tenerse cuidado de no manejarlos como caracteres.</p>
+<p>Los elementos de un factor se denominan niveles (<em>levels</em>) y, por defecto, se almacenan en orden alfabético.</p>
+<section id="definición-3" class="level5" data-number="7.8.2.2.1">
+<h5 data-number="7.8.2.2.1" class="anchored" data-anchor-id="definición-3"><span class="header-section-number">7.8.2.2.1</span> Definición</h5>
+<p>Un factor se crea con la función <a href="https://rdrr.io/r/base/factor.html">factor()</a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Factor de valores de sexo</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>sexo <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"Masculino"</span>, <span class="st">"Femenino"</span>, <span class="st">"Femenino"</span>, <span class="st">"Masculino"</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="operaciones-3" class="level5" data-number="7.8.2.2.2">
+<h5 data-number="7.8.2.2.2" class="anchored" data-anchor-id="operaciones-3"><span class="header-section-number">7.8.2.2.2</span> Operaciones</h5>
+<p>R proporciona una gran variedad de funciones para manejar factores. Seguidamente, se ejemplifican algunas de estas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Etiquetas de los niveles</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(sexo)</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] "Femenino"  "Masculino"</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Cantidad de niveles</span></span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a><span class="fu">nlevels</span>(sexo)</span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 2</span></span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Conteo de elementos de cada uno de los niveles del factor</span></span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(sexo)</span>
+<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a><span class="do">## sexo</span></span>
+<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  Femenino Masculino </span></span>
+<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a><span class="do">##         2         2</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 </section>
 </section>
@@ -1252,8 +1246,8 @@ mean&gt; c(xm, mean(x, trim = 0.10))
 <span id="cb63-19"><a href="#cb63-19" aria-hidden="true" tabindex="-1"></a><span class="fu">nota_final</span>(<span class="dv">100</span>, <span class="at">promedio_proyectos =</span> <span class="dv">50</span>)</span>
 <span id="cb63-20"><a href="#cb63-20" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 70</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="ejercicios-4" class="level3" data-number="7.9.1">
-<h3 data-number="7.9.1" class="anchored" data-anchor-id="ejercicios-4"><span class="header-section-number">7.9.1</span> Ejercicios</h3>
+<section id="ejercicios-3" class="level3" data-number="7.9.1">
+<h3 data-number="7.9.1" class="anchored" data-anchor-id="ejercicios-3"><span class="header-section-number">7.9.1</span> Ejercicios</h3>
 <ol type="1">
 <li>Defina una función con nombre <code>celsius_a_fahrenheit()</code> que reciba como argumento una cantidad en grados Celsius y retorne el equivalente en grados Fahrenheit.<br>
 </li>
@@ -1325,8 +1319,8 @@ mean&gt; c(xm, mean(x, trim = 0.10))
 </div>
 <p>Las cláusulas <code>else if</code> deben escribirse antes de la cláusula <code>else</code>, la cual es siempre la última, si es que está presente. Tanto las cláusulas <code>else if</code> como la cláusula <code>else</code> son opcionales.</p>
 </section>
-<section id="ejercicios-5" class="level3" data-number="7.10.4">
-<h3 data-number="7.10.4" class="anchored" data-anchor-id="ejercicios-5"><span class="header-section-number">7.10.4</span> Ejercicios</h3>
+<section id="ejercicios-4" class="level3" data-number="7.10.4">
+<h3 data-number="7.10.4" class="anchored" data-anchor-id="ejercicios-4"><span class="header-section-number">7.10.4</span> Ejercicios</h3>
 <ol type="1">
 <li>Defina una función con nombre <code>interpretacion_imc()</code> que reciba como argumento un número correspondiente al índice de masa corporal (IMC) de una persona. Debe retornar una hilera de caracteres correspondiente a la interpretación del IMC (“Bajo peso”, “Normal”, “Sobrepeso”, “Obesidad”), de acuerdo con la tabla disponible en <a href="https://es.wikipedia.org/wiki/%C3%8Dndice_de_masa_corporal#Interpretaci%C3%B3n">Índice de masa corporal - Wikipedia</a>.</li>
 </ol>
@@ -1403,8 +1397,8 @@ mean&gt; c(xm, mean(x, trim = 0.10))
 <span id="cb73-20"><a href="#cb73-20" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 24</span></span>
 <span id="cb73-21"><a href="#cb73-21" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 33</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="ejercicios-6" class="level4" data-number="7.11.1.1">
-<h4 data-number="7.11.1.1" class="anchored" data-anchor-id="ejercicios-6"><span class="header-section-number">7.11.1.1</span> Ejercicios</h4>
+<section id="ejercicios-5" class="level4" data-number="7.11.1.1">
+<h4 data-number="7.11.1.1" class="anchored" data-anchor-id="ejercicios-5"><span class="header-section-number">7.11.1.1</span> Ejercicios</h4>
 <p>Utilice un ciclo <code>for</code> para recorrer el vector <code>vector_numeros</code> y calcular el promedio de sus elementos.</p>
 <p>Utilice dos ciclos <code>for</code> anidados para recorrer la matriz <code>vector_numeros</code> y calcular el promedio de cada una de sus columnas.</p>
 </section>
@@ -1430,8 +1424,8 @@ mean&gt; c(xm, mean(x, trim = 0.10))
 <span id="cb75-8"><a href="#cb75-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"¡Su respuesta es incorrecta!"</span>)</span>
 <span id="cb75-9"><a href="#cb75-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="ejercicios-7" class="level4" data-number="7.11.2.1">
-<h4 data-number="7.11.2.1" class="anchored" data-anchor-id="ejercicios-7"><span class="header-section-number">7.11.2.1</span> Ejercicios</h4>
+<section id="ejercicios-6" class="level4" data-number="7.11.2.1">
+<h4 data-number="7.11.2.1" class="anchored" data-anchor-id="ejercicios-6"><span class="header-section-number">7.11.2.1</span> Ejercicios</h4>
 <p>Utilice un ciclo <code>while</code> para implementar el cálculo del promedio de los elementos de un vector. Sugerencia: utilice la función <a href="https://rdrr.io/r/base/length.html">length()</a> para obtener la longitud del vector y así saber cuando terminar de recorrerlo.</p>
 </section>
 </section>
@@ -1541,8 +1535,8 @@ mean&gt; c(xm, mean(x, trim = 0.10))
 <pre><code>[1]  6 15 24 33</code></pre>
 </div>
 </div>
-<section id="ejercicios-8" class="level5" data-number="7.11.5.1.1">
-<h5 data-number="7.11.5.1.1" class="anchored" data-anchor-id="ejercicios-8"><span class="header-section-number">7.11.5.1.1</span> Ejercicios</h5>
+<section id="ejercicios-7" class="level5" data-number="7.11.5.1.1">
+<h5 data-number="7.11.5.1.1" class="anchored" data-anchor-id="ejercicios-7"><span class="header-section-number">7.11.5.1.1</span> Ejercicios</h5>
 <p>Utilice la función <code>apply()</code> para obtener el promedio de los elementos de cada columna de la matriz del ejemplo anterior.</p>
 </section>
 </section>
@@ -1628,8 +1622,8 @@ mean&gt; c(xm, mean(x, trim = 0.10))
        3.4        2.8        3.0 </code></pre>
 </div>
 </div>
-<section id="ejercicios-9" class="level5" data-number="7.11.5.3.1">
-<h5 data-number="7.11.5.3.1" class="anchored" data-anchor-id="ejercicios-9"><span class="header-section-number">7.11.5.3.1</span> Ejercicios</h5>
+<section id="ejercicios-8" class="level5" data-number="7.11.5.3.1">
+<h5 data-number="7.11.5.3.1" class="anchored" data-anchor-id="ejercicios-8"><span class="header-section-number">7.11.5.3.1</span> Ejercicios</h5>
 <p>Utilice la función <code>tapply()</code> para obtener el promedio de las longitudes de los pétalos para cada especie del conjunto de datos <code>iris</code>.</p>
 </section>
 </section>
@@ -1665,8 +1659,8 @@ mean&gt; c(xm, mean(x, trim = 0.10))
 <span id="cb94-11"><a href="#cb94-11" aria-hidden="true" tabindex="-1"></a>vector_numeros</span>
 <span id="cb94-12"><a href="#cb94-12" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 23 17 34  0 12 55</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="ejercicios-10" class="level4" data-number="7.11.6.1">
-<h4 data-number="7.11.6.1" class="anchored" data-anchor-id="ejercicios-10"><span class="header-section-number">7.11.6.1</span> Ejercicios</h4>
+<section id="ejercicios-9" class="level4" data-number="7.11.6.1">
+<h4 data-number="7.11.6.1" class="anchored" data-anchor-id="ejercicios-9"><span class="header-section-number">7.11.6.1</span> Ejercicios</h4>
 <p>Utilice código vectorizado para implementar una función que reciba como argumento un vector de números y retorne el mismo vector con los elementos impares (solo los impares) elevados al cuadrado.</p>
 </section>
 </section>
