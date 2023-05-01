@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.1.189">
@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>GF0604 Procesamiento de datos geográficos 2023-I - II - El lenguaje de programación R</title>
+<title>GF0604 Procesamiento de datos geográficos 2023-I - Examen corto 2</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./07-r.html" rel="next">
-<link href="./06-git.html" rel="prev">
+<link href="./tarea-01.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -49,15 +48,15 @@ ul.task-list li input[type="checkbox"] {
   "type": "textbox",
   "limit": 20,
   "language": {
-    "search-no-results-text": "Sín resultados",
-    "search-matching-documents-text": "documentos encontrados",
-    "search-copy-link-title": "Copiar el enlace en la busqueda",
-    "search-hide-matches-text": "Esconder resultados adicionales",
-    "search-more-match-text": "hay más resultados en este documento",
-    "search-more-matches-text": "más resultados en este documento",
-    "search-clear-button-title": "Borrar",
-    "search-detached-cancel-button-title": "Cancelar",
-    "search-submit-button-title": "Eviar"
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
   }
 }</script>
 
@@ -70,7 +69,7 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">II - El lenguaje de programación R</h1>
+      <h1 class="quarto-secondary-nav-title">Examen corto 2</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -140,7 +139,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./parte-ii-r.html" class="sidebar-item-text sidebar-link active">II - El lenguaje de programación R</a>
+            <a href="./parte-ii-r.html" class="sidebar-item-text sidebar-link">II - El lenguaje de programación R</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -188,7 +187,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./examen_corto-02.html" class="sidebar-item-text sidebar-link">Examen corto 2</a>
+  <a href="./examen_corto-02.html" class="sidebar-item-text sidebar-link active">Examen corto 2</a>
   </div>
 </li>
       </ul>
@@ -198,14 +197,21 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#fecha" id="toc-fecha" class="nav-link active" data-scroll-target="#fecha">Fecha</a></li>
+  <li><a href="#temas-a-evaluar" id="toc-temas-a-evaluar" class="nav-link" data-scroll-target="#temas-a-evaluar">Temas a evaluar</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">II - El lenguaje de programación R</h1>
+<h1 class="title d-none d-lg-block">Examen corto 2</h1>
 </div>
 
 
@@ -219,12 +225,19 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p><a href="./07-r.html">7 R - lenguaje de programación para análisis estadístico</a></p>
+<section id="fecha" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="fecha">Fecha</h2>
+<p><strong>Grupo 001</strong>: martes 9 de mayo de 2023<br>
+<strong>Grupo 002</strong>: jueves 11 de mayo de 2023</p>
+</section>
+<section id="temas-a-evaluar" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="temas-a-evaluar">Temas a evaluar</h2>
+<p><a href="./07-r.html">7 R - lenguaje de programación para análisis estadístico</a> <strong>(se excluye la sección 7.11 Ciclos)</strong></p>
 <p><a href="./08-quarto.html">8 Quarto - sistema de publicación técnica y científica</a></p>
 <p><a href="./09-tidyverse.html">9 Tidyverse - colección de paquetes para ciencia de datos</a></p>
-<p><a href="./10-dplyr.html">10 dplyr - gramática para manipulación de datos</a></p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -267,7 +280,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // flash "checked"
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copiada");
+    button.setAttribute("title", "Copied!");
     setTimeout(function() {
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
@@ -327,14 +340,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./06-git.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Git - sistema de control de versiones</span></span>
+      <a href="./tarea-01.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Tarea 1</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./07-r.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">R - lenguaje de programación para análisis estadístico</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
