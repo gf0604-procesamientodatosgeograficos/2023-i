@@ -55,7 +55,7 @@ Los paquetes de Tidyverse comparten filosofía de diseño, gramática y estructu
 ## Paquetes
 El núcleo de Tidyverse está compuesto por [ocho paquetes base](https://www.tidyverse.org/packages/#core-tidyverse), los cuales proveen las funcionalidades utilizadas más frecuentemente en análisis de datos:
 
-- [dplyr](https://dplyr.tidyverse.org/): gramática que proporciona un conjunto consistente de "verbos" que resulven los retos más comunes de transformación de datos.
+- [dplyr](https://dplyr.tidyverse.org/): gramática que proporciona un conjunto consistente de "verbos" que resuelven los retos más comunes de transformación de datos.
 - [ggplot2](https://ggplot2.tidyverse.org/): sistema para la creación declarativa de gráficos, basado en el libro [*The Grammar of Graphics*, de Wilkinson et al.](https://www.springer.com/gp/book/9780387245447).
 - [tidyr](https://tidyr.tidyverse.org/): conjunto de funciones para organizar (*to tidy*) datos, colocando las observaciones, variables y valores en filas, columnas y celdas de estructuras rectangulares.
 - [readr](https://readr.tidyverse.org/): conjunto de funciones para cargar datos de estructuras rectangulares (ej. archivos CSV) en memoria.
