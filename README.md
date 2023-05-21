@@ -19,9 +19,11 @@ mamba install -y r-base r-essentials \
                  r-dplyr \
                  r-dt \
                  r-ggplot2 r-ggthemes r-hrbrthemes r-plotly \
-                 r-sf=1.0_6 r-leaflet r-leaflet.providers r-leaflet.extras r-leaflet.minicharts r-leafem \
+                 r-sf=1.0_6 r-terra r-raster r-rgdal \
+                 r-leaflet r-leaflet.providers r-leaflet.extras r-leaflet.minicharts r-leafem \
                  r-shiny r-shinythemes r-shinycssloaders \
-                 r-rsconnect
+                 r-rsconnect \
+                 r-palmerpenguins r-gapminder
 ```
 
 ### Borrado
