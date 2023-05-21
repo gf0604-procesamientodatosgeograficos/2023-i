@@ -1,0 +1,3 @@
+# IV - El ecosistema geoespacial de R {.unnumbered}
+
+[12 Introducción al manejo de datos geoespaciales con R](12-introduccion-manejo-datos-geoespaciales.qmd)

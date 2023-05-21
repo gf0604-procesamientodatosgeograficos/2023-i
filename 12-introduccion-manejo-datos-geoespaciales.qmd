@@ -1,0 +1,24 @@
+# Introducción al manejo de datos geoespaciales con R
+
+## Resumen
+El lenguaje de programación R cuenta con una gran variedad de paquetes para manejo de datos geoespaciales, entre los que están el paquete sf para datos vectoriales, el paquete terra para datos raster y el paquete leaflet para mapas en la Web.
+
+## Trabajo previo
+
+### Lecturas
+Lovelace, R., Nowosad, J., & Münchow, J. (2019). *Geocomputation with R* (capítulos 1 y 2). CRC Press. <https://geocompr.robinlovelace.net/>
+
+## Introducción
+La comunidad de programadores de R ha desarrollado un conjunto de paquetes para el manejo de datos geoespaciales, tanto en formatos vectoriales como raster. Algunos de los principales de estos paquetes son:
+
+-   El paquete [sf](https://cran.r-project.org/web/packages/sf/). Ofrece un conjunto de funciones para el manejo de datos vectoriales, de acuerdo con el estándar [Simple Features](https://www.ogc.org/standards/sfa).
+
+-   El paquete [terra](https://cran.r-project.org/web/packages/terra/). Implementa un conjunto de funciones para el manejo de datos raster. Es una reimplementación del paquete [raster](https://cran.r-project.org/web/packages/raster/).
+
+-   El paquete [leaflet](https://cran.r-project.org/web/packages/leaflet/). Es una implementación en R de la biblioteca [Leaflet para el lenguaje JavaScript](https://leafletjs.com/) para la programación de mapas interactivos en páginas web.
+
+Algunos paquetes de graficación estadística, como [ggplot2](https://cran.r-project.org/web/packages/ggplot2/) y [plotly](https://cran.r-project.org/web/packages/plotly/), también cuentan con capacidades para visualización de datos geoespaciales.
+
+En [CRAN Task View: Analysis of Spatial Data](https://cran.r-project.org/web/views/Spatial.html), puede encontrarse un resumen detallado de los paquetes de R con funciones geoespaciales.
+
+

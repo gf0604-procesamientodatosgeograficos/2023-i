@@ -24,7 +24,10 @@ book:
         - 10-dplyr.qmd
     - part: parte-iii-graficacion.qmd
       chapters:
-        - 11-ggplot2-plotly.qmd        
+        - 11-ggplot2-plotly.qmd     
+    - part: parte-iv-geoespacial.qmd
+      chapters:        
+        - 12-introduccion-manejo-datos-geoespaciales.qmd
     - part: parte-vi-evaluaciones.qmd
       chapters:
         - examen_corto-01.qmd
