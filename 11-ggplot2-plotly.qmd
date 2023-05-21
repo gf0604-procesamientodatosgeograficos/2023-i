@@ -802,7 +802,7 @@ ggplotly(grafico_caja_ggplot2) |>
 ### Gráficos de barras
 Un [gráfico de barras](https://es.wikipedia.org/wiki/Diagrama_de_barras) se compone de barras rectangulares con longitud proporcional a estadísticas (ej. frecuencias, promedios, mínimos, máximos) asociadas a una variable categórica o discreta. Las barras pueden ser horizontales o verticales y se recomienda que estén ordenadas según su longitud, a menos que exista un orden inherente a la variable (ej. el orden de los días de la semana). Es uno de los tipos de gráficos estadísticos más antiguos y comunes y tiene la ventaja de ser muy fácil de comprender.
 
-En ggplot2, los histogramas se implementan con las funciones [geom_bar()](https://ggplot2.tidyverse.org/reference/geom_bar.html), que se utiliza en gráficos que requieren transformaciones estadísticas, y [geom_col()](https://ggplot2.tidyverse.org/reference/geom_col.html), para gráficos que no requieren estas transformaciones.
+En ggplot2, los gráficos de barras se implementan con las funciones [geom_bar()](https://ggplot2.tidyverse.org/reference/geom_bar.html), que se utiliza en gráficos que requieren transformaciones estadísticas, y [geom_col()](https://ggplot2.tidyverse.org/reference/geom_col.html), para gráficos que no requieren estas transformaciones.
 
 #### Barras con transformaciones estadísticas
 Los gráficos de barras y otros tipos de gráficos (ej. histogramas, gráficos de caja, líneas de ajuste) pueden requerir de alguna **transformación estadística** antes de presentar la información. Esta transformación estadística puede ser un conteo, el cálculo de un promedio, un mínimo o un máximo, entre otras opciones.
