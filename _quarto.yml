@@ -36,6 +36,7 @@ bibliography: referencias.bib
 
 format:
   html:
+    lang: es
     theme: cosmo
   pdf:
     documentclass: scrreprt
