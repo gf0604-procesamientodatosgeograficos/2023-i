@@ -34,6 +34,7 @@ book:
         - tarea-01.qmd
         - examen_corto-02.qmd
         - examen_corto-03.qmd
+        - tarea-02.qmd
 
 bibliography: referencias.bib
 

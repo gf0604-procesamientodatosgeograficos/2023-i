@@ -1,0 +1,92 @@
+# Tarea 2 {.unnumbered}
+
+## Fecha y hora límite de entrega {.unnumbered}
+
+### Grupo 001
+Martes 30 de mayo de 2023, 07:59 a.m.  
+
+### Grupo 002
+Jueves 1 de junio de 2023, 10:59 a.m.
+
+## Descripción general
+Esta tarea consiste en desarrollar un documento Quarto con bloques de código en R que generen tablas y gráficos estadísticos de datos sobre calidad de café. El documento debe publicarse como una página web en GitHub Pages.
+
+Cada estudiante debe mostrar que es capaz de:
+
+1. Escribir código fuente en el lenguaje de programación R y utilizar funciones contenidas en paquetes como readr, dplyr, ggplot2, plotly y DT, entre otros, para leer datos, procesarlos y generar visualizaciones como tablas y gráficos estadísticos.
+2. Escribir documentos en el sistema de publicación científica y técnica Quarto que combinen narrativa en Markdown con bloques de código en R.
+3. Publicar documentos Quarto como páginas web en GitHub Pages.
+4. Analizar y corregir errores de programación.
+
+**Esta tarea es ESTRICTAMENTE INDIVIDUAL**.
+
+## Datos
+Los datos provienen del Coffee Quality Institute (CQI) y fueron extraídos de su página web por [Fatih Boyar](https://github.com/fatih-boyar/coffee-quality-data-CQI). Corresponden a muestras de café de diferentes partes del mundo, para las que se registraron propiedades como país de origen, altitud, variedad, color y método de procesamiento y se evaluaron características como aroma, sabor, acidez y puntaje total, entre otras.
+
+Para esta tarea, debe utilizar un archivo de datos de 206 muestras de café disponible en <https://github.com/gf0604-procesamientodatosgeograficos/2023-i/blob/main/datos/cqi/coffee-quality.csv>. Este archivo está basado en el trabajo de Fatih Boyar, con algunos ajustes realizados por el profesor del curso. Debe descargarlo, utilizarlo en el código R de su documento Quarto, e incluirlo en el mismo repositorio de su código fuente.
+
+## Entregables
+Debe entregar dos direcciones web:
+
+1.  Dirección de un repositorio en GitHub (ej. https://github.com/mfvargas/coffee-quality) con el código fuente y los datos. Específicamente, el repositorio debe contener:
+    a. Un documento Quarto llamado `index.qmd` con el código en R y la sintaxis Markdown necesarios para generar las salidas especificadas en la sección Desarrollo.
+    b. Un documento llamado `index.html` generado a partir de `index.qmd`.
+    c. El archivo de datos `coffee-quality.csv`.
+    d. Otros archivos necesarios (ej. el directorio `index_files`).    
+    
+2. Dirección de un sitio web en GitHub Pages publicado a partir del repositorio GitHub del punto 1 (ej. https://mfvargas.github.io/coffee-quality/).
+
+La entrega debe realizarse a través de la plataforma Mediación Virtual.
+
+## Desarrollo
+El documento Quarto debe cumplir con las siguientes características generales:
+
+- En general, debe estar ordenado y bien presentado (incluyendo la redacción y la ortografía).
+- Debe tener una tabla de contenidos.
+- Debe utilizar un [estilo (*theme*) de Quarto para HTML](https://quarto.org/docs/output-formats/html-themes.html).
+
+El documento debe contener las siguientes secciones:
+
+### 1 - Introducción
+Breve explicación del contenido del documento (uno o dos párrafos) y mención de la fuente de los datos originales: el repositorio en GitHub de Fatih Boyar en <https://github.com/fatih-boyar/coffee-quality-data-CQI>.
+
+### 2 - Carga de datos y paquetes
+Bloques de código en R para cargar los paquetes y los datos necesarios.
+
+### 3 - Tabla de datos
+Tabla interactiva generada con el paquete DT que presente las siguientes columnas:
+
+- `Country_of_Origin`
+- `Variety`
+- `Color`
+- `Altitude`
+- `Total_Cup_Points`
+
+### 4 - Gráficos estadísticos
+Los gráficos deben programarse con ggplot2 y convertirse a plotly con la función `ggplotly()`, para que sean interactivos. Todos deben tener:
+
+- Título.
+- Etiquetas en los ejes x e y.
+- Un mismo estilo (*theme*) para todos, ya sea uno de los [estilos incluídos en ggplot2](https://ggplot2.tidyverse.org/reference/ggtheme.html), en [ggthemes](https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/) o en [hrbrthemes](https://github.com/hrbrmstr/hrbrthemes).
+
+Los siguientes son los gráficos que deben elaborarse:
+
+#### 4.1 - Histograma que muestre la distribución de la variable `Total_Cup_Points` (puntaje total)
+- Elija con cuidado la cantidad de barras del histograma.
+- Al colocar el ratón sobre una barra, la ventana emergente debe mostrar la frecuencia correspondiente a la barra.
+- Agregue una curva de estimación de densidad del kernel (*Kernel Density Estimation* o KDE).
+
+#### 4.2 - Gráfico de dispersión de `Altitude` (altitud, en el eje x) vs `Total_Cup_Points` (puntaje total, en el eje y)
+- Al colocar el ratón sobre un punto del gráfico, la ventana emergente debe mostrar los valores de `Altitude` y de `Total_Cup_Points` para ese punto.
+- Agregue una línea de tendencia correspondiente a un modelo lineal.
+ 
+#### 4.3 - Gráfico de caja que muestre las estadísticas (cuartiles, mínimos, máximos y valores atípicos) de la variable `Total_Cup_Points` (puntaje total) para cada valor de la variable `Color` (color).
+- Procure que todos los componentes del gráficos sean legibles. Considere rotar los ejes, si es necesario.
+
+## Calificación
+- Presentación general del repositorio GitHub y de la página en GitHub Pages (tabla de contenidos, uso de estilos, código fuente, datos): 20%
+- Introducción: 5%
+- Tabla: 15%
+- Histograma: 20%
+- Gráfico de dispersión: 20%
+- Gráfico de caja: 20%

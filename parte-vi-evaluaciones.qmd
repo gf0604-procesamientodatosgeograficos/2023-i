@@ -10,4 +10,5 @@ lang: es
 [Examen corto 3](examen_corto-03.qmd)  
 
 ## Tareas {.unnumbered}
-[Tarea 1](tarea-01.qmd) 
+[Tarea 1](tarea-01.qmd)  
+[Tarea 2](tarea-02.qmd) 
