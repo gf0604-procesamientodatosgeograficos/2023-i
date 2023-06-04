@@ -161,7 +161,7 @@ covid_positivos_cantones |>
   )
 ```
 
-Tabla de casos de COVID-19 en Costa Rica
+Tabla de casos positivos de COVID-19 en cantones de Costa Rica
 :::
 
 ## Introducción
@@ -336,7 +336,7 @@ Las funciones que los implementan son:
 
 Todos los tipos de *joins* requieren de una o varias columnas que sean comunes a ambos conjuntos de datos, llamadas llaves de unión o *join keys*, en inglés. Esas columnas se especifican con el argumento `by`. Por ejemplo, `by = codigo`, si la columna común se llama `codigo` en ambos conjuntos de datos. Si tienen diferentes nombres, se utiliza un vector (ej. `by = c("codigo_1" = "codigo_2")`, en donde `codigo_1` es el nombre de la columna en el conjunto de datos de la izquierda y `codigo_2` en el de la derecha. Si hay columnas con nombres iguales en ambos conjuntos de datos, `by` utiliza esos nombres por defecto.
 
-##### Ejemplo: unión de los datos de cantones con los de COVID-19
+##### Ejemplo: unión de los datos geoespaciales de cantones con los datos tabulares de COVID-19
 Se desea crear un [mapa de coropletas](https://es.wikipedia.org/wiki/Mapa_coropl%C3%A9tico) de los cantones de Costa Rica, coloreado de acuerdo con la cantidad de casos positivos de COVID-19 acumulados al 2022-05-30. Para esto se necesita unir, a través de un *left join*, el conjunto de datos `cantones` (con las geometrías y otros datos de los cantones) con el conjunto de datos de `covid_positivos_cantones` (con la cantidad de casos positivos para cada cantón). Para ambas tablas, la llave de unión es un campo llamado `cod_canton`, que contiene el código de cantón asignado por el IGN. Se utiliza un *left join* porque se desea incluir en la unión todos las filas del conjunto de datos de cantones, ya sea que tengan o no tengan datos de COVID-19 asociados.
 
 El siguiente bloque de código realiza el *left join* y almacena el resultado en un objeto `sf` llamado `cantones_union_covid`.
