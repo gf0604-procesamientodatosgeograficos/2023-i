@@ -28,6 +28,7 @@ book:
     - part: parte-iv-geoespacial.qmd
       chapters:        
         - 12-introduccion-manejo-datos-geoespaciales.qmd
+        - 13-operaciones-datos-atributos.qmd
     - part: parte-vi-evaluaciones.qmd
       chapters:
         - examen_corto-01.qmd
