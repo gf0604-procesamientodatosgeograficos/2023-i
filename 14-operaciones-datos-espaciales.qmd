@@ -207,7 +207,7 @@ Las *relaciones topológicas* o *relaciones topológicas binarias* son expresion
 `a` está dentro de `b`  
 `b` está contenido en `a`
 
-Los diferentes tipos de relaciones topológicas están estandarizados en el modelo [DE-9IM (*Dimensionally Extended 9-Intersection Model*)](https://en.wikipedia.org/wiki/DE-9IM) y se ilustran en la @fig-relaciones-topologicas-vectoriales. Esta figura muestra también los métodos del paquete sf que implementan las relaciones topológicas (`st_intersects()`, `st_overlaps()`, `st_winthin()`, `st_contains()`).
+Los diferentes tipos de relaciones topológicas están estandarizados en el modelo [DE-9IM (*Dimensionally Extended 9-Intersection Model*)](https://en.wikipedia.org/wiki/DE-9IM) y se ilustran en la @fig-relaciones-topologicas-vectoriales. Esta figura muestra también los métodos del paquete sf que implementan las relaciones topológicas (ej. `st_intersects()`, `st_overlaps()`, `st_winthin()`, `st_contains()`).
 
 ```{r}
 #| label: fig-relaciones-topologicas-vectoriales
@@ -339,11 +339,13 @@ leaflet() |>
   addFullscreenControl(position = "topright")
 ```
 
-Mapas de félidos dentro de Sarapiquí y a 10 km de Sarapiquí
+Mapa de registros de presencia de félidos localizados dentro del cantón de Sarapiquí.
+
+Mapa de registros de presencia de félidos localizados dentro de una distancia de hasta 10 km del cantón de Sarapiquí.
 :::
 
 #### Unión de datos espaciales
-La unión “no espacial” de dos conjuntos de datos se basa en una o varias columnas (llamadas llaves o *keys*) que están presentes en ambos conjuntos. Las uniones espaciales se basan en un principio similar pero, en lugar de columnas, la relación entre los conjuntos se realiza a través de un predicado espacial. 
+Como se estudió en el capítulo sobre operaciones de datos de atributos, la unión “no espacial” de dos conjuntos de datos se basa en una o varias columnas (llamadas llaves o *keys*) que están presentes en ambos conjuntos. Las uniones espaciales se basan en un principio similar pero, en lugar de columnas, la relación entre los conjuntos se realiza a través de un predicado espacial. 
 
 En sf, la unión de datos espaciales se implementa a través de la función [st_join()](https://r-spatial.github.io/sf/reference/st_join.html), la cual tiene tres argumentos principales: `x`, `y` y `join`, en donde `x` e `y` son dos conjuntos de datos espaciales y `join` un predicado espacial que, por defecto, es `st_intersects`. `st_join()` agrega una o varias columnas a `x`, provenientes de `y`, para las filas que satisfacen el predicado.
 
@@ -561,6 +563,6 @@ Mapa de riqueza de especies de félidos en cantones de Costa Rica
 Utilice las siguientes fuentes de datos:
 
 - [Archivo GeoJSON de provincias de Costa Rica con geometrías simplificadas](https://github.com/gf0604-procesamientodatosgeograficos/2023-i/blob/main/datos/ign/delimitacion-territorial-administrativa/provincias_2020_simp_10m.geojson)
-- [Archivo CSV de registros de presencia de vipéridos de Costa Rica)](https://github.com/gf0604-procesamientodatosgeograficos/2023-i/blob/main/datos/gbif/viperidos.csv)
+- [Archivo CSV de registros de presencia de vipéridos de Costa Rica](https://github.com/gf0604-procesamientodatosgeograficos/2023-i/blob/main/datos/gbif/viperidos.csv)
 
 ## Datos raster
