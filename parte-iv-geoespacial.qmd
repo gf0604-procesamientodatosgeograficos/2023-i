@@ -2,3 +2,4 @@
 
 [12 Introducción al manejo de datos geoespaciales con R](12-introduccion-manejo-datos-geoespaciales.qmd)  
 [13 Operaciones con datos de atributos](13-operaciones-datos-atributos.qmd)  
+[14 Operaciones con datos espaciales](14-operaciones-datos-espaciales.qmd)  
