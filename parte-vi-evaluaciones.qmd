@@ -8,6 +8,7 @@ lang: es
 [Examen corto 1](examen_corto-01.qmd)  
 [Examen corto 2](examen_corto-02.qmd)  
 [Examen corto 3](examen_corto-03.qmd)  
+[Examen corto 4](examen_corto-04.qmd)  
 
 ## Tareas {.unnumbered}
 [Tarea 1](tarea-01.qmd)  
