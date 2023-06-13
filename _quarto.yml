@@ -38,7 +38,9 @@ book:
         - examen_corto-03.qmd
         - tarea-02.qmd
         - examen_corto-04.qmd
-
+    - part: parte-vii-varios.qmd
+      chapters:
+        - error-render-datatable.qmd      
 bibliography: referencias.bib
 
 format:

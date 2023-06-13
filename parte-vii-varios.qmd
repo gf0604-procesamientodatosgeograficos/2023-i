@@ -1,0 +1,3 @@
+# Varios {.unnumbered}
+
+[Error al ejecutar Render en documentos Quarto](error-render-datatable.qmd)  

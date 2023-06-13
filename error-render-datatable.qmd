@@ -1,0 +1,55 @@
+# Error al ejecutar Render en documentos Quarto {.unnumbered}
+
+Se describe un error que se produce al ejecutar la operación **Render** en documentos Quarto y su solución.
+
+## Descripción
+Al ejecutar **Render** en un documento Quarto, se genera un mensaje de error similar al siguiente:
+
+```shell
+Quitting from lines 201-207 [unnamed-chunk-5] (article_4.qmd)
+Error in `add_html_caption()`:
+! unused argument (xfun::grep_sub("^[^<]*<[^>]+aria-labelledby[ ]*=[ ]*\"([^\"]+)\".*$", "\\1", x))
+Backtrace:
+  1. global .main()
+  2. execute(...)
+  3. rmarkdown::render(...)
+  4. knitr::knit(knit_input, knit_output, envir = envir, quiet = quiet)
+  5. knitr:::process_file(text, output)
+     ...
+ 14. sew(res, options)
+ 15. knitr:::sew.list(x, options, ...)
+ 16. base::lapply(x, sew, options, ...)
+ 17. FUN(X[[i]], ...)
+ 18. knitr:::sew.knit_asis(x, options, ...)
+Execution halted
+```
+
+El error está documentado en [Quarto fails to render htmlwidgets when running {knitr} 1.43 with Error in add_html_caption(): #5702](https://github.com/quarto-dev/quarto-cli/issues/5702). Se debe a que la versión `1.43` del paquete `knitr` (encargado de combinar el código en R con Markdown) tiene un problema que se manifiesta al ejecutar la operación **Render** en documentos Quarto con bloques de código que contienen algunos componentes HTML (*widgets*), como tablas DT.
+
+## Solución
+Como se explica en la misma página en la que se describe el problema, este puede solucionarse al reinstalar `knitr` con la versión `1.42`. 
+
+Se sugiere seguir los siguientes pasos:
+
+- Verifique la versión de knitr.
+```{r}
+#| eval: false
+
+packageVersion('knitr')
+```
+
+- Si la versión de knitr es `1.43`, reinstale el paquete con la versión `1.42`. Esto puede hacerse con la función `install_version()` del paquete `devtools`, el cual debe instalarse previamente.
+
+```{r}
+#| eval: false
+
+# Instalación del paquete devtools
+install.packages("devtools")
+
+# Carga del paquete devtools
+library(devtools)
+
+# Reinstalación de knitr, con la versión 1.42
+install_version("knitr", version = "1.42")
+```
+
