@@ -564,5 +564,3 @@ Utilice las siguientes fuentes de datos:
 
 - [Archivo GeoJSON de provincias de Costa Rica con geometrías simplificadas](https://github.com/gf0604-procesamientodatosgeograficos/2023-i/blob/main/datos/ign/delimitacion-territorial-administrativa/provincias_2020_simp_10m.geojson)
 - [Archivo CSV de registros de presencia de vipéridos de Costa Rica](https://github.com/gf0604-procesamientodatosgeograficos/2023-i/blob/main/datos/gbif/viperidos.csv)
-
-## Datos raster
