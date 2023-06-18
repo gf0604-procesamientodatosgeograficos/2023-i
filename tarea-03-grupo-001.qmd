@@ -1,0 +1,102 @@
+# Tarea 3 - Grupo 001 {.unnumbered}
+
+## Fecha y hora límite de entrega {.unnumbered}
+**Lunes 26 de junio de 2023, 10:59 a.m.**  
+
+## Descripción general
+Esta tarea consiste en desarrollar un documento Quarto con bloques de código en R que generen tablas, gráficos estadísticos y mapas sobre [riqueza de especies](https://es.wikipedia.org/wiki/Riqueza_de_especies) (i.e. cantidad de especies que se encuentran en un área). El documento debe publicarse como una página web en GitHub Pages.
+
+Cada estudiante debe mostrar que es capaz de:
+
+1. Escribir código fuente en el lenguaje de programación R y utilizar funciones contenidas en paquetes como readr, dplyr, ggplot2, plotly, DT, sf y leaflet, entre otros, para leer datos, procesarlos y generar visualizaciones como tablas, gráficos estadísticos y mapas.
+2. Manejar datos geoespaciales con R.
+3. Escribir documentos en el sistema de publicación científica y técnica Quarto que combinen narrativa en Markdown con bloques de código en R.
+4. Publicar documentos Quarto como páginas web en GitHub Pages.
+5. Analizar y corregir errores de programación.
+
+**Esta tarea puede realizarse individualmente o en parejas. En este último caso, solo un estudiante debe entregar la tarea en Mediación Virtual e indicar ahí el nombre de su compañero**.
+
+## Datos
+Para realizar esta tarea, se requieren dos conjuntos de datos:
+
+1. Áreas de conservación de Costa Rica. Este archivo GeoJSON proviene de un geoservicio de tipo [Web Feature Service (WFS) publicado por el Sistema Nacional de Áreas de Conservación (Sinac)](https://www.snitcr.go.cr/ico_servicios_ogc_info?k=bm9kbzo6NDA=&nombre=SINAC). Las geometrías se simplificaron para reducir el tamaño del archivo, el cual está disponible en el siguiente enlace:
+
+[Archivo GeoJSON de áreas de conservación de Costa Rica](https://github.com/gf0604-procesamientodatosgeograficos/2023-i/blob/main/datos/sinac/areas_conservacion_simp_10m.geojson)
+
+2. Registros de presencia de orquídeas en Costa Rica. Este archivo CSV, con registros de presencia de especies silvestres de la familia [*Orchidaceae*](https://es.wikipedia.org/wiki/Orchidaceae) en Costa Rica, proviene de una [consulta al portal de datos de la Infraestructura Mundial de Información en Biodiversidad (GBIF)](https://doi.org/10.15468/dl.3q7r9m). Para reducir el tamaño del archivo, se suprimieron algunas columnas no indispensables y también las filas con identificaciones en niveles superiores a especie. El archivo está disponible en el siguiente enlace:
+
+[Archivo CSV de registros de presencia de orquídeas de Costa Rica](https://github.com/gf0604-procesamientodatosgeograficos/2023-i/blob/main/datos/gbif/orquideas.csv)
+
+## Entregables
+Debe entregar dos direcciones web:
+
+1.  Dirección de un repositorio en GitHub con el código fuente y los datos. Específicamente, el repositorio debe contener:
+    a. Un documento Quarto llamado `index.qmd` con el código en R y la sintaxis Markdown necesarios para generar las salidas especificadas en la sección Desarrollo.
+    b. Un documento llamado `index.html` generado a partir de `index.qmd`.
+    c. Los dos archivos de datos.
+    d. Otros archivos necesarios (ej. el directorio `index_files`).    
+    
+2. Dirección de un sitio web en GitHub Pages publicado a partir del repositorio GitHub del punto 1.
+
+La entrega debe realizarse a través de la plataforma Mediación Virtual.
+
+## Desarrollo
+El documento Quarto debe cumplir con las siguientes características generales:
+
+- En general, debe estar ordenado y bien presentado (incluyendo la redacción y la ortografía).
+- El código fuente debe ser legible y ordenado. Considere usar las opciones `code-fold` y `code-summary` de Quarto.
+- Debe tener una tabla de contenidos.
+- Debe estar completamente en español (incluyendo los controles de las tablas y los gráficos).
+- Debe utilizar un [estilo (*theme*) de Quarto para HTML](https://quarto.org/docs/output-formats/html-themes.html).
+
+El documento debe contener las siguientes secciones:
+
+### 1 - Introducción
+Breve explicación del contenido del documento (uno o dos párrafos) y mención y enlaces a las fuentes de datos:
+
+- [Áreas de conservación de Costa Rica en Web Feature Service (WFS) publicado por el Sistema Nacional de Áreas de Conservación (Sinac)](https://www.snitcr.go.cr/ico_servicios_ogc_info?k=bm9kbzo6NDA=&nombre=SINAC)
+- [Registros de presencia de orquídeas de Costa Rica obtenidos a través de una consulta al portal de datos de GBIF](https://doi.org/10.15468/dl.3q7r9m)
+
+### 2 - Carga de datos y paquetes
+Bloques de código en R para cargar los paquetes y los datos necesarios. Recuerde que debe cargarlos una sola vez.
+
+### 3 - Tabla de riqueza de especies de orquídeas en áreas de conservación
+Tabla interactiva generada con el paquete DT con dos columnas:
+
+- `Nombre del área de conservación`
+- `Riqueza de especies de orquídeas`
+
+### 4 - Gráficos estadísticos
+Los gráficos deben programarse con ggplot2 y convertirse a plotly con la función `ggplotly()`, para que sean interactivos. Todos deben tener:
+
+- Título.
+- Etiquetas en los ejes x e y.
+- Un mismo estilo (*theme*) para todos, ya sea uno de los [estilos incluídos en ggplot2](https://ggplot2.tidyverse.org/reference/ggtheme.html), en [ggthemes](https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/) o en [hrbrthemes](https://github.com/hrbrmstr/hrbrthemes).
+
+Procure que todos los componentes de los gráficos sean legibles. Considere rotar los ejes o inclinar las etiquetas, si es necesario.
+
+Los siguientes son los gráficos que deben elaborarse:
+
+#### 4.1 - Gráfico de barras de riqueza de especies de orquídeas en áreas de conservación
+- Las barras deben estar ordenadas por longitud (de mayor a menor o de menor a mayor).
+- Al colocar el ratón sobre una barra, la ventana emergente debe mostrar el área de conservación y su riqueza de especies.
+
+#### 4.2 - Gráfico de barras de cantidad de registros de presencia por especie, para las 10 especies de orquídeas con más registros
+- Las barras deben estar ordenadas por longitud (de mayor a menor o de menor a mayor).
+- Al colocar el ratón sobre una barra, la ventana emergente debe mostrar el nombre de la especie y la cantidad de registros de presencia.
+
+### 5 - Mapa de riqueza de especies
+Mapa leaflet interactivo con las siguientes capas y controles:
+- Dos capas base de tipo *tiles* (teselas) (ej. OSM, Stamen, ESRI).
+- Una capa de áreas de conservación (polígonos) coloreada de acuerdo con la riqueza de especies de orquídeas en cada área (i.e. ([mapa de coropletas](https://es.wikipedia.org/wiki/Mapa_coropl%C3%A9tico)). Al hacer clic sobre un polígono, la ventana emergente debe mostrar el nombre del área y su riqueza de especies de orquídeas.
+- Una leyenda que muestre el significado de los colores usados en la capa de áreas de conservación.
+- Una capa de registros de presencia de orquídeas (puntos). Al hacer clic sobre un punto, la ventana debe mostrar el nombre de la especie. **No es necesario crear una leyenda para esta capa, ya que es difícil de leer debido que son muchas especies**.
+- Un control de capas.
+
+## Calificación
+- Presentación general del repositorio GitHub y de la página en GitHub Pages (tabla de contenidos, uso de estilos, código fuente, datos): 20%
+- Introducción: 5%
+- Tabla: 10%
+- Gráfico de riqueza de especies: 20%
+- Gráfico de cantidad de registros de presencia por especie: 20%
+- Mapa: 25%
