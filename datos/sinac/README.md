@@ -23,6 +23,7 @@ ogr2ogr \
 Código en R:
 
 ```r
+library(dplyr)
 library(sf)
 
 # Áreas de conservación
@@ -40,4 +41,13 @@ st_read(
 ) |>
 st_simplify(dTolerance = 10, preserveTopology = TRUE) |>
 st_write("datos/sinac/asp_simp_10m.geojson")
+
+# Parques nacionales
+st_read(
+  dsn = "datos/sinac/asp.geojson",
+  quiet = TRUE
+) |>
+st_filter(cat_manejo == "Parque Nacional") |>
+st_simplify(dTolerance = 10, preserveTopology = TRUE) |>
+st_write("datos/sinac/parques_nacionales_simp_10m.geojson")
 ```
