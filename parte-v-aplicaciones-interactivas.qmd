@@ -1,0 +1,3 @@
+# V - Aplicaciones interactivas de visualización y análisis de datos {.unnumbered}
+
+[15 shiny - marco de trabajo para desarrollo de aplicaciones web interactivas](15-shiny.qmd)  

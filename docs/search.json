@@ -915,5 +915,89 @@
     "title": "Error al ejecutar Render en documentos Quarto",
     "section": "Solución",
     "text": "Solución\nComo se explica en la misma página en la que se describe el problema, este puede solucionarse al reinstalar knitr con la versión 1.42.\nSe sugiere seguir los siguientes pasos:\n\nVerifique la versión de knitr.\n\n\npackageVersion('knitr')\n\n\nSi la versión de knitr es 1.43, reinstale el paquete con la versión 1.42. Esto puede hacerse con la función install_version() del paquete devtools, el cual debe instalarse previamente.\n\n\n# Instalación del paquete devtools\ninstall.packages(\"devtools\")\n\n# Carga del paquete devtools\nlibrary(devtools)\n\n# Reinstalación de knitr, con la versión 1.42\ninstall_version(\"knitr\", version = \"1.42\")"
+  },
+  {
+    "objectID": "15-shiny.html",
+    "href": "15-shiny.html",
+    "title": "15  shiny - marco de trabajo para desarrollo de aplicaciones web interactivas",
+    "section": "",
+    "text": "Quarto - Shiny. (s. f.). Recuperado 20 de noviembre de 2022, de https://quarto.org/docs/interactive/shiny/"
+  },
+  {
+    "objectID": "15-shiny.html#resumen",
+    "href": "15-shiny.html#resumen",
+    "title": "15  shiny - marco de trabajo para desarrollo de aplicaciones web interactivas",
+    "section": "15.2 Resumen",
+    "text": "15.2 Resumen\nShiny es un paquete de R que facilita el desarrollo de aplicaciones web interactivas. Las aplicaciones shiny se componen de una interfaz de usuario y de un servidor. En la interfaz de usuario, este puede realizar operaciones como filtros, búsquedas y ordenamientos de datos, entre otras. El servidor se encarga de procesar los datos de acuerdo con los parámetros especificados y de retornar los resultados a la interfaz de usuario."
+  },
+  {
+    "objectID": "15-shiny.html#instalación-y-carga",
+    "href": "15-shiny.html#instalación-y-carga",
+    "title": "15  shiny - marco de trabajo para desarrollo de aplicaciones web interactivas",
+    "section": "15.4 Instalación y carga",
+    "text": "15.4 Instalación y carga\n\n# Instalación de shiny\ninstall.packages(\"shiny\")\n\n# Instalación de rsconnect, para conectarse a\n# shinyapps.io, RStudio Connect y otras plataformas similares\ninstall.packages(\"rsconnect\")\n\n\n# Carga de shiny\nlibrary(shiny)\n\n# Carga de rsconnect\nlibrary(rsconnect)"
+  },
+  {
+    "objectID": "15-shiny.html#características-generales",
+    "href": "15-shiny.html#características-generales",
+    "title": "15  shiny - marco de trabajo para desarrollo de aplicaciones web interactivas",
+    "section": "15.4 Características generales",
+    "text": "15.4 Características generales\nEn una aplicación interactiva, el usuario puede configurar las salidas, usualmente mediante una interfaz que le permite realizar operaciones como filtros, búsquedas y ordenamientos, entre otras. Shiny es un paquete de R que facilita el desarrollo de este tipo de aplicaciones.\nLas aplicaciones Shiny requieren un servidor, el cual es un proceso que puede alojarse en cualquier computador habilitado para ejecutar código en R como, por ejemplo, la estación de trabajo del programador (esta opción se usa principalmente para efectos de desarrollo y pruebas), un servidor ubicado en la red de una organización o un servidor en la nube (ej. shinyapps.io, RStudio Connect).\nPara ejemplos de aplicaciones Shiny, puede visitar la siguiente galería."
+  },
+  {
+    "objectID": "15-shiny.html#arquitectura-de-una-aplicación-shiny",
+    "href": "15-shiny.html#arquitectura-de-una-aplicación-shiny",
+    "title": "15  shiny - marco de trabajo para desarrollo de aplicaciones web interactivas",
+    "section": "15.5 Arquitectura de una aplicación Shiny",
+    "text": "15.5 Arquitectura de una aplicación Shiny\nUna aplicación Shiny tiene dos componentes principales:\n\nInterfaz de usuario: despliega controles de entrada y salida (widgets), los cuales eventualente convierte a Lenguaje de Marcado de Hipertexto (HTML).\n\nWidgets de entrada: campos de texto, listas de selección, botones de radio, etc.\nWidgets de salida: tablas, gráficos, mapas, etc. Muchos de estos controles están incluídos en los paquetes que generan los diferentes tipos de salidas (ej. DT, plotly, leaflet).\n\nServidor: es un proceso que recibe las entradas y realiza el procesamiento necesario para generar las salidas.\n\nPara más información sobre la arquitectura de aplicaciones Shiny, se recomienda leer The Anatomy of a Shiny Application."
+  },
+  {
+    "objectID": "15-shiny.html#ejemplo-de-aplicación-shiny",
+    "href": "15-shiny.html#ejemplo-de-aplicación-shiny",
+    "title": "15  shiny - marco de trabajo para desarrollo de aplicaciones web interactivas",
+    "section": "15.6 Ejemplo de aplicación Shiny",
+    "text": "15.6 Ejemplo de aplicación Shiny\nEl siguiente documento Quarto contiene una aplicación Shiny que muestra la distribución de la duración de los intervalos de tiempo entre erupciones del géiser “Old Faithful”.\n---\ntitle: \"Old Faithful\"\nformat: html\nserver: shiny\n---\n\n```{r}\n#| label: interfaz-usuario\n\n# Este bloque de código dibuja la interfaz de usuario,\n# tanto los controles de entrada como los de salida\n\n# Widget de tipo \"slider\" para entrada de datos\nsliderInput(\n  inputId = \"bins\", \n  label = 'Cantidad de \"bins\" del histograma:', \n  min = 1, max = 50, value = 30\n)\n            \n# Gráfico de salida\nplotOutput(outputId = \"histograma\")\n```\n\n```{r}\n#| label: servidor\n#| context: server\n\n# Este bloque realiza el procesamiento en el servidor.\n\n# Generación del gráfico de salida\noutput$histograma <- renderPlot({\n  # Vector con datos de duración de intervalos entre erupciones\n  x <- faithful[, 2]  \n  \n  # \"Bins\" del histograma\n  bins <- seq(from = min(x), to = max(x), length.out = input$bins + 1)\n  \n  # Histograma\n  hist(x = x,\n       breaks = bins,\n       main = 'Distribución de duración de intervalos entre erupciones',\n       xlab = \"Duración de intervalos (min)\",\n       ylab = \"Frecuencia\",\n       col = 'darkgray',\n       border = 'white')\n})\n```\nEs de vital importancia comprender que los dos bloques de código del ejemplo anterior se ejecutan en sesiones de R completamente separadas. Esto implica que no es posible, en principio, acceder desde el primer bloque variables definidas en el segundo, ni viceversa. Sin embargo, existen varias estrategias para compartir código, como las que se detallan en Sharing Code.\nPor otra parte, hay diferencias importantes entre este documento y otros documentos Quarto:\n\nLa opción server: shiny: en la sección YAML, la cual le indica a Quarto que debe iniciar un servidor Shiny.\nLa opción context: server: en el segundo bloque de código, la cual indica que ese bloque debe ejecutarse en el servidor.\n\nExisten otras opciones para los bloques de código en aplicaciones Shiny:\n\ncontext: setup: para operaciones iniciales (ej. carga de bibliotecas).\ncontext: data: para datos que se desea compartir entre los bloques de código."
+  },
+  {
+    "objectID": "15-shiny.html#ejercicios",
+    "href": "15-shiny.html#ejercicios",
+    "title": "15  shiny - marco de trabajo para desarrollo de aplicaciones web interactivas",
+    "section": "15.7 Ejercicios",
+    "text": "15.7 Ejercicios\n\nEjecute en su computadora el código de la aplicación “Old Faithful” mostrado anteriormente.\n\nCree un proyecto en RStudio.\nCree un documento Quarto.\nCopie en el nuevo documento el código de la aplicación “Old Faithful”.\nEjecute el documento con el botón Run Document.\n\nPublique la aplicación “Old Faithful” en shinyapps.io (puede consultar Quarto - Running Documents y How to Deploy R Shiny App for Free on Shinyapps.io).\n\nCree una cuenta en shinyapps.io.\nObtenga su token de autenticación de shinyapps.io en Accounts - Tokens - Show- Show secret - Copy to clipboard.\nEjecute la aplicación en su computadora y publíquela en shinyapps.io con el botón Publish. Elija la opción shinyapps.io e ingrese el token cuando se le solicite. Debe seleccionar todos los archivos requeridos para que su aplicación funciones (datos, imágenes, etc.). En este caso, solo necesita el archivo QMD.\n\nEjecute en su computadora y luego publique en shinyapps.io la aplicación Iris K-Means Clustering.\nEstudie el resto de los ejemplos en Quarto - Shiny - Examples.\nCree una aplicación Shiny para el conjunto de datos de registros de presencia de felinos de Costa Rica, y publíquela en shinyapps.io, con los siguientes componentes:\n\nUna lista de selección de especies.\nUna tabla DT que muestre los registros de la especie seleccionada en la lista.\nUn gráfico ggplot2-plotly de barras que muestre la cantidad de registros por mes de la especie seleccionada en la lista.\nUn mapa leaflet que muestre la ubicación de los registros de la especie seleccionada en la lista.\n\nPuede encontrar una solución parcial en https://github.com/pf0953-programacionr/2022-ii-felinos-shiny."
+  },
+  {
+    "objectID": "15-shiny.html#recursos-de-interés",
+    "href": "15-shiny.html#recursos-de-interés",
+    "title": "15  shiny - marco de trabajo para desarrollo de aplicaciones web interactivas",
+    "section": "15.8 Recursos de interés",
+    "text": "15.8 Recursos de interés\nQuarto - Running Documents. (s. f.). Recuperado 20 de noviembre de 2022, de https://quarto.org/docs/interactive/shiny/running.html\nShiny. (s. f.). Recuperado 20 de noviembre de 2022, de https://shiny.rstudio.com/\nShiny - Gallery. (s. f.). Recuperado 20 de noviembre de 2022, de https://shiny.rstudio.com/gallery/\nThe Anatomy of a Shiny Application | R-bloggers. (2021). Recuperado 21 de noviembre de 2022, de https://www.r-bloggers.com/2021/04/the-anatomy-of-a-shiny-application/\n1littlecoder. (2020). How to Deploy R Shiny App for Free on Shinyapps.io. https://www.youtube.com/watch?v=2QstfyGX4ZU"
+  },
+  {
+    "objectID": "parte-v-aplicaciones-interactivas.html",
+    "href": "parte-v-aplicaciones-interactivas.html",
+    "title": "V - Aplicaciones interactivas de visualización y análisis de datos",
+    "section": "",
+    "text": "15 shiny - marco de trabajo para desarrollo de aplicaciones web interactivas"
+  },
+  {
+    "objectID": "15-shiny.html#introducción",
+    "href": "15-shiny.html#introducción",
+    "title": "15  shiny - marco de trabajo para desarrollo de aplicaciones web interactivas",
+    "section": "15.3 Introducción",
+    "text": "15.3 Introducción\nEn una aplicación interactiva, el usuario puede configurar las salidas, usualmente mediante una interfaz que le permite realizar operaciones como filtros, búsquedas y ordenamientos, entre otras. Shiny es un paquete de R que facilita el desarrollo de este tipo de aplicaciones.\nLas aplicaciones shiny requieren un servidor, el cual es un proceso que puede alojarse en cualquier computador habilitado para ejecutar código en R como, por ejemplo, la estación de trabajo del programador (esta opción se usa principalmente para efectos de desarrollo y pruebas), un servidor ubicado en la red de una organización o un servidor en la nube (ej. shinyapps.io, RStudio Connect).\nPara ejemplos de aplicaciones shiny, puede visitar la siguiente galería."
+  },
+  {
+    "objectID": "15-shiny.html#arquitectura",
+    "href": "15-shiny.html#arquitectura",
+    "title": "15  shiny - marco de trabajo para desarrollo de aplicaciones web interactivas",
+    "section": "15.5 Arquitectura",
+    "text": "15.5 Arquitectura\nUna aplicación shiny tiene dos componentes principales:\n\nInterfaz de usuario: despliega controles de entrada y salida (widgets), los cuales eventualente convierte a Lenguaje de Marcado de Hipertexto (HTML).\n\nWidgets de entrada: campos de texto, listas de selección, botones de radio, etc.\nWidgets de salida: tablas, gráficos, mapas, etc. Muchos de estos controles están incluídos en los paquetes que generan los diferentes tipos de salidas (ej. DT, plotly, leaflet).\n\nServidor: es un proceso que recibe las entradas y realiza el procesamiento necesario para generar las salidas y retornar los resultados a la interfaz de usuario.\n\nPara más información sobre la arquitectura de aplicaciones shiny, se recomienda leer The Anatomy of a Shiny Application."
+  },
+  {
+    "objectID": "15-shiny.html#ejemplo",
+    "href": "15-shiny.html#ejemplo",
+    "title": "15  shiny - marco de trabajo para desarrollo de aplicaciones web interactivas",
+    "section": "15.6 Ejemplo",
+    "text": "15.6 Ejemplo\nEl siguiente documento Quarto contiene una aplicación shiny que muestra la distribución de la duración de los tiempos de espera entre erupciones del géiser “Old Faithful”, a través de un histograma. El usuario especifica la cantidad de bins del histograma a través de un widget de tipo sliderInput, luego el servidor genera el histograma con la cantidad de bins especificada y lo retorna a la interfaz de usuario para desplegarlo.\n---\ntitle: \"Old Faithful\"\nformat: html\nserver: shiny\n---\n\n```{r}\n#| label: interfaz-usuario\n\n# Este bloque de código dibuja la interfaz de usuario,\n# tanto los controles de entrada como los de salida\n\n# Widget de tipo \"slider\" para entrada de datos\nsliderInput(\n  inputId = \"cantidad_bins\", # \"cantidad_bins\" es el identificador del widget de entrada\n  label = 'Cantidad de bins del histograma:', \n  min = 1, max = 50, value = 30\n)\n            \n# Gráfico de salida, con el identificador \"histograma\"\nplotOutput(outputId = \"histograma\")\n```\n\n```{r}\n#| label: servidor\n#| context: server\n\n# Este bloque realiza el procesamiento en el servidor.\n\n# Generación del gráfico de salida, el cual va a ser retornado \n# por la función plotOutput() a la interfaz de usuario\noutput$histograma <- renderPlot({\n  # Vector con datos de duración de tiempos de espera entre erupciones\n  tiempo_espera <- faithful[, 2]  \n  \n  # \"Bins\" del histograma que se generan con base\n  # en el valor especificado por el usuario en el widget de entrada\n  bins <- seq(\n    from = min(tiempo_espera), \n    to = max(tiempo_espera), \n    length.out = input$cantidad_bins + 1\n  )\n  \n  # Histograma que se retorna a la interfaz de usuario\n  hist(x = tiempo_espera,\n       breaks = bins,\n       main = 'Distribución de duración de tiempos de espera entre erupciones',\n       xlab = \"Duración de los tiempos de espera (min)\",\n       ylab = \"Frecuencia\",\n       col = 'darkgray',\n       border = 'white')\n})\n```\nEs de vital importancia comprender que los dos bloques de código del ejemplo anterior se ejecutan en sesiones de R completamente separadas. Esto implica que no es posible, en principio, acceder desde el primer bloque variables definidas en el segundo, ni viceversa. Sin embargo, existen varias estrategias para compartir código, como las que se detallan en Sharing Code.\nUna forma en la que la interfaz de usuario y el servidor pueden comunicarse, es a través de las listas input y output.\n\ninput contiene la lista de widgets de entrada (listas de selección, campos de entrada de texto, botones de radio, etc.). Cada uno de estos widgets tiene un inputId único. En el ejemplo, “cantidad_bins” es el inputId del widget tipo sliderInput. Se referencia como input$cantidad_bins en el bloque del servidor.\noutput es una lista de componentes que se crean o modifican en el servidor (tablas, gráficos, mapas, etc). y que luego se envían a la interfaz de usuario para su visualización. Para crear o modificar un elemento de output, se utiliza una función render*, y para mostrarlo en la interfaz de usuario, se utiliza una función *Output. En el ejemplo, output$histograma es un gráfico que se crea con la función renderPlot() en función del valor de input$cantidad_bins, y se muestra en la interfaz de usuario con plotOutput().\n\nPor otra parte, hay diferencias importantes entre este documento y otros documentos Quarto:\n\nLa opción server: shiny: en la sección YAML, la cual le indica a Quarto que debe iniciar un servidor Shiny.\nLa opción context: server: en el segundo bloque de código, la cual indica que ese bloque debe ejecutarse en el servidor.\n\nExisten otras opciones para los bloques de código en aplicaciones Shiny:\n\ncontext: setup: para operaciones iniciales (ej. carga de bibliotecas).\ncontext: data: para datos que se desea compartir entre los bloques de código."
   }
 ]

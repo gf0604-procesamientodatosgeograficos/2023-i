@@ -1,0 +1,163 @@
+# shiny - marco de trabajo para desarrollo de aplicaciones web interactivas
+
+## Trabajo previo
+
+### Lecturas
+Quarto - Shiny. (s. f.). Recuperado 20 de noviembre de 2022, de [https://quarto.org/docs/interactive/shiny/](https://quarto.org/docs/interactive/shiny/)
+
+## Resumen
+Shiny es un paquete de R que facilita el desarrollo de aplicaciones web interactivas. Las aplicaciones shiny se componen de una interfaz de usuario y de un servidor. En la interfaz de usuario, este puede realizar operaciones como filtros, búsquedas y ordenamientos de datos, entre otras. El servidor se encarga de procesar los datos de acuerdo con los parámetros especificados y de retornar los resultados a la interfaz de usuario.
+
+## Introducción
+En una aplicación interactiva, el usuario puede configurar las salidas, usualmente mediante una interfaz que le permite realizar operaciones como filtros, búsquedas y ordenamientos, entre otras. [Shiny](https://shiny.posit.co/) es un paquete de R que facilita el desarrollo de este tipo de aplicaciones.
+
+Las aplicaciones shiny requieren un [servidor](https://www.rstudio.com/products/shiny/shiny-server/), el cual es un proceso que puede alojarse en cualquier computador habilitado para ejecutar código en R como, por ejemplo, la estación de trabajo del programador (esta opción se usa principalmente para efectos de desarrollo y pruebas), un servidor ubicado en la red de una organización o un servidor en la nube (ej. [shinyapps.io](https://www.shinyapps.io/), [RStudio Connect](https://www.rstudio.com/products/connect/)).
+
+Para ejemplos de aplicaciones shiny, puede visitar la siguiente [galería](https://shiny.rstudio.com/gallery/).
+
+## Instalación y carga
+```{r}
+#| label: instalacion-shiny
+#| eval: false
+
+# Instalación de shiny
+install.packages("shiny")
+
+# Instalación de rsconnect, para conectarse a
+# shinyapps.io, RStudio Connect y otras plataformas similares
+install.packages("rsconnect")
+```
+
+```{r}
+#| label: carga-shiny
+#| message: false
+
+# Carga de shiny
+library(shiny)
+
+# Carga de rsconnect
+library(rsconnect)
+```
+
+## Arquitectura
+Una aplicación shiny tiene dos componentes principales:
+
+1. **Interfaz de usuario**: despliega controles de entrada y salida (*widgets*), los cuales eventualente convierte a [Lenguaje de Marcado de Hipertexto (HTML)](https://es.wikipedia.org/wiki/HTML).
+    - [**Widgets de entrada**](https://shiny.rstudio.com/gallery/widget-gallery.html): campos de texto, listas de selección, botones de radio, etc.
+    - **Widgets de salida**: tablas, gráficos, mapas, etc. Muchos de estos controles están incluídos en los paquetes que generan los diferentes tipos de salidas (ej. DT, plotly, leaflet).
+    
+2. **Servidor**: es un proceso que recibe las entradas y realiza el procesamiento necesario para generar las salidas y retornar los resultados a la interfaz de usuario.
+
+Para más información sobre la arquitectura de aplicaciones shiny, se recomienda leer [The Anatomy of a Shiny Application](https://www.r-bloggers.com/2021/04/the-anatomy-of-a-shiny-application/).
+
+## Ejemplo
+El siguiente documento Quarto contiene una aplicación shiny que muestra la distribución de la duración de los tiempos de espera entre erupciones del [géiser "Old Faithful"](https://rdrr.io/r/datasets/faithful.html), a través de un histograma. El usuario especifica la cantidad de *bins* del histograma a través de un widget de tipo [sliderInput](https://shiny.posit.co/r/reference/shiny/1.3.1/sliderinput), luego el servidor genera el histograma con la cantidad de *bins* especificada y lo retorna a la interfaz de usuario para desplegarlo.
+
+```` md
+---
+title: "Old Faithful"
+format: html
+server: shiny
+---
+
+```{r}`r ''`
+#| label: interfaz-usuario
+
+# Este bloque de código dibuja la interfaz de usuario,
+# tanto los controles de entrada como los de salida
+
+# Widget de tipo "slider" para entrada de datos
+sliderInput(
+  inputId = "cantidad_bins", # "cantidad_bins" es el identificador del widget de entrada
+  label = 'Cantidad de bins del histograma:', 
+  min = 1, max = 50, value = 30
+)
+            
+# Gráfico de salida, con el identificador "histograma"
+plotOutput(outputId = "histograma")
+```
+
+```{r}`r ''`
+#| label: servidor
+#| context: server
+
+# Este bloque realiza el procesamiento en el servidor.
+
+# Generación del gráfico de salida, el cual va a ser retornado 
+# por la función plotOutput() a la interfaz de usuario
+output$histograma <- renderPlot({
+  # Vector con datos de duración de tiempos de espera entre erupciones
+  tiempo_espera <- faithful[, 2]  
+  
+  # "Bins" del histograma que se generan con base
+  # en el valor especificado por el usuario en el widget de entrada
+  bins <- seq(
+    from = min(tiempo_espera), 
+    to = max(tiempo_espera), 
+    length.out = input$cantidad_bins + 1
+  )
+  
+  # Histograma que se retorna a la interfaz de usuario
+  hist(x = tiempo_espera,
+       breaks = bins,
+       main = 'Distribución de duración de tiempos de espera entre erupciones',
+       xlab = "Duración de los tiempos de espera (min)",
+       ylab = "Frecuencia",
+       col = 'darkgray',
+       border = 'white')
+})
+```
+````
+
+Es de vital importancia comprender que los dos bloques de código del ejemplo anterior se ejecutan en sesiones de R completamente separadas. Esto implica que no es posible, en principio, acceder desde el primer bloque variables definidas en el segundo, ni viceversa. Sin embargo, existen varias estrategias para compartir código, como las que se detallan en [Sharing Code](https://quarto.org/docs/interactive/shiny/execution.html#sharing-code).
+
+Una forma en la que la interfaz de usuario y el servidor pueden comunicarse, es a través de las listas `input` y `output`. 
+
+- `input` contiene la lista de widgets de entrada (listas de selección, campos de entrada de texto, botones de radio, etc.). Cada uno de estos widgets tiene un `inputId` único. En el ejemplo, "cantidad_bins" es el inputId del widget tipo sliderInput. Se referencia como `input$cantidad_bins` en el bloque del servidor.
+- `output` es una lista de componentes que se crean o modifican en el servidor (tablas, gráficos, mapas, etc). y que luego se envían a la interfaz de usuario para su visualización. Para crear o modificar un elemento de `output`, se utiliza una función `render*`, y para mostrarlo en la interfaz de usuario, se utiliza una función `*Output`. En el ejemplo, `output$histograma` es un gráfico que se crea con la función `renderPlot()` en función del valor de `input$cantidad_bins`, y se muestra en la interfaz de usuario con `plotOutput()`.
+
+Por otra parte, hay diferencias importantes entre este documento y otros documentos Quarto:
+
+1. La opción `server: shiny`: en la sección YAML, la cual le indica a Quarto que debe iniciar un servidor Shiny.
+
+2. La opción `context: server`: en el segundo bloque de código, la cual indica que ese bloque debe ejecutarse en el servidor.
+
+Existen otras opciones para los bloques de código en aplicaciones Shiny:
+
+- `context: setup`: para operaciones iniciales (ej. carga de bibliotecas).
+- `context: data`: para datos que se desea compartir entre los bloques de código.
+
+## Ejercicios
+1. Ejecute en su computadora el código de la aplicación "Old Faithful" mostrado anteriormente.
+    a. Cree un proyecto en RStudio.
+    b. Cree un documento Quarto. 
+    c. Copie en el nuevo documento el código de la aplicación "Old Faithful".
+    d. Ejecute el documento con el botón `Run Document`.
+    
+2. Publique la aplicación "Old Faithful" en shinyapps.io (puede consultar [Quarto - Running Documents](https://quarto.org/docs/interactive/shiny/running.html) y [How to Deploy R Shiny App for Free on Shinyapps.io](https://www.youtube.com/watch?v=2QstfyGX4ZU)).
+    a. Cree una cuenta en [shinyapps.io](https://www.shinyapps.io/).
+    b. Obtenga su *token* de autenticación de shinyapps.io en **Accounts - Tokens - Show- Show secret - Copy to clipboard**.
+    c. Ejecute la aplicación en su computadora y publíquela en shinyapps.io con el botón **Publish**. Elija la opción shinyapps.io e ingrese el *token* cuando se le solicite. Debe seleccionar todos los archivos requeridos para que su aplicación funciones (datos, imágenes, etc.). En este caso, solo necesita el archivo QMD.
+
+3. Ejecute en su computadora y luego publique en shinyapps.io la aplicación [Iris K-Means Clustering](https://quarto.org/docs/interactive/shiny/#custom-layout).
+
+4. Estudie el resto de los ejemplos en [Quarto - Shiny - Examples](https://quarto.org/docs/interactive/shiny/#examples).
+
+5. Cree una aplicación Shiny para el conjunto de datos de [registros de presencia de felinos de Costa Rica](https://doi.org/10.15468/dl.dwpgps), y publíquela en shinyapps.io, con los siguientes componentes:
+    a. Una lista de selección de especies.
+    b. Una tabla DT que muestre los registros de la especie seleccionada en la lista.
+    c. Un gráfico ggplot2-plotly de barras que muestre la cantidad de registros por mes de la especie seleccionada en la lista.
+    d. Un mapa leaflet que muestre la ubicación de los registros de la especie seleccionada en la lista.
+    
+    Puede encontrar una solución parcial en [https://github.com/pf0953-programacionr/2022-ii-felinos-shiny](https://github.com/pf0953-programacionr/2022-ii-felinos-shiny).
+
+## Recursos de interés
+Quarto - Running Documents. (s. f.). Recuperado 20 de noviembre de 2022, de [https://quarto.org/docs/interactive/shiny/running.html](https://quarto.org/docs/interactive/shiny/running.html)
+
+Shiny. (s. f.). Recuperado 20 de noviembre de 2022, de [https://shiny.rstudio.com/](https://shiny.rstudio.com/)
+
+Shiny - Gallery. (s. f.). Recuperado 20 de noviembre de 2022, de [https://shiny.rstudio.com/gallery/](https://shiny.rstudio.com/gallery/)
+
+The Anatomy of a Shiny Application | R-bloggers. (2021). Recuperado 21 de noviembre de 2022, de [https://www.r-bloggers.com/2021/04/the-anatomy-of-a-shiny-application/](https://www.r-bloggers.com/2021/04/the-anatomy-of-a-shiny-application/)
+
+1littlecoder. (2020). How to Deploy R Shiny App for Free on Shinyapps.io. [https://www.youtube.com/watch?v=2QstfyGX4ZU](https://www.youtube.com/watch?v=2QstfyGX4ZU)
