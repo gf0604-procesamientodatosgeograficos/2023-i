@@ -301,9 +301,9 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción">1 - Introducción</a></li>
   <li><a href="#carga-de-datos-y-paquetes" id="toc-carga-de-datos-y-paquetes" class="nav-link" data-scroll-target="#carga-de-datos-y-paquetes">2 - Carga de datos y paquetes</a></li>
-  <li><a href="#tabla-de-riqueza-de-especies-de-orquídeas-en-áreas-de-conservación" id="toc-tabla-de-riqueza-de-especies-de-orquídeas-en-áreas-de-conservación" class="nav-link" data-scroll-target="#tabla-de-riqueza-de-especies-de-orquídeas-en-áreas-de-conservación">3 - Tabla de riqueza de especies de orquídeas en áreas de conservación</a></li>
-  <li><a href="#gráficos-estadísticos" id="toc-gráficos-estadísticos" class="nav-link" data-scroll-target="#gráficos-estadísticos">4 - Gráficos estadísticos</a></li>
-  <li><a href="#mapa-de-riqueza-de-especies" id="toc-mapa-de-riqueza-de-especies" class="nav-link" data-scroll-target="#mapa-de-riqueza-de-especies">5 - Mapa de riqueza de especies</a></li>
+  <li><a href="#mapa-de-riqueza-de-especies-de-orquídeas-en-áreas-de-conservación" id="toc-mapa-de-riqueza-de-especies-de-orquídeas-en-áreas-de-conservación" class="nav-link" data-scroll-target="#mapa-de-riqueza-de-especies-de-orquídeas-en-áreas-de-conservación">3 - Mapa de riqueza de especies de orquídeas en áreas de conservación</a></li>
+  <li><a href="#tabla-de-riqueza-de-especies-de-orquídeas-en-áreas-de-conservación" id="toc-tabla-de-riqueza-de-especies-de-orquídeas-en-áreas-de-conservación" class="nav-link" data-scroll-target="#tabla-de-riqueza-de-especies-de-orquídeas-en-áreas-de-conservación">4 - Tabla de riqueza de especies de orquídeas en áreas de conservación</a></li>
+  <li><a href="#gráficos-estadísticos" id="toc-gráficos-estadísticos" class="nav-link" data-scroll-target="#gráficos-estadísticos">5 - Gráficos estadísticos</a></li>
   </ul></li>
   <li><a href="#calificación" id="toc-calificación" class="nav-link" data-scroll-target="#calificación">Calificación</a></li>
   </ul>
@@ -334,7 +334,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="descripción-general" class="level2">
 <h2 class="anchored" data-anchor-id="descripción-general">Descripción general</h2>
-<p>Esta tarea consiste en desarrollar un documento Quarto con bloques de código en R que generen tablas, gráficos estadísticos y mapas sobre <a href="https://es.wikipedia.org/wiki/Riqueza_de_especies">riqueza de especies</a> (i.e.&nbsp;cantidad de especies que se encuentran en un área). El documento debe publicarse como una página web en GitHub Pages.</p>
+<p>Esta tarea consiste en desarrollar un documento Quarto con bloques de código en R que generen tablas, gráficos estadísticos y mapas sobre <a href="https://es.wikipedia.org/wiki/Riqueza_de_especies">riqueza de especies</a> (i.e.&nbsp;cantidad de especies) de <a href="https://es.wikipedia.org/wiki/Orchidaceae">orquídeas (familia <em>Orchidaceae</em>)</a> en las <a href="https://www.sinac.go.cr/ES/ac/Paginas/default.aspx">áreas de conservación</a> de Costa Rica. El documento debe publicarse como una página web en GitHub Pages.</p>
 <p>Cada estudiante debe mostrar que es capaz de:</p>
 <ol type="1">
 <li>Escribir código fuente en el lenguaje de programación R y utilizar funciones contenidas en paquetes como readr, dplyr, ggplot2, plotly, DT, sf y leaflet, entre otros, para leer datos, procesarlos y generar visualizaciones como tablas, gráficos estadísticos y mapas.</li>
@@ -353,7 +353,7 @@ ul.task-list li input[type="checkbox"] {
 </ol>
 <p><a href="https://github.com/gf0604-procesamientodatosgeograficos/2023-i/blob/main/datos/sinac/areas_conservacion_simp_10m.geojson">Archivo GeoJSON de áreas de conservación de Costa Rica</a></p>
 <ol start="2" type="1">
-<li>Registros de presencia de orquídeas en Costa Rica. Este archivo CSV, con registros de presencia de especies silvestres de la familia <a href="https://es.wikipedia.org/wiki/Orchidaceae"><em>Orchidaceae</em></a> en Costa Rica, proviene de una <a href="https://doi.org/10.15468/dl.3q7r9m">consulta al portal de datos de la Infraestructura Mundial de Información en Biodiversidad (GBIF)</a>. Para reducir el tamaño del archivo, se suprimieron algunas columnas no indispensables y también las filas con identificaciones en niveles superiores a especie. El archivo está disponible en el siguiente enlace:</li>
+<li>Registros de presencia de orquídeas en Costa Rica. Este archivo CSV proviene de una <a href="https://doi.org/10.15468/dl.3q7r9m">consulta al portal de datos de la Infraestructura Mundial de Información en Biodiversidad (GBIF)</a>. Para reducir el tamaño del archivo, se suprimieron algunas columnas no indispensables y también las filas con identificaciones en niveles superiores a especie. El archivo está disponible en el siguiente enlace:</li>
 </ol>
 <p><a href="https://github.com/gf0604-procesamientodatosgeograficos/2023-i/blob/main/datos/gbif/orquideas.csv">Archivo CSV de registros de presencia de orquídeas de Costa Rica</a></p>
 </section>
@@ -382,7 +382,7 @@ ul.task-list li input[type="checkbox"] {
 <li>Debe estar completamente en español (incluyendo los controles de las tablas y los gráficos).</li>
 <li>Debe utilizar un <a href="https://quarto.org/docs/output-formats/html-themes.html">estilo (<em>theme</em>) de Quarto para HTML</a>.</li>
 </ul>
-<p>El documento debe contener las siguientes secciones:</p>
+<p>El documento debe incluir las siguientes secciones y contenidos:</p>
 <section id="introducción" class="level3">
 <h3 class="anchored" data-anchor-id="introducción">1 - Introducción</h3>
 <p>Breve explicación del contenido del documento (uno o dos párrafos) y mención y enlaces a las fuentes de datos:</p>
@@ -395,16 +395,28 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="carga-de-datos-y-paquetes">2 - Carga de datos y paquetes</h3>
 <p>Bloques de código en R para cargar los paquetes y los datos necesarios. Recuerde que debe cargarlos una sola vez.</p>
 </section>
+<section id="mapa-de-riqueza-de-especies-de-orquídeas-en-áreas-de-conservación" class="level3">
+<h3 class="anchored" data-anchor-id="mapa-de-riqueza-de-especies-de-orquídeas-en-áreas-de-conservación">3 - Mapa de riqueza de especies de orquídeas en áreas de conservación</h3>
+<p>Mapa leaflet interactivo con las siguientes capas y controles:</p>
+<ul>
+<li>Dos capas base de tipo <em>tiles</em> (teselas) (ej. OSM, Stamen, ESRI).</li>
+<li>Una capa de áreas de conservación (polígonos) coloreada de acuerdo con la riqueza de especies de orquídeas en cada área (i.e.&nbsp;un <a href="https://es.wikipedia.org/wiki/Mapa_coropl%C3%A9tico">mapa de coropletas</a>). Al hacer clic sobre un polígono, la ventana emergente debe mostrar el nombre del área y su riqueza de especies de orquídeas.</li>
+<li>Una leyenda que muestre el significado de los colores usados en la capa de áreas de conservación.</li>
+<li>Una capa de registros de presencia de orquídeas (puntos). Al hacer clic sobre un punto, la ventana debe mostrar el nombre de la especie. <strong>No es necesario crear una leyenda para esta capa, ya que es difícil de leer debido que contiene muchas especies</strong>.</li>
+<li>Un control de capas.</li>
+</ul>
+</section>
 <section id="tabla-de-riqueza-de-especies-de-orquídeas-en-áreas-de-conservación" class="level3">
-<h3 class="anchored" data-anchor-id="tabla-de-riqueza-de-especies-de-orquídeas-en-áreas-de-conservación">3 - Tabla de riqueza de especies de orquídeas en áreas de conservación</h3>
-<p>Tabla interactiva generada con el paquete DT con dos columnas:</p>
+<h3 class="anchored" data-anchor-id="tabla-de-riqueza-de-especies-de-orquídeas-en-áreas-de-conservación">4 - Tabla de riqueza de especies de orquídeas en áreas de conservación</h3>
+<p>Tabla interactiva generada con el paquete DT que muestre la riqueza (i.e.&nbsp;cantidad) de especies de orquídeas en cada área de conservación. Debe tener una fila por cada área de conservación y dos columnas:</p>
 <ul>
 <li><code>Nombre del área de conservación</code></li>
 <li><code>Riqueza de especies de orquídeas</code></li>
 </ul>
+<p>Los encabezados de la tabla deben estar en español y ser significativos. Sugerencia: use el argumento <code>colnames</code> de la función <code>datatable()</code> para especificar los encabezados de las columnas.</p>
 </section>
 <section id="gráficos-estadísticos" class="level3">
-<h3 class="anchored" data-anchor-id="gráficos-estadísticos">4 - Gráficos estadísticos</h3>
+<h3 class="anchored" data-anchor-id="gráficos-estadísticos">5 - Gráficos estadísticos</h3>
 <p>Los gráficos deben programarse con ggplot2 y convertirse a plotly con la función <code>ggplotly()</code>, para que sean interactivos. Todos deben tener:</p>
 <ul>
 <li>Título.</li>
@@ -414,23 +426,22 @@ ul.task-list li input[type="checkbox"] {
 <p>Procure que todos los componentes de los gráficos sean legibles. Considere rotar los ejes o inclinar las etiquetas, si es necesario.</p>
 <p>Los siguientes son los gráficos que deben elaborarse:</p>
 <section id="gráfico-de-barras-de-riqueza-de-especies-de-orquídeas-en-áreas-de-conservación" class="level4">
-<h4 class="anchored" data-anchor-id="gráfico-de-barras-de-riqueza-de-especies-de-orquídeas-en-áreas-de-conservación">4.1 - Gráfico de barras de riqueza de especies de orquídeas en áreas de conservación</h4>
+<h4 class="anchored" data-anchor-id="gráfico-de-barras-de-riqueza-de-especies-de-orquídeas-en-áreas-de-conservación">5.1 - Gráfico de barras de riqueza de especies de orquídeas en áreas de conservación</h4>
+<p>Este gráfico muestra los mismos datos que la tabla del punto 4. Debe contener una barra por cada área de conservación y su longitud debe mostrar su riqueza de especies de orquídeas.</p>
 <ul>
 <li>Las barras deben estar ordenadas por longitud (de mayor a menor o de menor a mayor).</li>
-<li>Al colocar el ratón sobre una barra, la ventana emergente debe mostrar el área de conservación y su riqueza de especies.</li>
+<li>Al colocar el ratón sobre una barra, la ventana emergente debe mostrar el área de conservación y su riqueza de especies de orquídeas.</li>
 </ul>
 </section>
 <section id="gráfico-de-barras-de-cantidad-de-registros-de-presencia-por-especie-para-las-10-especies-de-orquídeas-con-más-registros" class="level4">
-<h4 class="anchored" data-anchor-id="gráfico-de-barras-de-cantidad-de-registros-de-presencia-por-especie-para-las-10-especies-de-orquídeas-con-más-registros">4.2 - Gráfico de barras de cantidad de registros de presencia por especie, para las 10 especies de orquídeas con más registros</h4>
+<h4 class="anchored" data-anchor-id="gráfico-de-barras-de-cantidad-de-registros-de-presencia-por-especie-para-las-10-especies-de-orquídeas-con-más-registros">5.2 - Gráfico de barras de cantidad de registros de presencia por especie, para las 10 especies de orquídeas con más registros</h4>
+<p>Este gráfico debe contener una barra por cada una de 10 especies de orquídeas con mayor cantidad de registros de presencia y su longitud debe reflejar esa cantidad.</p>
 <ul>
 <li>Las barras deben estar ordenadas por longitud (de mayor a menor o de menor a mayor).</li>
 <li>Al colocar el ratón sobre una barra, la ventana emergente debe mostrar el nombre de la especie y la cantidad de registros de presencia.</li>
 </ul>
+<p>Sugerencia: use la función <code>top_n()</code> para obtener las especies con mayor cantidad de registros de presencia.</p>
 </section>
-</section>
-<section id="mapa-de-riqueza-de-especies" class="level3">
-<h3 class="anchored" data-anchor-id="mapa-de-riqueza-de-especies">5 - Mapa de riqueza de especies</h3>
-<p>Mapa leaflet interactivo con las siguientes capas y controles: - Dos capas base de tipo <em>tiles</em> (teselas) (ej. OSM, Stamen, ESRI). - Una capa de áreas de conservación (polígonos) coloreada de acuerdo con la riqueza de especies de orquídeas en cada área (i.e.&nbsp;(<a href="https://es.wikipedia.org/wiki/Mapa_coropl%C3%A9tico">mapa de coropletas</a>). Al hacer clic sobre un polígono, la ventana emergente debe mostrar el nombre del área y su riqueza de especies de orquídeas. - Una leyenda que muestre el significado de los colores usados en la capa de áreas de conservación. - Una capa de registros de presencia de orquídeas (puntos). Al hacer clic sobre un punto, la ventana debe mostrar el nombre de la especie. <strong>No es necesario crear una leyenda para esta capa, ya que es difícil de leer debido que son muchas especies</strong>. - Un control de capas.</p>
 </section>
 </section>
 <section id="calificación" class="level2">
@@ -438,10 +449,10 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li>Presentación general del repositorio GitHub y de la página en GitHub Pages (tabla de contenidos, uso de estilos, código fuente, datos): 20%</li>
 <li>Introducción: 5%</li>
+<li>Mapa: 25%</li>
 <li>Tabla: 10%</li>
 <li>Gráfico de riqueza de especies: 20%</li>
 <li>Gráfico de cantidad de registros de presencia por especie: 20%</li>
-<li>Mapa: 25%</li>
 </ul>
 
 
