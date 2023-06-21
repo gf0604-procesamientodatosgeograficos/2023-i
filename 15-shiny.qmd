@@ -149,7 +149,7 @@ Existen otras opciones para los bloques de código en aplicaciones Shiny:
     c. Un gráfico ggplot2-plotly de barras que muestre la cantidad de registros por mes de la especie seleccionada en la lista.
     d. Un mapa leaflet que muestre la ubicación de los registros de la especie seleccionada en la lista.
     
-    Puede encontrar una solución parcial en [https://github.com/pf0953-programacionr/2022-ii-felinos-shiny](https://github.com/pf0953-programacionr/2022-ii-felinos-shiny).
+Puede encontrar una solución parcial en [https://github.com/gf0604-procesamientodatosgeograficos/2023-i-felidos-shiny](https://github.com/gf0604-procesamientodatosgeograficos/2023-i-felidos-shiny).
 
 ## Recursos de interés
 Quarto - Running Documents. (s. f.). Recuperado 20 de noviembre de 2022, de [https://quarto.org/docs/interactive/shiny/running.html](https://quarto.org/docs/interactive/shiny/running.html)
