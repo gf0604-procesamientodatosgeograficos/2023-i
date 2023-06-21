@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.189">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>GF0604 Procesamiento de datos geográficos 2023-I - Tarea 3 - Grupo 002</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./parte-vii-varios.html" rel="next">
+<link href="./tarea-03-grupo-001.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Sín resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la busqueda",
+    "search-hide-matches-text": "Esconder resultados adicionales",
+    "search-more-match-text": "hay más resultados en este documento",
+    "search-more-matches-text": "más resultados en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Eviar"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Tarea 3 - Grupo 002</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">GF0604 Procesamiento de datos geográficos 2023-I</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Bienvenida</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./parte-i-introduccion-programacion_computadoras.html" class="sidebar-item-text sidebar-link">I - Introducción a la programación de computadoras</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-pensamiento_computacional-arquitectura_computadoras-lenguajes_programacion.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Pensamiento computacional, arquitectura de computadoras y lenguajes de programación</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-interaccion_humano_computadora.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Interacción humano-computadora</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-gdal.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">GDAL - biblioteca para lectura y escritura de datos geoespaciales con interfaz de línea de comandos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-reproducibilidad.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Reproducibilidad</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-markdown.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Markdown - lenguaje de marcado</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-git.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Git - sistema de control de versiones</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./parte-ii-r.html" class="sidebar-item-text sidebar-link">II - El lenguaje de programación R</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-r.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">R - lenguaje de programación para análisis estadístico</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-quarto.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Quarto - sistema de publicación técnica y científica</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-tidyverse.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Tidyverse - colección de paquetes para ciencia de datos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-dplyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">dplyr - gramática para manipulación de datos</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./parte-iii-graficacion.html" class="sidebar-item-text sidebar-link">III - Graficación estadística con R</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-ggplot2-plotly.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">ggplot2 y plotly - creación declarativa de gráficos interactivos</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./parte-iv-geoespacial.html" class="sidebar-item-text sidebar-link">IV - El ecosistema geoespacial de R</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-introduccion-manejo-datos-geoespaciales.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Introducción al manejo de datos geoespaciales con R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-operaciones-datos-atributos.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Operaciones con datos de atributos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-operaciones-datos-espaciales.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Operaciones con datos espaciales</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./parte-v-aplicaciones-interactivas.html" class="sidebar-item-text sidebar-link">V - Aplicaciones interactivas de visualización y análisis de datos</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-shiny.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">shiny - marco de trabajo para desarrollo de aplicaciones web interactivas</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./parte-vi-evaluaciones.html" class="sidebar-item-text sidebar-link">Evaluaciones</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./examen_corto-01.html" class="sidebar-item-text sidebar-link">Examen corto 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tarea-01.html" class="sidebar-item-text sidebar-link">Tarea 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./examen_corto-02.html" class="sidebar-item-text sidebar-link">Examen corto 2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./examen_corto-03.html" class="sidebar-item-text sidebar-link">Examen corto 3</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tarea-02.html" class="sidebar-item-text sidebar-link">Tarea 2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./examen_corto-04.html" class="sidebar-item-text sidebar-link">Examen corto 4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tarea-03-grupo-001.html" class="sidebar-item-text sidebar-link">Tarea 3 - Grupo 001</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tarea-03-grupo-002.html" class="sidebar-item-text sidebar-link active">Tarea 3 - Grupo 002</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./parte-vii-varios.html" class="sidebar-item-text sidebar-link">Varios</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./error-render-datatable.html" class="sidebar-item-text sidebar-link">Error al ejecutar Render en documentos Quarto</a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Indice de contenidos</h2>
+   
+  <ul>
+  <li><a href="#fecha-y-hora-límite-de-entrega" id="toc-fecha-y-hora-límite-de-entrega" class="nav-link active" data-scroll-target="#fecha-y-hora-límite-de-entrega">Fecha y hora límite de entrega</a></li>
+  <li><a href="#descripción-general" id="toc-descripción-general" class="nav-link" data-scroll-target="#descripción-general">Descripción general</a></li>
+  <li><a href="#datos" id="toc-datos" class="nav-link" data-scroll-target="#datos">Datos</a></li>
+  <li><a href="#entregables" id="toc-entregables" class="nav-link" data-scroll-target="#entregables">Entregables</a></li>
+  <li><a href="#desarrollo" id="toc-desarrollo" class="nav-link" data-scroll-target="#desarrollo">Desarrollo</a>
+  <ul class="collapse">
+  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción">1 - Introducción</a></li>
+  <li><a href="#carga-de-datos-y-paquetes" id="toc-carga-de-datos-y-paquetes" class="nav-link" data-scroll-target="#carga-de-datos-y-paquetes">2 - Carga de datos y paquetes</a></li>
+  <li><a href="#mapa-de-riqueza-de-especies-de-mamíferos-en-regiones-socioeconómicas" id="toc-mapa-de-riqueza-de-especies-de-mamíferos-en-regiones-socioeconómicas" class="nav-link" data-scroll-target="#mapa-de-riqueza-de-especies-de-mamíferos-en-regiones-socioeconómicas">3 - Mapa de riqueza de especies de mamíferos en regiones socioeconómicas</a></li>
+  <li><a href="#tabla-de-riqueza-de-especies-de-mamíferos-en-regiones-socioeconómicas" id="toc-tabla-de-riqueza-de-especies-de-mamíferos-en-regiones-socioeconómicas" class="nav-link" data-scroll-target="#tabla-de-riqueza-de-especies-de-mamíferos-en-regiones-socioeconómicas">4 - Tabla de riqueza de especies de mamíferos en regiones socioeconómicas</a></li>
+  <li><a href="#gráficos-estadísticos" id="toc-gráficos-estadísticos" class="nav-link" data-scroll-target="#gráficos-estadísticos">5 - Gráficos estadísticos</a></li>
+  </ul></li>
+  <li><a href="#calificación" id="toc-calificación" class="nav-link" data-scroll-target="#calificación">Calificación</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Tarea 3 - Grupo 002</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="fecha-y-hora-límite-de-entrega" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="fecha-y-hora-límite-de-entrega">Fecha y hora límite de entrega</h2>
+<p><strong>Miércoles 28 de junio de 2023, 10:59 a.m.</strong></p>
+</section>
+<section id="descripción-general" class="level2">
+<h2 class="anchored" data-anchor-id="descripción-general">Descripción general</h2>
+<p>Esta tarea consiste en desarrollar un documento Quarto con bloques de código en R que generen tablas, gráficos estadísticos y mapas sobre <a href="https://es.wikipedia.org/wiki/Riqueza_de_especies">riqueza de especies</a> (i.e.&nbsp;cantidad de especies) de <a href="https://es.wikipedia.org/wiki/Mammalia">mamíferos (clase <em>Mammalia</em>)</a> en las <a href="https://es.wikipedia.org/wiki/Regiones_socioecon%C3%B3micas_de_Costa_Rica">regiones socioeconómicas</a> de Costa Rica. El documento debe publicarse como una página web en GitHub Pages.</p>
+<p>Cada estudiante debe mostrar que es capaz de:</p>
+<ol type="1">
+<li>Escribir código fuente en el lenguaje de programación R y utilizar funciones contenidas en paquetes como readr, dplyr, ggplot2, plotly, DT, sf y leaflet, entre otros, para leer datos, procesarlos y generar visualizaciones como tablas, gráficos estadísticos y mapas.</li>
+<li>Manejar datos geoespaciales con R.</li>
+<li>Escribir documentos en el sistema de publicación científica y técnica Quarto que combinen narrativa en Markdown con bloques de código en R.</li>
+<li>Publicar documentos Quarto como páginas web en GitHub Pages.</li>
+<li>Analizar y corregir errores de programación.</li>
+</ol>
+<p><strong>Esta tarea puede realizarse individualmente o en parejas. En este último caso, solo un estudiante debe entregar la tarea en Mediación Virtual e indicar ahí el nombre de su compañero</strong>.</p>
+</section>
+<section id="datos" class="level2">
+<h2 class="anchored" data-anchor-id="datos">Datos</h2>
+<p>Para realizar esta tarea, se requieren dos conjuntos de datos:</p>
+<ol type="1">
+<li>Regiones socioeconómicas (también llamadas regiones de planificación) de Costa Rica. Este conjunto de datos está contenido en el <a href="https://repositoriotec.tec.ac.cr/handle/2238/6749?show=full">Atlas digital de Costa Rica 2014</a> y fue facilitado por el Ministerio de Planificación (Mideplán). Los nombres de las regiones se actualizaron a la <a href="https://documentos.mideplan.go.cr/share/s/eZ8HYuxgTl6xCHx3ZAEBrg">versión más reciente</a>. Además, las geometrías se simplificaron para reducir el tamaño del archivo, el cual está disponible en el siguiente enlace:</li>
+</ol>
+<p><a href="https://github.com/gf0604-procesamientodatosgeograficos/2023-i/blob/main/datos/mideplan/regiones_socioeconomicas_simp_10m.geojson">Archivo GeoJSON de regiones socioeconómicas de Costa Rica</a></p>
+<ol start="2" type="1">
+<li>Registros de presencia de mamíferos en Costa Rica. Este archivo CSV proviene de una <a href="https://doi.org/10.15468/dl.2psj9q">consulta al portal de datos de la Infraestructura Mundial de Información en Biodiversidad (GBIF)</a>. Para reducir el tamaño del archivo, se suprimieron algunas columnas no indispensables y también las filas con identificaciones en niveles superiores a especie. El archivo está disponible en el siguiente enlace:</li>
+</ol>
+<p><a href="https://github.com/gf0604-procesamientodatosgeograficos/2023-i/blob/main/datos/gbif/mamiferos.csv">Archivo CSV de registros de presencia de mamíferos de Costa Rica</a></p>
+</section>
+<section id="entregables" class="level2">
+<h2 class="anchored" data-anchor-id="entregables">Entregables</h2>
+<p>Debe entregar dos direcciones web:</p>
+<ol type="1">
+<li>Dirección de un repositorio en GitHub con el código fuente y los datos. Específicamente, el repositorio debe contener:
+<ol type="a">
+<li>Un documento Quarto llamado <code>index.qmd</code> con el código en R y la sintaxis Markdown necesarios para generar las salidas especificadas en la sección Desarrollo.</li>
+<li>Un documento llamado <code>index.html</code> generado a partir de <code>index.qmd</code>.</li>
+<li>Los dos archivos de datos.</li>
+<li>Otros archivos necesarios (ej. el directorio <code>index_files</code>).</li>
+</ol></li>
+<li>Dirección de un sitio web en GitHub Pages publicado a partir del repositorio GitHub del punto 1.</li>
+</ol>
+<p>La entrega debe realizarse a través de la plataforma Mediación Virtual.</p>
+</section>
+<section id="desarrollo" class="level2">
+<h2 class="anchored" data-anchor-id="desarrollo">Desarrollo</h2>
+<p>El documento Quarto debe cumplir con las siguientes características generales:</p>
+<ul>
+<li>En general, debe estar ordenado y bien presentado (incluyendo la redacción y la ortografía).</li>
+<li>El código fuente debe ser legible y ordenado. Considere usar las opciones <code>code-fold</code> y <code>code-summary</code> de Quarto.</li>
+<li>Debe tener una tabla de contenidos.</li>
+<li>Debe estar completamente en español (incluyendo los controles de las tablas y los gráficos).</li>
+<li>Debe utilizar un <a href="https://quarto.org/docs/output-formats/html-themes.html">estilo (<em>theme</em>) de Quarto para HTML</a>.</li>
+</ul>
+<p>El documento debe incluir las siguientes secciones y contenidos:</p>
+<section id="introducción" class="level3">
+<h3 class="anchored" data-anchor-id="introducción">1 - Introducción</h3>
+<p>Breve explicación del contenido del documento (uno o dos párrafos) y mención y enlaces a las fuentes de datos:</p>
+<ul>
+<li><a href="https://repositoriotec.tec.ac.cr/handle/2238/6749?show=full">Regiones socioeconómicas de Costa Rica contenidas en el Atlas Digital de Costa Rica 2014</a></li>
+<li><a href="https://doi.org/10.15468/dl.2psj9q">Registros de presencia de mamíferos de Costa Rica obtenidos a través de una consulta al portal de datos de GBIF</a></li>
+</ul>
+</section>
+<section id="carga-de-datos-y-paquetes" class="level3">
+<h3 class="anchored" data-anchor-id="carga-de-datos-y-paquetes">2 - Carga de datos y paquetes</h3>
+<p>Bloques de código en R para cargar los paquetes y los datos necesarios. Recuerde que debe cargarlos una sola vez.</p>
+</section>
+<section id="mapa-de-riqueza-de-especies-de-mamíferos-en-regiones-socioeconómicas" class="level3">
+<h3 class="anchored" data-anchor-id="mapa-de-riqueza-de-especies-de-mamíferos-en-regiones-socioeconómicas">3 - Mapa de riqueza de especies de mamíferos en regiones socioeconómicas</h3>
+<p>Mapa leaflet interactivo con las siguientes capas y controles:</p>
+<ul>
+<li>Dos capas base de tipo <em>tiles</em> (teselas) (ej. OSM, Stamen, ESRI).</li>
+<li>Una capa de regiones socioeconómicas (polígonos) coloreada de acuerdo con la riqueza de especies de mamíferos en cada región (i.e.&nbsp;un <a href="https://es.wikipedia.org/wiki/Mapa_coropl%C3%A9tico">mapa de coropletas</a>). Al hacer clic sobre un polígono, la ventana emergente debe mostrar el nombre de la región y su riqueza de especies de mamíferos.</li>
+<li>Una leyenda que muestre el significado de los colores usados en la capa de regiones socioeconómicas.</li>
+<li>Una capa de registros de presencia de mamíferos (puntos). Al hacer clic sobre un punto, la ventana debe mostrar el nombre de la especie. <strong>No es necesario crear una leyenda para esta capa, ya que es difícil de leer debido que contiene muchas especies</strong>.</li>
+<li>Un control de capas.</li>
+</ul>
+</section>
+<section id="tabla-de-riqueza-de-especies-de-mamíferos-en-regiones-socioeconómicas" class="level3">
+<h3 class="anchored" data-anchor-id="tabla-de-riqueza-de-especies-de-mamíferos-en-regiones-socioeconómicas">4 - Tabla de riqueza de especies de mamíferos en regiones socioeconómicas</h3>
+<p>Tabla interactiva generada con el paquete DT que muestre la riqueza (i.e.&nbsp;cantidad) de especies de mamíferos en cada región socioeconómica. Debe tener una fila por cada región socioeconómica y dos columnas:</p>
+<ul>
+<li><code>Nombre de la región socioeconómica</code></li>
+<li><code>Riqueza de especies de mamíferos</code></li>
+</ul>
+<p>Los encabezados de la tabla deben estar en español y ser significativos. Sugerencia: use el argumento <code>colnames</code> de la función <code>datatable()</code> para especificar los encabezados de las columnas.</p>
+</section>
+<section id="gráficos-estadísticos" class="level3">
+<h3 class="anchored" data-anchor-id="gráficos-estadísticos">5 - Gráficos estadísticos</h3>
+<p>Los gráficos deben programarse con ggplot2 y convertirse a plotly con la función <code>ggplotly()</code>, para que sean interactivos. Todos deben tener:</p>
+<ul>
+<li>Título.</li>
+<li>Etiquetas en los ejes x e y.</li>
+<li>Un mismo estilo (<em>theme</em>) para todos, ya sea uno de los <a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">estilos incluídos en ggplot2</a>, en <a href="https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/">ggthemes</a> o en <a href="https://github.com/hrbrmstr/hrbrthemes">hrbrthemes</a>.</li>
+</ul>
+<p>Procure que todos los componentes de los gráficos sean legibles. Considere rotar los ejes o inclinar las etiquetas, si es necesario.</p>
+<p>Los siguientes son los gráficos que deben elaborarse:</p>
+<section id="gráfico-de-barras-de-riqueza-de-especies-de-mamíferos-en-regiones-socioeconómicas" class="level4">
+<h4 class="anchored" data-anchor-id="gráfico-de-barras-de-riqueza-de-especies-de-mamíferos-en-regiones-socioeconómicas">5.1 - Gráfico de barras de riqueza de especies de mamíferos en regiones socioeconómicas</h4>
+<p>Este gráfico muestra los mismos datos que la tabla del punto 4. Debe contener una barra por cada región socioeconómica y su longitud debe mostrar su riqueza de especies de mamíferos.</p>
+<ul>
+<li>Las barras deben estar ordenadas por longitud (de mayor a menor o de menor a mayor).</li>
+<li>Al colocar el ratón sobre una barra, la ventana emergente debe mostrar la región socioecocómica y su riqueza de especies de mamíferos.</li>
+</ul>
+</section>
+<section id="gráfico-de-barras-de-cantidad-de-registros-de-presencia-de-bradypus-variegatus-perezoso-de-tres-dedos-por-año-desde-2000-inclusive-hasta-2023-inclusive" class="level4">
+<h4 class="anchored" data-anchor-id="gráfico-de-barras-de-cantidad-de-registros-de-presencia-de-bradypus-variegatus-perezoso-de-tres-dedos-por-año-desde-2000-inclusive-hasta-2023-inclusive">5.2 - Gráfico de barras de cantidad de registros de presencia de <a href="https://es.wikipedia.org/wiki/Bradypus_variegatus"><em>Bradypus variegatus</em> (perezoso de tres dedos)</a> por año, desde 2000 (inclusive) hasta 2023 (inclusive)</h4>
+<p>Este gráfico debe contener una barra por cada año y su longitud debe reflejar la cantidad de registros de presencia de <em>Bradypus variegatus</em> para ese año.</p>
+<ul>
+<li>Las barras deben estar ordenadas por año (2000, 2001, …, 2022, 2023).</li>
+<li>Al colocar el ratón sobre una barra, la ventana emergente debe mostrar el año y la cantidad de registros de presencia.</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="calificación" class="level2">
+<h2 class="anchored" data-anchor-id="calificación">Calificación</h2>
+<ul>
+<li>Presentación general del repositorio GitHub y de la página en GitHub Pages (tabla de contenidos, uso de estilos, código fuente, datos): 20%</li>
+<li>Introducción: 5%</li>
+<li>Mapa: 25%</li>
+<li>Tabla: 10%</li>
+<li>Gráfico de riqueza de especies: 20%</li>
+<li>Gráfico de cantidad de registros de <em>Bradypus variegatus</em> por año: 20%</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiada");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./tarea-03-grupo-001.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Tarea 3 - Grupo 001</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./parte-vii-varios.html" class="pagination-link">
+        <span class="nav-page-text">Varios</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

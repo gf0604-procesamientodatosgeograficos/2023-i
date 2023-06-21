@@ -1,0 +1,109 @@
+# Tarea 3 - Grupo 002 {.unnumbered}
+
+## Fecha y hora límite de entrega {.unnumbered}
+**Miércoles 28 de junio de 2023, 10:59 a.m.**  
+
+## Descripción general
+Esta tarea consiste en desarrollar un documento Quarto con bloques de código en R que generen tablas, gráficos estadísticos y mapas sobre [riqueza de especies](https://es.wikipedia.org/wiki/Riqueza_de_especies) (i.e. cantidad de especies) de [mamíferos (clase *Mammalia*)](https://es.wikipedia.org/wiki/Mammalia) en las [regiones socioeconómicas](https://es.wikipedia.org/wiki/Regiones_socioecon%C3%B3micas_de_Costa_Rica) de Costa Rica. El documento debe publicarse como una página web en GitHub Pages.
+
+Cada estudiante debe mostrar que es capaz de:
+
+1. Escribir código fuente en el lenguaje de programación R y utilizar funciones contenidas en paquetes como readr, dplyr, ggplot2, plotly, DT, sf y leaflet, entre otros, para leer datos, procesarlos y generar visualizaciones como tablas, gráficos estadísticos y mapas.
+2. Manejar datos geoespaciales con R.
+3. Escribir documentos en el sistema de publicación científica y técnica Quarto que combinen narrativa en Markdown con bloques de código en R.
+4. Publicar documentos Quarto como páginas web en GitHub Pages.
+5. Analizar y corregir errores de programación.
+
+**Esta tarea puede realizarse individualmente o en parejas. En este último caso, solo un estudiante debe entregar la tarea en Mediación Virtual e indicar ahí el nombre de su compañero**.
+
+## Datos
+Para realizar esta tarea, se requieren dos conjuntos de datos:
+
+1. Regiones socioeconómicas (también llamadas regiones de planificación) de Costa Rica. Este conjunto de datos está contenido en el [Atlas digital de Costa Rica 2014](https://repositoriotec.tec.ac.cr/handle/2238/6749?show=full) y fue facilitado por el Ministerio de Planificación (Mideplán). Los nombres de las regiones se actualizaron a la [versión más reciente](https://documentos.mideplan.go.cr/share/s/eZ8HYuxgTl6xCHx3ZAEBrg). Además, las geometrías se simplificaron para reducir el tamaño del archivo, el cual está disponible en el siguiente enlace:
+
+[Archivo GeoJSON de regiones socioeconómicas de Costa Rica](https://github.com/gf0604-procesamientodatosgeograficos/2023-i/blob/main/datos/mideplan/regiones_socioeconomicas_simp_10m.geojson)
+
+2. Registros de presencia de mamíferos en Costa Rica. Este archivo CSV proviene de una [consulta al portal de datos de la Infraestructura Mundial de Información en Biodiversidad (GBIF)](https://doi.org/10.15468/dl.2psj9q). Para reducir el tamaño del archivo, se suprimieron algunas columnas no indispensables y también las filas con identificaciones en niveles superiores a especie. El archivo está disponible en el siguiente enlace:
+
+[Archivo CSV de registros de presencia de mamíferos de Costa Rica](https://github.com/gf0604-procesamientodatosgeograficos/2023-i/blob/main/datos/gbif/mamiferos.csv)
+
+## Entregables
+Debe entregar dos direcciones web:
+
+1.  Dirección de un repositorio en GitHub con el código fuente y los datos. Específicamente, el repositorio debe contener:
+    a. Un documento Quarto llamado `index.qmd` con el código en R y la sintaxis Markdown necesarios para generar las salidas especificadas en la sección Desarrollo.
+    b. Un documento llamado `index.html` generado a partir de `index.qmd`.
+    c. Los dos archivos de datos.
+    d. Otros archivos necesarios (ej. el directorio `index_files`).    
+    
+2. Dirección de un sitio web en GitHub Pages publicado a partir del repositorio GitHub del punto 1.
+
+La entrega debe realizarse a través de la plataforma Mediación Virtual.
+
+## Desarrollo
+El documento Quarto debe cumplir con las siguientes características generales:
+
+- En general, debe estar ordenado y bien presentado (incluyendo la redacción y la ortografía).
+- El código fuente debe ser legible y ordenado. Considere usar las opciones `code-fold` y `code-summary` de Quarto.
+- Debe tener una tabla de contenidos.
+- Debe estar completamente en español (incluyendo los controles de las tablas y los gráficos).
+- Debe utilizar un [estilo (*theme*) de Quarto para HTML](https://quarto.org/docs/output-formats/html-themes.html).
+
+El documento debe incluir las siguientes secciones y contenidos:
+
+### 1 - Introducción
+Breve explicación del contenido del documento (uno o dos párrafos) y mención y enlaces a las fuentes de datos:
+
+- [Regiones socioeconómicas de Costa Rica contenidas en el Atlas Digital de Costa Rica 2014](https://repositoriotec.tec.ac.cr/handle/2238/6749?show=full)
+- [Registros de presencia de mamíferos de Costa Rica obtenidos a través de una consulta al portal de datos de GBIF](https://doi.org/10.15468/dl.2psj9q)
+
+### 2 - Carga de datos y paquetes
+Bloques de código en R para cargar los paquetes y los datos necesarios. Recuerde que debe cargarlos una sola vez.
+
+### 3 - Mapa de riqueza de especies de mamíferos en regiones socioeconómicas
+Mapa leaflet interactivo con las siguientes capas y controles:
+
+- Dos capas base de tipo *tiles* (teselas) (ej. OSM, Stamen, ESRI).
+- Una capa de regiones socioeconómicas (polígonos) coloreada de acuerdo con la riqueza de especies de mamíferos en cada región (i.e. un [mapa de coropletas](https://es.wikipedia.org/wiki/Mapa_coropl%C3%A9tico)). Al hacer clic sobre un polígono, la ventana emergente debe mostrar el nombre de la región y su riqueza de especies de mamíferos.
+- Una leyenda que muestre el significado de los colores usados en la capa de regiones socioeconómicas.
+- Una capa de registros de presencia de mamíferos (puntos). Al hacer clic sobre un punto, la ventana debe mostrar el nombre de la especie. **No es necesario crear una leyenda para esta capa, ya que es difícil de leer debido que contiene muchas especies**.
+- Un control de capas.
+
+### 4 - Tabla de riqueza de especies de mamíferos en regiones socioeconómicas
+Tabla interactiva generada con el paquete DT que muestre la riqueza (i.e. cantidad) de especies de mamíferos en cada región socioeconómica. Debe tener una fila por cada región socioeconómica y dos columnas:
+
+- `Nombre de la región socioeconómica`
+- `Riqueza de especies de mamíferos`
+
+Los encabezados de la tabla deben estar en español y ser significativos. Sugerencia: use el argumento `colnames` de la función `datatable()` para especificar los encabezados de las columnas.
+
+### 5 - Gráficos estadísticos
+Los gráficos deben programarse con ggplot2 y convertirse a plotly con la función `ggplotly()`, para que sean interactivos. Todos deben tener:
+
+- Título.
+- Etiquetas en los ejes x e y.
+- Un mismo estilo (*theme*) para todos, ya sea uno de los [estilos incluídos en ggplot2](https://ggplot2.tidyverse.org/reference/ggtheme.html), en [ggthemes](https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/) o en [hrbrthemes](https://github.com/hrbrmstr/hrbrthemes).
+
+Procure que todos los componentes de los gráficos sean legibles. Considere rotar los ejes o inclinar las etiquetas, si es necesario.
+
+Los siguientes son los gráficos que deben elaborarse:
+
+#### 5.1 - Gráfico de barras de riqueza de especies de mamíferos en regiones socioeconómicas
+Este gráfico muestra los mismos datos que la tabla del punto 4. Debe contener una barra por cada región socioeconómica y su longitud debe mostrar su riqueza de especies de mamíferos.
+
+- Las barras deben estar ordenadas por longitud (de mayor a menor o de menor a mayor).
+- Al colocar el ratón sobre una barra, la ventana emergente debe mostrar la región socioecocómica y su riqueza de especies de mamíferos.
+
+#### 5.2 - Gráfico de barras de cantidad de registros de presencia de [*Bradypus variegatus* (perezoso de tres dedos)](https://es.wikipedia.org/wiki/Bradypus_variegatus) por año, desde 2000 (inclusive) hasta 2023 (inclusive)
+Este gráfico debe contener una barra por cada año y su longitud debe reflejar la cantidad de registros de presencia de *Bradypus variegatus* para ese año.
+
+- Las barras deben estar ordenadas por año (2000, 2001, ..., 2022, 2023).
+- Al colocar el ratón sobre una barra, la ventana emergente debe mostrar el año y la cantidad de registros de presencia.
+
+## Calificación
+- Presentación general del repositorio GitHub y de la página en GitHub Pages (tabla de contenidos, uso de estilos, código fuente, datos): 20%
+- Introducción: 5%
+- Mapa: 25%
+- Tabla: 10%
+- Gráfico de riqueza de especies: 20%
+- Gráfico de cantidad de registros de *Bradypus variegatus* por año: 20%
