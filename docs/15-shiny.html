@@ -367,11 +367,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </ul></li>
   <li><a href="#resumen" id="toc-resumen" class="nav-link" data-scroll-target="#resumen"><span class="toc-section-number">15.2</span>  Resumen</a></li>
   <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="toc-section-number">15.3</span>  Introducción</a></li>
-  <li><a href="#instalación-y-carga" id="toc-instalación-y-carga" class="nav-link" data-scroll-target="#instalación-y-carga"><span class="toc-section-number">15.4</span>  Instalación y carga</a></li>
+  <li><a href="#instalación" id="toc-instalación" class="nav-link" data-scroll-target="#instalación"><span class="toc-section-number">15.4</span>  Instalación</a></li>
   <li><a href="#arquitectura" id="toc-arquitectura" class="nav-link" data-scroll-target="#arquitectura"><span class="toc-section-number">15.5</span>  Arquitectura</a></li>
-  <li><a href="#ejemplo" id="toc-ejemplo" class="nav-link" data-scroll-target="#ejemplo"><span class="toc-section-number">15.6</span>  Ejemplo</a></li>
-  <li><a href="#ejercicios" id="toc-ejercicios" class="nav-link" data-scroll-target="#ejercicios"><span class="toc-section-number">15.7</span>  Ejercicios</a></li>
-  <li><a href="#recursos-de-interés" id="toc-recursos-de-interés" class="nav-link" data-scroll-target="#recursos-de-interés"><span class="toc-section-number">15.8</span>  Recursos de interés</a></li>
+  <li><a href="#ejemplo-de-aplicación-básica" id="toc-ejemplo-de-aplicación-básica" class="nav-link" data-scroll-target="#ejemplo-de-aplicación-básica"><span class="toc-section-number">15.6</span>  Ejemplo de aplicación básica</a></li>
+  <li><a href="#bloques-para-compartir-código-y-datos" id="toc-bloques-para-compartir-código-y-datos" class="nav-link" data-scroll-target="#bloques-para-compartir-código-y-datos"><span class="toc-section-number">15.7</span>  Bloques para compartir código y datos</a>
+  <ul class="collapse">
+  <li><a href="#context-setup" id="toc-context-setup" class="nav-link" data-scroll-target="#context-setup"><span class="toc-section-number">15.7.1</span>  <code>context: setup</code></a></li>
+  <li><a href="#context-data" id="toc-context-data" class="nav-link" data-scroll-target="#context-data"><span class="toc-section-number">15.7.2</span>  <code>context: data</code></a></li>
+  </ul></li>
+  <li><a href="#bloques-para-configurar-la-interfaz-de-usuario" id="toc-bloques-para-configurar-la-interfaz-de-usuario" class="nav-link" data-scroll-target="#bloques-para-configurar-la-interfaz-de-usuario"><span class="toc-section-number">15.8</span>  Bloques para configurar la interfaz de usuario</a>
+  <ul class="collapse">
+  <li><a href="#panel-sidebar" id="toc-panel-sidebar" class="nav-link" data-scroll-target="#panel-sidebar"><span class="toc-section-number">15.8.1</span>  <code>panel: sidebar</code></a></li>
+  <li><a href="#panel-fill-y-panel-center" id="toc-panel-fill-y-panel-center" class="nav-link" data-scroll-target="#panel-fill-y-panel-center"><span class="toc-section-number">15.8.2</span>  <code>panel: fill</code> y <code>panel: center</code></a></li>
+  <li><a href="#funciones-reactivas" id="toc-funciones-reactivas" class="nav-link" data-scroll-target="#funciones-reactivas"><span class="toc-section-number">15.8.3</span>  Funciones reactivas</a></li>
+  </ul></li>
+  <li><a href="#ejercicios" id="toc-ejercicios" class="nav-link" data-scroll-target="#ejercicios"><span class="toc-section-number">15.9</span>  Ejercicios</a></li>
+  <li><a href="#recursos-de-interés" id="toc-recursos-de-interés" class="nav-link" data-scroll-target="#recursos-de-interés"><span class="toc-section-number">15.10</span>  Recursos de interés</a></li>
   </ul>
 </nav>
     </div>
@@ -404,30 +415,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="resumen" class="level2" data-number="15.2">
 <h2 data-number="15.2" class="anchored" data-anchor-id="resumen"><span class="header-section-number">15.2</span> Resumen</h2>
 <p>Shiny es un paquete de R que facilita el desarrollo de aplicaciones web interactivas. Las aplicaciones shiny se componen de una interfaz de usuario y de un servidor. En la interfaz de usuario, este puede realizar operaciones como filtros, búsquedas y ordenamientos de datos, entre otras. El servidor se encarga de procesar los datos de acuerdo con los parámetros especificados y de retornar los resultados a la interfaz de usuario.</p>
+<p>Además de los bloques de código en R para la interfaz de usuario y el servidor, shiny proporciona bloques para compartir código y datos. También para personalizar la interfaz de usuario.</p>
+<p>Las funciones reactivas de shiny se ejecutan cada vez que el usuario cambia los controles de la interfaz, lo que permite a las aplicaciones shiny responder dinámicamente a las entradas del usuario.</p>
 </section>
 <section id="introducción" class="level2" data-number="15.3">
 <h2 data-number="15.3" class="anchored" data-anchor-id="introducción"><span class="header-section-number">15.3</span> Introducción</h2>
 <p>En una aplicación interactiva, el usuario puede configurar las salidas, usualmente mediante una interfaz que le permite realizar operaciones como filtros, búsquedas y ordenamientos, entre otras. <a href="https://shiny.posit.co/">Shiny</a> es un paquete de R que facilita el desarrollo de este tipo de aplicaciones.</p>
-<p>Las aplicaciones shiny requieren un <a href="https://www.rstudio.com/products/shiny/shiny-server/">servidor</a>, el cual es un proceso que puede alojarse en cualquier computador habilitado para ejecutar código en R como, por ejemplo, la estación de trabajo del programador (esta opción se usa principalmente para efectos de desarrollo y pruebas), un servidor ubicado en la red de una organización o un servidor en la nube (ej. <a href="https://www.shinyapps.io/">shinyapps.io</a>, <a href="https://www.rstudio.com/products/connect/">RStudio Connect</a>).</p>
+<p>Las aplicaciones shiny requieren un <a href="https://www.rstudio.com/products/shiny/shiny-server/">servidor</a>, el cual es un proceso que puede alojarse en cualquier computador habilitado para ejecutar código en R como, por ejemplo, la estación de trabajo del programador (esta opción se usa principalmente para efectos de desarrollo y pruebas), un servidor ubicado en la red de una organización o un servidor en la nube (ej. <a href="https://www.shinyapps.io/">shinyapps.io</a>, <a href="https://posit.co/products/enterprise/connect/">Posit Connect</a>, <a href="https://posit.co/products/cloud/cloud/">Posit Cloud</a>).</p>
 <p>Para ejemplos de aplicaciones shiny, puede visitar la siguiente <a href="https://shiny.rstudio.com/gallery/">galería</a>.</p>
 </section>
-<section id="instalación-y-carga" class="level2" data-number="15.4">
-<h2 data-number="15.4" class="anchored" data-anchor-id="instalación-y-carga"><span class="header-section-number">15.4</span> Instalación y carga</h2>
+<section id="instalación" class="level2" data-number="15.4">
+<h2 data-number="15.4" class="anchored" data-anchor-id="instalación"><span class="header-section-number">15.4</span> Instalación</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instalación de shiny</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"shiny"</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Instalación de rsconnect, para conectarse a</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># shinyapps.io, RStudio Connect y otras plataformas similares</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"rsconnect"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># shinyapps.io, Posit Connect y otras plataformas similares</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"rsconnect"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Instalación de quarto</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"quarto"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carga de shiny</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Carga de rsconnect</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rsconnect)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<p>La carga de estos paquetes se realiza automáticamente en una aplicación shiny.</p>
 </section>
 <section id="arquitectura" class="level2" data-number="15.5">
 <h2 data-number="15.5" class="anchored" data-anchor-id="arquitectura"><span class="header-section-number">15.5</span> Arquitectura</h2>
@@ -442,81 +452,180 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <p>Para más información sobre la arquitectura de aplicaciones shiny, se recomienda leer <a href="https://www.r-bloggers.com/2021/04/the-anatomy-of-a-shiny-application/">The Anatomy of a Shiny Application</a>.</p>
 </section>
-<section id="ejemplo" class="level2" data-number="15.6">
-<h2 data-number="15.6" class="anchored" data-anchor-id="ejemplo"><span class="header-section-number">15.6</span> Ejemplo</h2>
-<p>El siguiente documento Quarto contiene una aplicación shiny que muestra la distribución de la duración de los tiempos de espera entre erupciones del <a href="https://rdrr.io/r/datasets/faithful.html">géiser “Old Faithful”</a>, a través de un histograma. El usuario especifica la cantidad de <em>bins</em> del histograma a través de un widget de tipo <a href="https://shiny.posit.co/r/reference/shiny/1.3.1/sliderinput">sliderInput</a>, luego el servidor genera el histograma con la cantidad de <em>bins</em> especificada y lo retorna a la interfaz de usuario para desplegarlo.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Old Faithful"</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="an">server:</span><span class="co"> shiny</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: interfaz-usuario</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Este bloque de código dibuja la interfaz de usuario,</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># tanto los controles de entrada como los de salida</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Widget de tipo "slider" para entrada de datos</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="fu">sliderInput</span>(</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">inputId =</span> <span class="st">"cantidad_bins"</span>, <span class="co"># "cantidad_bins" es el identificador del widget de entrada</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">'Cantidad de bins del histograma:'</span>, </span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">min =</span> <span class="dv">1</span>, <span class="at">max =</span> <span class="dv">50</span>, <span class="at">value =</span> <span class="dv">30</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de salida, con el identificador "histograma"</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="fu">plotOutput</span>(<span class="at">outputId =</span> <span class="st">"histograma"</span>)</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: servidor</span></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="co">#| context: server</span></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Este bloque realiza el procesamiento en el servidor.</span></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Generación del gráfico de salida, el cual va a ser retornado </span></span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="co"># por la función plotOutput() a la interfaz de usuario</span></span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>output<span class="sc">$</span>histograma <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Vector con datos de duración de tiempos de espera entre erupciones</span></span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>  tiempo_espera <span class="ot">&lt;-</span> faithful[, <span class="dv">2</span>]  </span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>  <span class="co"># "Bins" del histograma que se generan con base</span></span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>  <span class="co"># en el valor especificado por el usuario en el widget de entrada</span></span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>  bins <span class="ot">&lt;-</span> <span class="fu">seq</span>(</span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">from =</span> <span class="fu">min</span>(tiempo_espera), </span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">to =</span> <span class="fu">max</span>(tiempo_espera), </span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">length.out =</span> input<span class="sc">$</span>cantidad_bins <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Histograma que se retorna a la interfaz de usuario</span></span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hist</span>(<span class="at">x =</span> tiempo_espera,</span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>       <span class="at">breaks =</span> bins,</span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>       <span class="at">main =</span> <span class="st">'Distribución de duración de tiempos de espera entre erupciones'</span>,</span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>       <span class="at">xlab =</span> <span class="st">"Duración de los tiempos de espera (min)"</span>,</span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>       <span class="at">ylab =</span> <span class="st">"Frecuencia"</span>,</span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="st">'darkgray'</span>,</span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>       <span class="at">border =</span> <span class="st">'white'</span>)</span>
-<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Es de vital importancia comprender que los dos bloques de código del ejemplo anterior se ejecutan en sesiones de R completamente separadas. Esto implica que no es posible, en principio, acceder desde el primer bloque variables definidas en el segundo, ni viceversa. Sin embargo, existen varias estrategias para compartir código, como las que se detallan en <a href="https://quarto.org/docs/interactive/shiny/execution.html#sharing-code">Sharing Code</a>.</p>
+<section id="ejemplo-de-aplicación-básica" class="level2" data-number="15.6">
+<h2 data-number="15.6" class="anchored" data-anchor-id="ejemplo-de-aplicación-básica"><span class="header-section-number">15.6</span> Ejemplo de aplicación básica</h2>
+<p>El siguiente documento Quarto contiene una aplicación shiny que muestra la distribución de la duración de los tiempos de espera entre erupciones del géiser <a href="https://es.wikipedia.org/wiki/Old_Faithful">“Old Faithful”</a>, a través de un histograma. El usuario especifica la cantidad de <em>bins</em> del histograma a través de un widget de tipo <a href="https://shiny.posit.co/r/reference/shiny/1.3.1/sliderinput">sliderInput</a>, luego el servidor genera el histograma con la cantidad de <em>bins</em> especificada y lo retorna a la interfaz de usuario para desplegarlo.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Old Faithful"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="an">server:</span><span class="co"> shiny</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: interfaz-usuario</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Este bloque de código dibuja la interfaz de usuario,</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># tanto los controles de entrada como los de salida</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Widget de tipo "slider" para entrada de datos</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">sliderInput</span>(</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">inputId =</span> <span class="st">"cantidad_bins"</span>, <span class="co"># "cantidad_bins" es el identificador del widget de entrada</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">'Cantidad de bins del histograma:'</span>, </span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">min =</span> <span class="dv">1</span>, <span class="at">max =</span> <span class="dv">50</span>, <span class="at">value =</span> <span class="dv">30</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de salida, con el identificador "histograma"</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="fu">plotOutput</span>(<span class="at">outputId =</span> <span class="st">"histograma"</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: servidor</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="co">#| context: server</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Este bloque realiza el procesamiento en el servidor.</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Generación del gráfico de salida, el cual va a ser retornado </span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="co"># por la función plotOutput() a la interfaz de usuario</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>output<span class="sc">$</span>histograma <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Vector con datos de duración de tiempos de espera entre erupciones</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>  tiempo_espera <span class="ot">&lt;-</span> faithful[, <span class="dv">2</span>]  </span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>  <span class="co"># "Bins" del histograma que se generan con base</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>  <span class="co"># en el valor especificado por el usuario en el widget de entrada</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>  bins <span class="ot">&lt;-</span> <span class="fu">seq</span>(</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">from =</span> <span class="fu">min</span>(tiempo_espera), </span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">to =</span> <span class="fu">max</span>(tiempo_espera), </span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">length.out =</span> input<span class="sc">$</span>cantidad_bins <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Histograma que se retorna a la interfaz de usuario</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hist</span>(<span class="at">x =</span> tiempo_espera,</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>       <span class="at">breaks =</span> bins,</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>       <span class="at">main =</span> <span class="st">'Distribución de duración de tiempos de espera entre erupciones'</span>,</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>       <span class="at">xlab =</span> <span class="st">"Duración de los tiempos de espera (min)"</span>,</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>       <span class="at">ylab =</span> <span class="st">"Frecuencia"</span>,</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="st">'darkgray'</span>,</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>       <span class="at">border =</span> <span class="st">'white'</span>)</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Es de vital importancia comprender que los dos bloques de código del ejemplo anterior se ejecutan en sesiones de R completamente separadas. Esto implica que no es posible, en principio, acceder desde el primer bloque variables definidas en el segundo, ni viceversa. Sin embargo, existen varias estrategias para compartir código, como las que se detallan en <a href="https://quarto.org/docs/interactive/shiny/execution.html#sharing-code">Sharing Code</a> y que se detallan en secciones siguientes de este documento.</p>
 <p>Una forma en la que la interfaz de usuario y el servidor pueden comunicarse, es a través de las listas <code>input</code> y <code>output</code>.</p>
 <ul>
 <li><code>input</code> contiene la lista de widgets de entrada (listas de selección, campos de entrada de texto, botones de radio, etc.). Cada uno de estos widgets tiene un <code>inputId</code> único. En el ejemplo, “cantidad_bins” es el inputId del widget tipo sliderInput. Se referencia como <code>input$cantidad_bins</code> en el bloque del servidor.</li>
 <li><code>output</code> es una lista de componentes que se crean o modifican en el servidor (tablas, gráficos, mapas, etc). y que luego se envían a la interfaz de usuario para su visualización. Para crear o modificar un elemento de <code>output</code>, se utiliza una función <code>render*</code>, y para mostrarlo en la interfaz de usuario, se utiliza una función <code>*Output</code>. En el ejemplo, <code>output$histograma</code> es un gráfico que se crea con la función <code>renderPlot()</code> en función del valor de <code>input$cantidad_bins</code>, y se muestra en la interfaz de usuario con <code>plotOutput()</code>.</li>
 </ul>
-<p>Por otra parte, hay diferencias importantes entre este documento y otros documentos Quarto:</p>
+<p>Nótese que hay diferencias importantes entre este documento y otros documentos Quarto:</p>
 <ol type="1">
 <li><p>La opción <code>server: shiny</code>: en la sección YAML, la cual le indica a Quarto que debe iniciar un servidor Shiny.</p></li>
 <li><p>La opción <code>context: server</code>: en el segundo bloque de código, la cual indica que ese bloque debe ejecutarse en el servidor.</p></li>
 </ol>
-<p>Existen otras opciones para los bloques de código en aplicaciones Shiny:</p>
-<ul>
-<li><code>context: setup</code>: para operaciones iniciales (ej. carga de bibliotecas).</li>
-<li><code>context: data</code>: para datos que se desea compartir entre los bloques de código.</li>
-</ul>
+<p>Existen otros posibles valores de <code>context</code> para los bloques de código en aplicaciones shiny, los cuales permiten compartir código y datos.</p>
 </section>
-<section id="ejercicios" class="level2" data-number="15.7">
-<h2 data-number="15.7" class="anchored" data-anchor-id="ejercicios"><span class="header-section-number">15.7</span> Ejercicios</h2>
+<section id="bloques-para-compartir-código-y-datos" class="level2" data-number="15.7">
+<h2 data-number="15.7" class="anchored" data-anchor-id="bloques-para-compartir-código-y-datos"><span class="header-section-number">15.7</span> Bloques para compartir código y datos</h2>
+<p>Como puede apreciarse en el ejemplo anterior, las aplicaciones shiny pueden contener bloques de código que se ejecutan en tiempo de despliegue (<em>rendering</em>) de la interfaz de usuario y también bloques que se ejecutan en el servidor en respuesta a las acciones del usuario y a los cambios en los valores de entrada. Estos tipos de bloques se identifican respectivamente mediante las opciones <code>context: render</code> (valor por defecto de <code>context</code>) y <code>context: server</code>.</p>
+<p>Existen también otros tipos de bloques, los cuales permiten compartir código y datos.</p>
+<section id="context-setup" class="level3" data-number="15.7.1">
+<h3 data-number="15.7.1" class="anchored" data-anchor-id="context-setup"><span class="header-section-number">15.7.1</span> <code>context: setup</code></h3>
+<p>El código de este tipo de bloques se ejecuta tanto en el contexto de la interfaz de usuario como del servidor. Puede usarse para operaciones que se ejecutan al inicio de una aplicación, como la carga de paquetes.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: inicio</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| context: setup</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Carga de paquetes</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DT)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="context-data" class="level3" data-number="15.7.2">
+<h3 data-number="15.7.2" class="anchored" data-anchor-id="context-data"><span class="header-section-number">15.7.2</span> <code>context: data</code></h3>
+<p>Se utiliza para cargar datos que deben compartirse entre todos los bloques de código. Por ejemplo:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: lectura-datos</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| context: data</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Lectura de archivo CSV</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>felidos <span class="ot">&lt;-</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_read</span>(</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">dsn =</span> <span class="st">"felidos.csv"</span>,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">options =</span> <span class="fu">c</span>(</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>      <span class="st">"X_POSSIBLE_NAMES=decimalLongitude"</span>,</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Y_POSSIBLE_NAMES=decimalLatitude"</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">quiet =</span> <span class="cn">TRUE</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="bloques-para-configurar-la-interfaz-de-usuario" class="level2" data-number="15.8">
+<h2 data-number="15.8" class="anchored" data-anchor-id="bloques-para-configurar-la-interfaz-de-usuario"><span class="header-section-number">15.8</span> Bloques para configurar la interfaz de usuario</h2>
+<p>Por defecto, los widgets que componen la interfaz de usuario se distribuyen automáticamente en la pantalla, usualmente de arriba hacia abajo. Las opciones <code>panel: sidebar</code> y <code>panel: fill</code>, entre otras, permiten personalizar la ubicación de los widgets.</p>
+<p>Para utilizar estas opciones, es necesario especificar <code>page-layout: custom</code> en la sección de YAML. Por ejemplo:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Félidos de Costa Rica"</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> </span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: cosmo</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">    page-layout: custom</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="an">server:</span><span class="co"> shiny</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="panel-sidebar" class="level3" data-number="15.8.1">
+<h3 data-number="15.8.1" class="anchored" data-anchor-id="panel-sidebar"><span class="header-section-number">15.8.1</span> <code>panel: sidebar</code></h3>
+<p>Se utiliza para desplegar un panel lateral como, por ejemplo, para widgets de entrada de datos (ej. listas de selección, campos de entrada de texto, botones de radio). Por ejemplo:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| panel: sidebar</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Vector ordenado de especies</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>lista_especies <span class="ot">&lt;-</span> <span class="fu">unique</span>(felidos<span class="sc">$</span>species)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>lista_especies <span class="ot">&lt;-</span> <span class="fu">sort</span>(lista_especies)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>lista_especies <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Todas"</span>, lista_especies)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Selector de especies</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="fu">selectInput</span>(</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">inputId =</span> <span class="st">"especie"</span>,</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"Especie"</span>,</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">choices =</span> lista_especies,</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">selected =</span> <span class="st">"Todas"</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Un bloque de este tipo debe ir acompañado de otro de tipo <code>panel: fill</code> o <code>panel: center</code>.</p>
+</section>
+<section id="panel-fill-y-panel-center" class="level3" data-number="15.8.2">
+<h3 data-number="15.8.2" class="anchored" data-anchor-id="panel-fill-y-panel-center"><span class="header-section-number">15.8.2</span> <code>panel: fill</code> y <code>panel: center</code></h3>
+<p>Estos bloques rellenan el espacio que queda disponible luego de desplegar un bloque del tipo <code>panel: sidebar</code>. Los bloques <code>panel: center</code> incluyen un margen horizontal alrededor del contenido. Pueden emplearse para desplegar salidas como tablas, gráficos y mapas. Por ejemplo:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| panel: fill</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Tabla interactiva</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dataTableOutput</span>(<span class="st">"tabla"</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="funciones-reactivas" class="level3" data-number="15.8.3">
+<h3 data-number="15.8.3" class="anchored" data-anchor-id="funciones-reactivas"><span class="header-section-number">15.8.3</span> Funciones reactivas</h3>
+<p>Son funciones especiales que se ejecutan cada vez que cambia uno de los datos que utiliza como entrada, como un widget de la interfaz de usuario. En el siguiente bloque de código se define una función reactiva que utiliza el valor especificado por el usuario en una lista de selección para filtrar un conjunto de datos.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Función reactiva para filtrar los registros de presencia de félidos</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># de acuerdo con el valor de una lista de selección</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>filtrar_felidos <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Valor inicial del objeto que va a retornarse</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  felidos_filtrados <span class="ot">&lt;-</span> felidos</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (input<span class="sc">$</span>especie <span class="sc">!=</span> <span class="st">"Todas"</span>) {</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    felidos_filtrados <span class="ot">&lt;-</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>      felidos_filtrados <span class="sc">|&gt;</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(species <span class="sc">==</span> input<span class="sc">$</span>especie)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(felidos_filtrados)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>})  </span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Las funciones reactivas permiten a las aplicaciones shiny responder dinámicamente a las entradas del usuario.</p>
+</section>
+</section>
+<section id="ejercicios" class="level2" data-number="15.9">
+<h2 data-number="15.9" class="anchored" data-anchor-id="ejercicios"><span class="header-section-number">15.9</span> Ejercicios</h2>
 <ol type="1">
 <li><p>Ejecute en su computadora el código de la aplicación “Old Faithful” mostrado anteriormente.</p>
 <ol type="a">
@@ -529,11 +638,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol type="a">
 <li>Cree una cuenta en <a href="https://www.shinyapps.io/">shinyapps.io</a>.</li>
 <li>Obtenga su <em>token</em> de autenticación de shinyapps.io en <strong>Accounts - Tokens - Show- Show secret - Copy to clipboard</strong>.</li>
-<li>Ejecute la aplicación en su computadora y publíquela en shinyapps.io con el botón <strong>Publish</strong>. Elija la opción shinyapps.io e ingrese el <em>token</em> cuando se le solicite. Debe seleccionar todos los archivos requeridos para que su aplicación funciones (datos, imágenes, etc.). En este caso, solo necesita el archivo QMD.</li>
+<li>Ejecute la aplicación en su computadora y publíquela en shinyapps.io con el botón <strong>Publish</strong>. Elija la opción shinyapps.io e ingrese el <em>token</em> cuando se le solicite. Debe seleccionar todos los archivos requeridos para que su aplicación funciones (archivos .qmd, archivos .html, archivos de datos, etc).</li>
 </ol></li>
 <li><p>Ejecute en su computadora y luego publique en shinyapps.io la aplicación <a href="https://quarto.org/docs/interactive/shiny/#custom-layout">Iris K-Means Clustering</a>.</p></li>
 <li><p>Estudie el resto de los ejemplos en <a href="https://quarto.org/docs/interactive/shiny/#examples">Quarto - Shiny - Examples</a>.</p></li>
-<li><p>Cree una aplicación Shiny para el conjunto de datos de <a href="https://doi.org/10.15468/dl.dwpgps">registros de presencia de felinos de Costa Rica</a>, y publíquela en shinyapps.io, con los siguientes componentes:</p>
+<li><p>Cree una aplicación shiny para el conjunto de datos de <a href="https://doi.org/10.15468/dl.nq74xg">registros de presencia de félidos de Costa Rica</a>, y publíquela en <a href="https://www.shinyapps.io/">shinyapps.io</a>, con los siguientes componentes:</p>
 <ol type="a">
 <li>Una lista de selección de especies.</li>
 <li>Una tabla DT que muestre los registros de la especie seleccionada en la lista.</li>
@@ -543,8 +652,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <p>Puede encontrar una solución parcial en <a href="https://github.com/gf0604-procesamientodatosgeograficos/2023-i-felidos-shiny">https://github.com/gf0604-procesamientodatosgeograficos/2023-i-felidos-shiny</a>.</p>
 </section>
-<section id="recursos-de-interés" class="level2" data-number="15.8">
-<h2 data-number="15.8" class="anchored" data-anchor-id="recursos-de-interés"><span class="header-section-number">15.8</span> Recursos de interés</h2>
+<section id="recursos-de-interés" class="level2" data-number="15.10">
+<h2 data-number="15.10" class="anchored" data-anchor-id="recursos-de-interés"><span class="header-section-number">15.10</span> Recursos de interés</h2>
 <p>Quarto - Running Documents. (s. f.). Recuperado 20 de noviembre de 2022, de <a href="https://quarto.org/docs/interactive/shiny/running.html">https://quarto.org/docs/interactive/shiny/running.html</a></p>
 <p>Shiny. (s. f.). Recuperado 20 de noviembre de 2022, de <a href="https://shiny.rstudio.com/">https://shiny.rstudio.com/</a></p>
 <p>Shiny - Gallery. (s. f.). Recuperado 20 de noviembre de 2022, de <a href="https://shiny.rstudio.com/gallery/">https://shiny.rstudio.com/gallery/</a></p>

@@ -8,14 +8,18 @@ Quarto - Shiny. (s. f.). Recuperado 20 de noviembre de 2022, de [https://quarto.
 ## Resumen
 Shiny es un paquete de R que facilita el desarrollo de aplicaciones web interactivas. Las aplicaciones shiny se componen de una interfaz de usuario y de un servidor. En la interfaz de usuario, este puede realizar operaciones como filtros, búsquedas y ordenamientos de datos, entre otras. El servidor se encarga de procesar los datos de acuerdo con los parámetros especificados y de retornar los resultados a la interfaz de usuario.
 
+Además de los bloques de código en R para la interfaz de usuario y el servidor, shiny proporciona bloques para compartir código y datos. También para personalizar la interfaz de usuario.
+
+Las funciones reactivas de shiny se ejecutan cada vez que el usuario cambia los controles de la interfaz, lo que permite a las aplicaciones shiny responder dinámicamente a las entradas del usuario.
+
 ## Introducción
 En una aplicación interactiva, el usuario puede configurar las salidas, usualmente mediante una interfaz que le permite realizar operaciones como filtros, búsquedas y ordenamientos, entre otras. [Shiny](https://shiny.posit.co/) es un paquete de R que facilita el desarrollo de este tipo de aplicaciones.
 
-Las aplicaciones shiny requieren un [servidor](https://www.rstudio.com/products/shiny/shiny-server/), el cual es un proceso que puede alojarse en cualquier computador habilitado para ejecutar código en R como, por ejemplo, la estación de trabajo del programador (esta opción se usa principalmente para efectos de desarrollo y pruebas), un servidor ubicado en la red de una organización o un servidor en la nube (ej. [shinyapps.io](https://www.shinyapps.io/), [RStudio Connect](https://www.rstudio.com/products/connect/)).
+Las aplicaciones shiny requieren un [servidor](https://www.rstudio.com/products/shiny/shiny-server/), el cual es un proceso que puede alojarse en cualquier computador habilitado para ejecutar código en R como, por ejemplo, la estación de trabajo del programador (esta opción se usa principalmente para efectos de desarrollo y pruebas), un servidor ubicado en la red de una organización o un servidor en la nube (ej. [shinyapps.io](https://www.shinyapps.io/), [Posit Connect](https://posit.co/products/enterprise/connect/), [Posit Cloud](https://posit.co/products/cloud/cloud/)).
 
 Para ejemplos de aplicaciones shiny, puede visitar la siguiente [galería](https://shiny.rstudio.com/gallery/).
 
-## Instalación y carga
+## Instalación
 ```{r}
 #| label: instalacion-shiny
 #| eval: false
@@ -24,20 +28,14 @@ Para ejemplos de aplicaciones shiny, puede visitar la siguiente [galería](https
 install.packages("shiny")
 
 # Instalación de rsconnect, para conectarse a
-# shinyapps.io, RStudio Connect y otras plataformas similares
+# shinyapps.io, Posit Connect y otras plataformas similares
 install.packages("rsconnect")
+
+# Instalación de quarto
+install.packages("quarto")
 ```
 
-```{r}
-#| label: carga-shiny
-#| message: false
-
-# Carga de shiny
-library(shiny)
-
-# Carga de rsconnect
-library(rsconnect)
-```
+La carga de estos paquetes se realiza automáticamente en una aplicación shiny.
 
 ## Arquitectura
 Una aplicación shiny tiene dos componentes principales:
@@ -50,8 +48,8 @@ Una aplicación shiny tiene dos componentes principales:
 
 Para más información sobre la arquitectura de aplicaciones shiny, se recomienda leer [The Anatomy of a Shiny Application](https://www.r-bloggers.com/2021/04/the-anatomy-of-a-shiny-application/).
 
-## Ejemplo
-El siguiente documento Quarto contiene una aplicación shiny que muestra la distribución de la duración de los tiempos de espera entre erupciones del [géiser "Old Faithful"](https://rdrr.io/r/datasets/faithful.html), a través de un histograma. El usuario especifica la cantidad de *bins* del histograma a través de un widget de tipo [sliderInput](https://shiny.posit.co/r/reference/shiny/1.3.1/sliderinput), luego el servidor genera el histograma con la cantidad de *bins* especificada y lo retorna a la interfaz de usuario para desplegarlo.
+## Ejemplo de aplicación básica
+El siguiente documento Quarto contiene una aplicación shiny que muestra la distribución de la duración de los tiempos de espera entre erupciones del géiser ["Old Faithful"](https://es.wikipedia.org/wiki/Old_Faithful), a través de un histograma. El usuario especifica la cantidad de *bins* del histograma a través de un widget de tipo [sliderInput](https://shiny.posit.co/r/reference/shiny/1.3.1/sliderinput), luego el servidor genera el histograma con la cantidad de *bins* especificada y lo retorna a la interfaz de usuario para desplegarlo.
 
 ```` md
 ---
@@ -109,23 +107,138 @@ output$histograma <- renderPlot({
 ```
 ````
 
-Es de vital importancia comprender que los dos bloques de código del ejemplo anterior se ejecutan en sesiones de R completamente separadas. Esto implica que no es posible, en principio, acceder desde el primer bloque variables definidas en el segundo, ni viceversa. Sin embargo, existen varias estrategias para compartir código, como las que se detallan en [Sharing Code](https://quarto.org/docs/interactive/shiny/execution.html#sharing-code).
+Es de vital importancia comprender que los dos bloques de código del ejemplo anterior se ejecutan en sesiones de R completamente separadas. Esto implica que no es posible, en principio, acceder desde el primer bloque variables definidas en el segundo, ni viceversa. Sin embargo, existen varias estrategias para compartir código, como las que se detallan en [Sharing Code](https://quarto.org/docs/interactive/shiny/execution.html#sharing-code) y que se detallan en secciones siguientes de este documento.
 
 Una forma en la que la interfaz de usuario y el servidor pueden comunicarse, es a través de las listas `input` y `output`. 
 
 - `input` contiene la lista de widgets de entrada (listas de selección, campos de entrada de texto, botones de radio, etc.). Cada uno de estos widgets tiene un `inputId` único. En el ejemplo, "cantidad_bins" es el inputId del widget tipo sliderInput. Se referencia como `input$cantidad_bins` en el bloque del servidor.
 - `output` es una lista de componentes que se crean o modifican en el servidor (tablas, gráficos, mapas, etc). y que luego se envían a la interfaz de usuario para su visualización. Para crear o modificar un elemento de `output`, se utiliza una función `render*`, y para mostrarlo en la interfaz de usuario, se utiliza una función `*Output`. En el ejemplo, `output$histograma` es un gráfico que se crea con la función `renderPlot()` en función del valor de `input$cantidad_bins`, y se muestra en la interfaz de usuario con `plotOutput()`.
 
-Por otra parte, hay diferencias importantes entre este documento y otros documentos Quarto:
+Nótese que hay diferencias importantes entre este documento y otros documentos Quarto:
 
 1. La opción `server: shiny`: en la sección YAML, la cual le indica a Quarto que debe iniciar un servidor Shiny.
 
 2. La opción `context: server`: en el segundo bloque de código, la cual indica que ese bloque debe ejecutarse en el servidor.
 
-Existen otras opciones para los bloques de código en aplicaciones Shiny:
+Existen otros posibles valores de `context` para los bloques de código en aplicaciones shiny, los cuales permiten compartir código y datos.
 
-- `context: setup`: para operaciones iniciales (ej. carga de bibliotecas).
-- `context: data`: para datos que se desea compartir entre los bloques de código.
+## Bloques para compartir código y datos
+Como puede apreciarse en el ejemplo anterior, las aplicaciones shiny pueden contener bloques de código que se ejecutan en tiempo de despliegue (*rendering*) de la interfaz de usuario y también bloques que se ejecutan en el servidor en respuesta a las acciones del usuario y a los cambios en los valores de entrada. Estos tipos de bloques se identifican respectivamente mediante las opciones `context: render` (valor por defecto de `context`) y `context: server`.
+
+Existen también otros tipos de bloques, los cuales permiten compartir código y datos.
+
+### `context: setup`
+El código de este tipo de bloques se ejecuta tanto en el contexto de la interfaz de usuario como del servidor. Puede usarse para operaciones que se ejecutan al inicio de una aplicación, como la carga de paquetes.
+
+```` md
+```{r}`r ''`
+#| label: inicio
+#| context: setup
+#| message: false
+
+# Carga de paquetes
+library(tidyverse)
+library(DT)
+library(sf)
+```
+````
+
+### `context: data`
+Se utiliza para cargar datos que deben compartirse entre todos los bloques de código. Por ejemplo:
+
+```` md
+```{r}`r ''`
+#| label: lectura-datos
+#| context: data
+
+# Lectura de archivo CSV
+felidos <-
+  st_read(
+    dsn = "felidos.csv",
+    options = c(
+      "X_POSSIBLE_NAMES=decimalLongitude",
+      "Y_POSSIBLE_NAMES=decimalLatitude"
+    ),
+    quiet = TRUE
+  )
+```
+````
+
+## Bloques para configurar la interfaz de usuario
+Por defecto, los widgets que componen la interfaz de usuario se distribuyen automáticamente en la pantalla, usualmente de arriba hacia abajo. Las opciones `panel: sidebar` y `panel: fill`, entre otras, permiten personalizar la ubicación de los widgets.
+
+Para utilizar estas opciones, es necesario especificar `page-layout: custom` en la sección de YAML. Por ejemplo:
+
+```` md
+---
+title: "Félidos de Costa Rica"
+format: 
+  html:
+    theme: cosmo
+    page-layout: custom
+server: shiny
+---
+````
+
+### `panel: sidebar`
+Se utiliza para desplegar un panel lateral como, por ejemplo, para widgets de entrada de datos (ej. listas de selección, campos de entrada de texto, botones de radio). Por ejemplo:
+
+```` md
+```{r}`r ''`
+#| panel: sidebar
+
+# Vector ordenado de especies
+lista_especies <- unique(felidos$species)
+lista_especies <- sort(lista_especies)
+lista_especies <- c("Todas", lista_especies)
+
+# Selector de especies
+selectInput(
+  inputId = "especie",
+  label = "Especie",
+  choices = lista_especies,
+  selected = "Todas"
+)
+```
+````
+
+Un bloque de este tipo debe ir acompañado de otro de tipo `panel: fill` o `panel: center`.
+
+### `panel: fill` y `panel: center`
+Estos bloques rellenan el espacio que queda disponible luego de desplegar un bloque del tipo `panel: sidebar`. Los bloques `panel: center` incluyen un margen horizontal alrededor del contenido. Pueden emplearse para desplegar salidas como tablas, gráficos y mapas. Por ejemplo:
+
+```` md
+```{r}`r ''`
+#| panel: fill
+
+# Tabla interactiva
+dataTableOutput("tabla")
+```
+````
+
+### Funciones reactivas
+Son funciones especiales que se ejecutan cada vez que cambia uno de los datos que utiliza como entrada, como un widget de la interfaz de usuario. En el siguiente bloque de código se define una función reactiva que utiliza el valor especificado por el usuario en una lista de selección para filtrar un conjunto de datos.
+
+```` md
+```{r}`r ''`
+# Función reactiva para filtrar los registros de presencia de félidos
+# de acuerdo con el valor de una lista de selección
+filtrar_felidos <- reactive({
+  # Valor inicial del objeto que va a retornarse
+  felidos_filtrados <- felidos
+  
+  if (input$especie != "Todas") {
+    felidos_filtrados <-
+      felidos_filtrados |>
+      filter(species == input$especie)
+  }
+
+  return(felidos_filtrados)
+})  
+```
+````
+
+Las funciones reactivas permiten a las aplicaciones shiny responder dinámicamente a las entradas del usuario. 
 
 ## Ejercicios
 1. Ejecute en su computadora el código de la aplicación "Old Faithful" mostrado anteriormente.
@@ -137,13 +250,13 @@ Existen otras opciones para los bloques de código en aplicaciones Shiny:
 2. Publique la aplicación "Old Faithful" en shinyapps.io (puede consultar [Quarto - Running Documents](https://quarto.org/docs/interactive/shiny/running.html) y [How to Deploy R Shiny App for Free on Shinyapps.io](https://www.youtube.com/watch?v=2QstfyGX4ZU)).
     a. Cree una cuenta en [shinyapps.io](https://www.shinyapps.io/).
     b. Obtenga su *token* de autenticación de shinyapps.io en **Accounts - Tokens - Show- Show secret - Copy to clipboard**.
-    c. Ejecute la aplicación en su computadora y publíquela en shinyapps.io con el botón **Publish**. Elija la opción shinyapps.io e ingrese el *token* cuando se le solicite. Debe seleccionar todos los archivos requeridos para que su aplicación funciones (datos, imágenes, etc.). En este caso, solo necesita el archivo QMD.
+    c. Ejecute la aplicación en su computadora y publíquela en shinyapps.io con el botón **Publish**. Elija la opción shinyapps.io e ingrese el *token* cuando se le solicite. Debe seleccionar todos los archivos requeridos para que su aplicación funciones (archivos .qmd, archivos .html, archivos de datos, etc).
 
 3. Ejecute en su computadora y luego publique en shinyapps.io la aplicación [Iris K-Means Clustering](https://quarto.org/docs/interactive/shiny/#custom-layout).
 
 4. Estudie el resto de los ejemplos en [Quarto - Shiny - Examples](https://quarto.org/docs/interactive/shiny/#examples).
 
-5. Cree una aplicación Shiny para el conjunto de datos de [registros de presencia de felinos de Costa Rica](https://doi.org/10.15468/dl.dwpgps), y publíquela en shinyapps.io, con los siguientes componentes:
+5. Cree una aplicación shiny para el conjunto de datos de [registros de presencia de félidos de Costa Rica](https://doi.org/10.15468/dl.nq74xg), y publíquela en [shinyapps.io](https://www.shinyapps.io/), con los siguientes componentes:
     a. Una lista de selección de especies.
     b. Una tabla DT que muestre los registros de la especie seleccionada en la lista.
     c. Un gráfico ggplot2-plotly de barras que muestre la cantidad de registros por mes de la especie seleccionada en la lista.
