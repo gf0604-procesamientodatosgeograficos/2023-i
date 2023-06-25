@@ -9,9 +9,10 @@ lang: es
 [Examen corto 2](examen_corto-02.qmd)  
 [Examen corto 3](examen_corto-03.qmd)  
 [Examen corto 4](examen_corto-04.qmd)  
+[Examen corto 5](examen_corto-05.qmd)  
 
 ## Tareas {.unnumbered}
 [Tarea 1](tarea-01.qmd)  
-[Tarea 2](tarea-02.qmd) 
+[Tarea 2](tarea-02.qmd)  
 [Tarea 3 - Grupo 001](tarea-03-grupo-001.qmd)  
 [Tarea 3 - Grupo 002](tarea-03-grupo-002.qmd)  
