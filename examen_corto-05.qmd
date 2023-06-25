@@ -1,0 +1,8 @@
+# Examen corto 5 {.unnumbered}
+
+## Fecha {.unnumbered}
+**Grupo 001**: lunes 3 de julio de 2023  
+**Grupo 002**: miércoles 5 de julio de 2023
+
+## Temas a evaluar {.unnumbered}
+[15 shiny - marco de trabajo para desarrollo de aplicaciones web interactivas](15-shiny.qmd)
