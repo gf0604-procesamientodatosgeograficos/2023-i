@@ -2,6 +2,35 @@
 
 ## Trabajo previo
 
+### Instalación de R, RStudio y paquetes
+Los ejemplos de este capítulo se probaron con:
+
+- [Sistema base de R versión 4.3.0 (2023-04-21 ucrt)](https://cran.rstudio.com/bin/windows/base/old/4.3.0/R-4.3.0-win.exe)
+- [RStudio Desktop versión 2023.06.0 Build 421](https://download1.rstudio.org/electron/windows/RStudio-2023.06.0-421.exe)
+
+Y se instalaron los siguientes paquetes de R:
+
+```{r}
+#| label: instalacion-paquetes
+#| eval: false
+#| warning: false
+#| message: false
+
+# Paquetes instalados en los capítulos anteriores
+install.packages("tidyverse")
+install.packages("DT")
+install.packages("plotly")
+install.packages("sf")
+install.packages("leaflet")
+install.packages("leaflet.extras")
+install.packages("leafem")
+
+# Paquetes necesarios para este capítulo
+install.packages("shiny")
+install.packages("rsconnect")
+install.packages("quarto")
+```
+
 ### Lecturas
 Quarto - Shiny. (s. f.). Recuperado 20 de noviembre de 2022, de [https://quarto.org/docs/interactive/shiny/](https://quarto.org/docs/interactive/shiny/)
 
@@ -18,24 +47,6 @@ En una aplicación interactiva, el usuario puede configurar las salidas, usualme
 Las aplicaciones shiny requieren un [servidor](https://www.rstudio.com/products/shiny/shiny-server/), el cual es un proceso que puede alojarse en cualquier computador habilitado para ejecutar código en R como, por ejemplo, la estación de trabajo del programador (esta opción se usa principalmente para efectos de desarrollo y pruebas), un servidor ubicado en la red de una organización o un servidor en la nube (ej. [shinyapps.io](https://www.shinyapps.io/), [Posit Connect](https://posit.co/products/enterprise/connect/), [Posit Cloud](https://posit.co/products/cloud/cloud/)).
 
 Para ejemplos de aplicaciones shiny, puede visitar la siguiente [galería](https://shiny.rstudio.com/gallery/).
-
-## Instalación
-```{r}
-#| label: instalacion-shiny
-#| eval: false
-
-# Instalación de shiny
-install.packages("shiny")
-
-# Instalación de rsconnect, para conectarse a
-# shinyapps.io, Posit Connect y otras plataformas similares
-install.packages("rsconnect")
-
-# Instalación de quarto
-install.packages("quarto")
-```
-
-La carga de estos paquetes se realiza automáticamente en una aplicación shiny.
 
 ## Arquitectura
 Una aplicación shiny tiene dos componentes principales:
