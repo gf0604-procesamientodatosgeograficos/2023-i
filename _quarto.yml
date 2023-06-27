@@ -44,6 +44,7 @@ book:
         - tarea-03-grupo-001.qmd
         - tarea-03-grupo-002.qmd
         - examen_corto-05.qmd
+        - proyecto-grupo-001.qmd
     - part: parte-vii-varios.qmd
       chapters:
         - error-render-datatable.qmd      

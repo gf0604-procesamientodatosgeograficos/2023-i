@@ -1,0 +1,104 @@
+# Proyecto final - Grupo 001 {.unnumbered}
+
+## Fecha y hora límite de entrega {.unnumbered}
+**Martes 11 de julio de 2023, 12:00 p.m.**  
+
+## Descripción general
+Este proyecto consiste en desarrollar una aplicación web interactiva con el lenguaje de programación R, el paquete Shiny y el sistema de publicación técnica y científica Quarto. La aplicación incluirá un conjunto de controles que le permitan al usuario especificar filtros en dos conjuntos de datos relacionados entre sí: [orquídeas (familia *Orchidaceae*)](https://es.wikipedia.org/wiki/Orchidaceae) y [áreas de conservación](https://www.sinac.go.cr/ES/ac/Paginas/default.aspx) de Costa Rica, para generar visualizaciones como tablas, gráficos estadísticos y mapas, de acuerdo con los criterios especificados en los filtros. La aplicación se publicará en shinyapps.io.
+
+Cada estudiante debe mostrar que es capaz de:
+
+1. Escribir código fuente en el lenguaje de programación R y utilizar funciones contenidas en paquetes como readr, dplyr, ggplot2, plotly, DT, sf y leaflet, entre otros, para leer datos, procesarlos y generar visualizaciones como tablas, gráficos estadísticos y mapas.
+2. Escribir documentos en el sistema de publicación científica y técnica Quarto que combinen narrativa en Markdown con bloques de código en R.
+3. Manejar datos geoespaciales con R.
+4. Desarrollar aplicaciones web interactivas con el paquete Shiny de R.
+5. Publicar aplicaciones Shiny en la plataforma shinyapps.io.
+6. Analizar y corregir errores de programación.
+
+**Esta tarea puede realizarse individualmente o en parejas. En este último caso, solo un estudiante debe entregar la tarea en Mediación Virtual e indicar ahí el nombre de su compañero**.
+
+## Datos
+Para realizar esta tarea, se requieren dos conjuntos de datos:
+
+1. Áreas de conservación de Costa Rica. Este archivo GeoJSON proviene de un geoservicio de tipo [Web Feature Service (WFS) publicado por el Sistema Nacional de Áreas de Conservación (Sinac)](https://www.snitcr.go.cr/ico_servicios_ogc_info?k=bm9kbzo6NDA=&nombre=SINAC). Las geometrías se simplificaron para reducir el tamaño del archivo, el cual está disponible en el siguiente enlace:
+
+[Archivo GeoJSON de áreas de conservación de Costa Rica](https://github.com/gf0604-procesamientodatosgeograficos/2023-i/blob/main/datos/sinac/areas_conservacion_simp_10m.geojson)
+
+2. Registros de presencia de orquídeas en Costa Rica. Este archivo CSV proviene de una [consulta al portal de datos de la Infraestructura Mundial de Información en Biodiversidad (GBIF)](https://doi.org/10.15468/dl.3q7r9m). Para reducir el tamaño del archivo, se suprimieron algunas columnas no indispensables y también las filas con identificaciones en niveles superiores a especie. El archivo está disponible en el siguiente enlace:
+
+[Archivo CSV de registros de presencia de orquídeas de Costa Rica](https://github.com/gf0604-procesamientodatosgeograficos/2023-i/blob/main/datos/gbif/orquideas.csv)
+
+## Entregables
+Deben entregarse dos direcciones web:
+
+1. Dirección de un repositorio en GitHub con el código fuente y los datos de la aplicación.
+2. Dirección de la aplicación publicada en shinyapps.io.
+
+La entrega debe realizarse a través de la plataforma Mediación Virtual.
+
+## Desarrollo
+La aplicación debe cumplir con las siguientes características generales:
+
+- En general, debe estar ordenada y bien presentada.
+- El código fuente debe ser legible y ordenado. 
+- Debe estar completamente en español (incluyendo los controles de las tablas y los gráficos).
+- Debe utilizar un [estilo (*theme*) de Quarto para HTML](https://quarto.org/docs/output-formats/html-themes.html).
+
+La interfaz de usuario se compone de un panel lateral (`panel: sidebar`) con controles (*widgets*), para especificar filtros de datos, y un panel principal (`panel: fill` o `panel: center`), que ocupe el resto de la pantalla, para desplegar las salidas.
+
+### Panel lateral
+Incluye los siguientes controles:
+
+#### Lista de selección ([selectInput()](https://shiny.posit.co/r/reference/shiny/latest/selectinput)) de especies 
+Permite especificar un filtro por una especie: las tablas, gráficos y mapas de salida mostrarán la información correspondiente a los registros de presencia de esa especie.
+
+#### Deslizador de rango (*slider range*, [sliderInput()](https://shiny.posit.co/r/reference/shiny/latest/sliderinput)) de años 
+Permite especificar un filtro por un rango de años (ej. 1998 - 1999, 2000 - 2010): las tablas, gráficos y mapas de salida mostrarán la información correspondiente a los registros de presencia observados entre esos años.
+
+#### Botones de radio ([radioButtons()](https://shiny.posit.co/r/reference/shiny/latest/radioButtons)) de áreas de conservación 
+Permite especificar un filtro por un área de conservación: las tablas, gráficos y mapas de salida mostrarán la información correspondiente a los registros de presencia localizados en esa área de conservación. 
+
+Puede ver ejemplos de programación con *widgets* en [https://shiny.posit.co/r/gallery/widgets/widget-gallery/](https://shiny.posit.co/r/gallery/widgets/widget-gallery/).
+
+### Panel principal
+Incluye las siguientes salidas:
+
+#### Mapa de cantidad de registros de presencia de orquídeas en áreas de conservación
+Mapa leaflet interactivo con las siguientes capas y controles:
+
+- Dos capas base de tipo *tiles* (teselas) (ej. OSM, Stamen, ESRI).
+- Una capa de áreas de conservación coloreada de acuerdo con la cantidad de registros de presencia de orquídeas en cada área (i.e. puntos dentro de cada polígono). Al hacer clic sobre un polígono, la ventana emergente debe mostrar el nombre del área y la cantidad de registros de presencia.
+- Una leyenda que muestre el significado de los colores usados en la capa de áreas de conservación.
+- Una capa de registros de presencia de orquídeas (puntos). Al hacer clic sobre un punto, la ventana debe mostrar el nombre de la especie. **No es necesario crear una leyenda para esta capa, ya que es difícil de leer debido que contiene muchas especies**.
+- Un control de capas.
+
+#### Tabla de cantidad de registros de presencia de orquídeas en áreas de conservación
+Tabla interactiva generada con el paquete DT que muestre la cantidad de registros de presencia de orquídeas en cada área de conservación. Debe tener una fila por cada área de conservación y dos columnas:
+
+- `Nombre del área de conservación`
+- `Cantidad de registros de presencia de orquídeas`
+
+Los encabezados de la tabla deben estar en español y ser significativos. Sugerencia: use el argumento `colnames` de la función `datatable()` para especificar los encabezados de las columnas.
+
+#### Gráfico de barras de cantidad de registros de presencia de orquídeas en áreas de conservación
+Este gráfico muestra los mismos datos que la tabla. Debe contener una barra por cada área de conservación y su longitud debe mostrar la cantidad de registros de presencia que contiene.
+
+- Las barras deben estar ordenadas por longitud (de mayor a menor o de menor a mayor).
+- Al colocar el ratón sobre una barra, la ventana emergente debe mostrar el área de conservación y la cantidad de registros de presencia.
+
+Debe programarse con ggplot2 y convertirse a plotly con la función `ggplotly()`, para que sea interactivo. Debe tener:
+
+- Título.
+- Etiquetas en los ejes x e y.
+- Un estilo (*theme*), ya sea uno de los [estilos incluídos en ggplot2](https://ggplot2.tidyverse.org/reference/ggtheme.html), en [ggthemes](https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/) o en [hrbrthemes](https://github.com/hrbrmstr/hrbrthemes).
+
+Procure que todos los componentes sean legibles. Considere rotar los ejes o inclinar las etiquetas, si es necesario.
+
+## Calificación
+- Presentación general del repositorio GitHub y de la aplicación en shinyapps.io (uso de estilos, código fuente, datos): 20%
+- Lista de selección de especies: 5%
+- Deslizador para seleccionar rango de años: 15%
+- Lista de selección de áreas de conservación: 15%
+- Mapa: 15%
+- Tabla: 15%
+- Gráfico: 15%
