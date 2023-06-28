@@ -1,0 +1,104 @@
+# Proyecto final - Grupo 002 {.unnumbered}
+
+## Fecha y hora límite de entrega {.unnumbered}
+**Miércoles 12 de julio de 2023, 12:00 p.m.**  
+
+## Descripción general
+Este proyecto consiste en desarrollar una aplicación web interactiva con el lenguaje de programación R, el paquete Shiny y el sistema de publicación técnica y científica Quarto. La aplicación incluirá un conjunto de controles que le permitirán al usuario especificar filtros en dos conjuntos de datos relacionados entre sí: [mamíferos (clase *Mammalia*)](https://es.wikipedia.org/wiki/Mammalia) y [regiones socioeconómicas](https://es.wikipedia.org/wiki/Regiones_socioecon%C3%B3micas_de_Costa_Rica) de Costa Rica, para generar visualizaciones como tablas, gráficos estadísticos y mapas, de acuerdo con los criterios especificados en los filtros. La aplicación se publicará en shinyapps.io.
+
+Cada estudiante debe mostrar que es capaz de:
+
+1. Escribir código fuente en el lenguaje de programación R y utilizar funciones contenidas en paquetes como readr, dplyr, ggplot2, plotly, DT, sf y leaflet, entre otros, para leer datos, procesarlos y generar visualizaciones como tablas, gráficos estadísticos y mapas.
+2. Escribir documentos en el sistema de publicación científica y técnica Quarto que combinen narrativa en Markdown con bloques de código en R.
+3. Manejar datos geoespaciales con R.
+4. Desarrollar aplicaciones web interactivas con el paquete Shiny de R.
+5. Publicar aplicaciones Shiny en la plataforma shinyapps.io.
+6. Analizar y corregir errores de programación.
+
+**Este proyecto puede realizarse individualmente o en parejas. En este último caso, solo un estudiante debe entregar la tarea en Mediación Virtual e indicar ahí el nombre de su compañero**.
+
+## Datos
+Para realizar esta tarea, se requieren dos conjuntos de datos:
+
+1. Regiones socioeconómicas (también llamadas regiones de planificación) de Costa Rica. Este conjunto de datos está contenido en el [Atlas digital de Costa Rica 2014](https://repositoriotec.tec.ac.cr/handle/2238/6749?show=full) y fue facilitado por el Ministerio de Planificación (Mideplán). Los nombres de las regiones se actualizaron a la [versión más reciente](https://documentos.mideplan.go.cr/share/s/eZ8HYuxgTl6xCHx3ZAEBrg). Además, las geometrías se simplificaron para reducir el tamaño del archivo, el cual está disponible en el siguiente enlace:
+
+[Archivo GeoJSON de regiones socioeconómicas de Costa Rica](https://github.com/gf0604-procesamientodatosgeograficos/2023-i/blob/main/datos/mideplan/regiones_socioeconomicas_simp_10m.geojson)
+
+2. Registros de presencia de mamíferos en Costa Rica. Este archivo CSV proviene de una [consulta al portal de datos de la Infraestructura Mundial de Información en Biodiversidad (GBIF)](https://doi.org/10.15468/dl.2psj9q). Para reducir el tamaño del archivo, se suprimieron algunas columnas no indispensables y también las filas con identificaciones en niveles superiores a especie. El archivo está disponible en el siguiente enlace:
+
+[Archivo CSV de registros de presencia de mamíferos de Costa Rica](https://github.com/gf0604-procesamientodatosgeograficos/2023-i/blob/main/datos/gbif/mamiferos.csv)
+
+## Entregables
+Deben entregarse dos direcciones web:
+
+1. Dirección de un repositorio en GitHub con el código fuente y los datos de la aplicación.
+2. Dirección de la aplicación publicada en shinyapps.io.
+
+La entrega debe realizarse a través de la plataforma Mediación Virtual.
+
+## Desarrollo
+La aplicación debe cumplir con las siguientes características generales:
+
+- En general, debe estar ordenada y bien presentada.
+- El código fuente debe ser legible y ordenado. 
+- Debe estar completamente en español (incluyendo los controles de las tablas y los gráficos).
+- Debe utilizar un [estilo (*theme*) de Quarto para HTML](https://quarto.org/docs/output-formats/html-themes.html).
+
+La interfaz de usuario se compone de un panel lateral (`panel: sidebar`) con controles (*widgets*), para especificar filtros de datos, y un panel principal (`panel: fill` o `panel: center`), que ocupe el resto de la pantalla, para desplegar las salidas.
+
+### Panel lateral
+Incluye los siguientes controles:
+
+#### Lista de selección ([selectInput()](https://shiny.posit.co/r/reference/shiny/latest/selectinput)) de especies 
+Permite especificar un filtro por una especie: las tablas, gráficos y mapas de salida mostrarán la información correspondiente a los registros de presencia de esa especie.
+
+#### Deslizador de rango (*slider range*, [sliderInput()](https://shiny.posit.co/r/reference/shiny/latest/sliderinput)) de meses 
+Permite especificar un filtro por un rango de meses (ej. 1 - 12, 3 - 6): las tablas, gráficos y mapas de salida mostrarán la información correspondiente a los registros de presencia observados entre esos meses.
+
+#### Botones de radio ([radioButtons()](https://shiny.posit.co/r/reference/shiny/latest/radioButtons)) de regiones socioeconómicas
+Permite especificar un filtro por una región socioeconómica: las tablas, gráficos y mapas de salida mostrarán la información correspondiente a los registros de presencia localizados en esa región. 
+
+Puede ver ejemplos de programación con *widgets* en [https://shiny.posit.co/r/gallery/widgets/widget-gallery/](https://shiny.posit.co/r/gallery/widgets/widget-gallery/).
+
+### Panel principal
+Incluye las siguientes salidas:
+
+#### Mapa de cantidad de registros de presencia de mamíferos en regiones socioeconómicas
+Mapa leaflet interactivo con las siguientes capas y controles:
+
+- Dos capas base de tipo *tiles* (teselas) (ej. OSM, Stamen, ESRI).
+- Una capa de regiones socioeconómicas coloreada de acuerdo con la cantidad de registros de presencia de mamíferos en cada región (i.e. puntos dentro de cada polígono). Al hacer clic sobre un polígono, la ventana emergente debe mostrar el nombre de la región y la cantidad de registros de presencia.
+- Una leyenda que muestre el significado de los colores usados en la capa de regiones socioeconómicas.
+- Una capa de registros de presencia de mamíferos (puntos). Al hacer clic sobre un punto, la ventana debe mostrar el nombre de la especie. **No es necesario crear una leyenda para esta capa, ya que es difícil de leer debido que contiene muchas especies**.
+- Un control de capas.
+
+#### Tabla de cantidad de registros de presencia de mamíferos en regiones socioeconómicas
+Tabla interactiva generada con el paquete DT que muestre la cantidad de registros de presencia de mamíferos en cada región socioeconómica. Debe tener una fila por cada región y dos columnas:
+
+- `Nombre de la región socioeconómica`
+- `Cantidad de registros de presencia de mamíferos`
+
+Los encabezados de la tabla deben estar en español y ser significativos. Sugerencia: use el argumento `colnames` de la función `datatable()` para especificar los encabezados de las columnas.
+
+#### Gráfico de barras de cantidad de registros de presencia de mamíferos en regiones socioeconómicas
+Este gráfico muestra los mismos datos que la tabla. Debe contener una barra por cada región socioeconómica y su longitud debe mostrar la cantidad de registros de presencia que contiene.
+
+- Las barras deben estar ordenadas por longitud (de mayor a menor o de menor a mayor).
+- Al colocar el ratón sobre una barra, la ventana emergente debe mostrar el nombre de la región socioeconómica y la cantidad de registros de presencia.
+
+Debe programarse con ggplot2 y convertirse a plotly con la función `ggplotly()`, para que sea interactivo. Debe tener:
+
+- Título.
+- Etiquetas en los ejes x e y.
+- Un estilo (*theme*), ya sea uno de los [estilos incluídos en ggplot2](https://ggplot2.tidyverse.org/reference/ggtheme.html), en [ggthemes](https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/) o en [hrbrthemes](https://github.com/hrbrmstr/hrbrthemes).
+
+Procure que todos los componentes sean legibles. Considere rotar los ejes o inclinar las etiquetas, si es necesario.
+
+## Calificación
+- Presentación general del repositorio GitHub y de la aplicación en shinyapps.io (uso de estilos, código fuente, datos): 20%
+- Lista de selección de especies: 5%
+- Deslizador para seleccionar rango de años: 15%
+- Lista de selección de regiones socioeconómicas: 15%
+- Mapa: 15%
+- Tabla: 15%
+- Gráfico: 15%

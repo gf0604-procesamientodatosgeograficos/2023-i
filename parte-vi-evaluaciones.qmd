@@ -17,3 +17,4 @@ lang: es
 [Tarea 3 - Grupo 001](tarea-03-grupo-001.qmd)  
 [Tarea 3 - Grupo 002](tarea-03-grupo-002.qmd)  
 [Proyecto final - Grupo 001](proyecto-grupo-001.qmd)  
+[Proyecto final - Grupo 002](proyecto-grupo-002.qmd)  
